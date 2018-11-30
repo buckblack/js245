@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DOM - Event </title>
+    <script type="text/javascript" src="js/thu_vien.js"></script>
+    <script>
+        function Xuat_bang_cuu_chuong(so) {
+            document.getElementById("dsCuuchuong").innerHTML = Bang_cuu_chuong(so);
+
+        }
+
+        function Gioi_tinh() {
+            var chk = document.getElementById("chk").checked;
+            document.getElementById("lbl").innerHTML = chk ? "Nam" : "Nữ";
+        }
+    </script>
+</head>
+
+<body onload="onLoad()">
+    <h1>HTML DOM Events</h1>
+    <fieldset>
+        <legend>
+            <h3>&lt;element event="myScript"&gt;</h3>
+        </legend>
+        Chọn số cửu chương:
+        <select id="DsSo" onchange="Xuat_bang_cuu_chuong(this.value)">
+            <script>
+                for (i = 2; i <= 10; i++) {
+                    var option = "<option>" + i + "</option>";
+                    document.writeln(option);
+                }
+            </script>
+        </select>
+        <div id="dsCuuchuong"></div>
+        <hr /> Giới tính:
+        <input type="checkbox" id="chk" onchange="Gioi_tinh()" />
+        <label id="lbl" for="chk">Nữ</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            <h3>object.event =function(){myScript}</h3>
+        </legend>
+        <img src="images/denTat.jpg" id="Th_Img" />
+    </fieldset>
+    <!-- object.event =function(){myScript} -->
+    <script>
+        Th_Img.onmouseover = ()=>{
+            mouseOver()
+        };
+        Th_Img.onmouseout = function () {
+            mouseOut()
+        };
+
+
+        function mouseOver() {
+            Th_Img.src = "images/denSang.jpg";
+        }
+
+        function mouseOut() {
+            Th_Img.src = "images/denTat.jpg";
+        }
+    </script>
+    <fieldset>
+        <legend>
+            <h3>object.addEventListener("event", myScript)</h3>
+        </legend>
+        <img src="images/denTat.jpg" id="Th_Hinh" />
+    </fieldset>
+    <!-- object.addEventListener("event", myScript) -->
+    <script>
+        
+        Th_Hinh.addEventListener("mouseover", myMouseover);
+        Th_Hinh.addEventListener("mouseout", myMouseout);
+
+        function myMouseover() {
+            Th_Hinh.src = "images/denSang.jpg";
+        }
+
+        function myMouseout() {
+            Th_Hinh.src = "images/denTat.jpg";
+        }
+    </script>
+</body>
+
+</html>

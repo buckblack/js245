@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Demo Event</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Minh họa Sự kiện</legend>
+
+
+        <button type="button" onclick="Th_Ngay.innerHTML=Date()">Xem Ngày Giờ hiện hành</button>
+
+
+        <button type="button" onclick="this.innerHTML=Date()">Xem Ngày Giờ hiện hành</button>
+
+        <script language="javascript">
+            function Hien_thi_Ngay() {
+                Th_Ngay.innerHTML = Date();
+            }
+        </script>
+
+        <div id="Th_Ngay"></div>
+        <button type="button" onclick="Hien_thi_Ngay()">Xem Ngày Giờ hiện hành</button>
+
+    </fieldset>
+</body>
+
+</html>

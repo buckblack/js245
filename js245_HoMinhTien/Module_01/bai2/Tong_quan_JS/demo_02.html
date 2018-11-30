@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>HTML - Events </title>
+	<script type="text/javascript" src="js/thu_vien.js"></script>
+	<script>
+		function Xuat_bang_cuu_chuong(so) {
+			document.getElementById("dsCuuchuong").innerHTML = Bang_cuu_chuong(so);
+
+		}
+		function Gioi_tinh() {
+			var chk = document.getElementById("chk").checked;
+			document.getElementById("lbl").innerHTML = chk ? "Nam" : "Nữ";
+		}
+		function myKeyup() {
+			var hoTen = document.getElementById("hoTen");
+			hoTen.style.backgroundColor = "";
+			if (hoTen.value == "") {
+				hoTen.style.backgroundColor = "red";
+
+			}
+			else {
+				hoTen.value = hoTen.value.toUpperCase();
+			}
+		}
+	</script>
+</head>
+
+<body onload="onLoad()">
+	<h1>HTML - Events</h1>
+	<fieldset>
+		<legend>
+			<h3>onchange</h3>
+		</legend>
+		Chọn số cửu chương:
+		<select id="DsSo" onchange="Xuat_bang_cuu_chuong(this.value)">
+			<script>
+				for (i = 2; i <= 10; i++) {
+					var option = "<option>" + i + "</option>";
+					document.writeln(option);
+				}
+			</script>
+		</select>
+		<div id="dsCuuchuong"></div>
+		<hr /> Giới tính:
+		<input type="checkbox" id="chk" onchange="Gioi_tinh()" />
+		<label id="lbl" for="chk">Nữ</label>
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			<h3>onclick</h3>
+		</legend>
+		<button type="button" onclick="thongBao(this.innerText)">button</button>
+		<a href="" onclick="thongBao(this.innerText)">Thẻ A</a>
+		<h2 onclick="thongBao(this.innerText)">Thẻ H2</h2>
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			<h3>onmouseover - onmouseout</h3>
+		</legend>
+		<img src="images/denTat.jpg" onmouseover="this.src='images/denSang.jpg'" onmouseout="this.src='images/denTat.jpg'" />
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			<h3>onkeydown - onkeyup</h3>
+		</legend>
+		Nhập họ tên:
+		<input type="text" id="hoTen" onkeyup="myKeyup()" />
+		
+
+		
+	</fieldset>
+
+</body>
+
+</html>
