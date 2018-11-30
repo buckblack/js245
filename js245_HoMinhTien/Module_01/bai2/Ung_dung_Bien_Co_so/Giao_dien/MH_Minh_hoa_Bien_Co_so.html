@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ứng dụng JS Biến Cơ sở</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="../Media/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>KHUNG XỬ LÝ</legend>
+            
+        </fieldset>
+        
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        //var s1=10;
+        //var s2=15;
+        //var s1=25;
+
+        /*
+        let s1=10;
+        let s2=15;
+        let s1=25;
+        console.log(s1)
+        */
+        
+        var a=`Lập trình viên javaScript`;
+        // Xem kiểu của biến typeof(a)
+        //console.log(a)
+        // Chiều dài chuỗi
+        var So_Ky_tu=a.length
+        //console.log(So_Ky_tu)
+        
+        /*
+        for(var i=0;i<So_Ky_tu;i++){
+            console.log(a[i])
+        }
+        */
+        
+        /*
+        var Loi_chao=`Chào bạn ${a}`
+        console.log(Loi_chao.toLowerCase())
+        var gtTim="C"
+        var Dieu_kien=a.toLowerCase().includes(gtTim.toLowerCase());
+        console.log(Dieu_kien) // True: Tìm thấy , False: Không tìm thấy: Chú ý Có phân biệt HOA thường  
+        */
+        //var Chi_so_Dau=a.indexOf("t") // -1: Không tìm thấy, trả về vị trí đầu tiên  
+        //console.log(Chi_so_Dau)
+
+        //var Chi_so_Cuoi=a.lastIndexOf("t") // -1: Không tìm thấy, trả về vị trí Cuối  
+        //console.log(Chi_so_Cuoi)
+
+        //var Thanh_phan_con=a.split(" ")
+        //console.log(Thanh_phan_con[0])
+
+        //var Chuoi_Ky_tu=a.substr(4)
+        //console.log(Chuoi_Ky_tu)
+        
+
+        ////////////////////////////////////////////////////////
+        // Đối tượng 
+        var Nhan_vien={
+            "Ma_so":"NV01",
+            "Ho_ten":"Trần Thị Bé Nhỏ"
+        }
+        // Từ Đối tượng chuyển thành CHUỖI JSON
+        console.log( typeof  Nhan_vien)
+        var Chuoi_Json=JSON.stringify(Nhan_vien)
+        console.log(typeof Chuoi_Json)
+        //console.log(Chuoi_Json)
+        // Từ CHUỖI JSON chuyển thành ĐỐI TƯỢNG
+        var Doi_tuong=JSON.parse(Chuoi_Json)
+        console.log(Doi_tuong)
+
+    </script>
+        
+</body>
+
+</html>
