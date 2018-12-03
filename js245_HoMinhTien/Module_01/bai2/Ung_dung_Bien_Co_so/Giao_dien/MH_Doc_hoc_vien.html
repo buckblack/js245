@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Đọc học viên</title>
+</head>
+<body>
+    <div id="TH_ma"></div>
+    <div id="TH_ten"></div>
+    <div id="TH_lop"></div>
+    <div id="TH_ngay_sinh"></div>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <script>
+        var hocvien=Doc_Du_lieu_HV()
+        TH_ma.innerHTML=`Mã số: ${hocvien.ma_hv}`
+        TH_ten.innerHTML=`Tên học viên: ${hocvien.ten}`
+        TH_lop.innerHTML=`Lớp: ${hocvien.lop}`
+        TH_ngay_sinh.innerHTML=`Ngày sinh: ${hocvien.ngay_sinh}`
+    </script>
+</body>
+</html>

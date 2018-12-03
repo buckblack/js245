@@ -1,0 +1,9 @@
+{
+    "Ma_Hoc_vien": "HV001",
+    "Ten": "Lê Thị Bé Nhỏ",
+    "Khoa": {
+        "Ma_so": "JS10",
+        "Ten": "Lập trình viên JS"
+    },
+    "Diem": [10, 9,8]
+}
