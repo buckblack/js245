@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ứng dụng Biến Đối tượng</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="http://localhost:1001/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>KHUNG XỬ LÝ</legend>
+
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+
+       /*class Hinh_chu_nhat
+       {
+           constructor(dai,rong)
+           {
+               this.dai=dai
+               this.rong=rong
+           }
+
+           Chu_vi()
+           {
+                return (Number(this.dai)+Number(this.rong))*2               
+           }
+
+           Dien_tich()
+           {
+                return Number(this.dai)*Number(this.rong)          
+           }
+       }
+
+       var hcn=new Hinh_chu_nhat(3,5)
+       console.log(hcn.Chu_vi())
+       */
+
+       /*var HCN={}
+       HCN.d=4
+       HCN.r=5
+       HCN.chuvi=()=>{
+           return (Number(HCN.d)+Number(HCN.r))*2
+        }
+       HCN.dientich=()=>{
+           return Number(HCN.d)*Number(HCN.r)
+        }
+       
+       console.log(`Chu vi: `+HCN.chuvi())
+       console.log(`Diện tích: `+HCN.dientich())
+       */
+
+       var hcn={
+           "Dai":5,
+           "Rong":6
+       }
+       hcn.Chuvi=(hcn.Dai+hcn.Rong)*2
+       console.log(`Chu vi: `+hcn.Chuvi)
+       
+    </script>
+
+</body>
+
+</html>
