@@ -1,0 +1,10 @@
+{
+    "Ten":"Hóa đơn Nhập hàng",
+    "Ma_so":"HD_N0001",
+    "Ngay_Hoa_don":"09/29/2018",
+    "Tri_gia":27000000,
+    "Nhan_vien":{
+        "Ten":"Lê Thị Bé Lớn",
+        "Ma_so":"NV_0001"
+    }
+}

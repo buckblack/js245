@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Ứng dụng Biến Đối tượng</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="http://localhost:1001/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>KHUNG XỬ LÝ</legend>
+
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+
+        class Hoc_vien {
+            constructor(Ma_so, Ho_ten) {
+                this.MA_SO = Ma_so,
+                    this.TEN = Ho_ten
+            }
+        }
+        var hv1 = new Hoc_vien("HV01", "Tran Tuan Anh")
+        var hv2 = new Hoc_vien("HV02", "Tran Tuan Em")
+
+        //console.log(hv1)
+        //console.log(hv2)
+
+        var hv = hv1
+        hv.Phai = true
+        hv.TEN = "Lap trinh JS"
+        //console.log("hv: " + hv.TEN)
+        //console.log("hv1: " + hv1.Phai)
+
+        var o = {
+            "Ten": "aaaaa",
+            "Gioi_tinh": "12323"
+        }
+
+        //console.log(o)
+
+        //console.log(typeof hv1)
+
+        // Hay
+
+        /*var hv={}
+        console.log(typeof hv)
+        */
+
+
+
+        class XL_0 {
+            constructor(_TEN, _MA_SO) {
+                this.Ten = _TEN,
+                    this.Ma_so = _MA_SO
+            }
+
+            Xuat_thong_tin() {
+                console.log("OK")
+            }
+
+        }
+
+        var o = new XL_0("Ntuan", "HS01")
+        Th_Thong_bao.innerHTML = o.Ten
+
+        var o1 = o
+        o1.Ten = "Mỹ Chi"
+        o1.Phai = "Nam"
+        o1.Hello = () => {
+            console.log("hello o1")
+        }
+        Th_Thong_bao.innerHTML = o.Phai
+        //o.Hello()
+        var x = new XL_0("ttThanh", "HS01")
+        x.Xuat_thong_tin()
+
+    </script>
+
+</body>
+
+</html>

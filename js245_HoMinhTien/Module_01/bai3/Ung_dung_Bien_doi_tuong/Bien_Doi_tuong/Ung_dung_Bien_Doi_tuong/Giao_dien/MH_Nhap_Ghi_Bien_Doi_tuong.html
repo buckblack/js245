@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Nhập ghi Dữ liệu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="../Media/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>Nhập Ghi Dữ liệu biến chuỗi</legend>
+            Tên cửa hàng:<input type="text" id="Th_Ten" size="40" />
+            <button class="btn btn-outline-primary" id="Th_Dong_y">Đồng ý</button>
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <script>
+    Th_Dong_y.onclick=()=>{
+        var Ten_Cua_hang=Th_Ten.value;
+        if(Ten_Cua_hang!=""){
+            var Cua_hang=`{"Ten":"${Ten_Cua_hang}","Ma_so":"PET"}`
+            var Kq=Ghi_Thong_tin_Cua_hang_Moi(JSON.parse(Cua_hang))
+            if(Kq=="OK"){
+                Th_Thong_bao.innerHTML=`Đọc dữ liệu thành công: ${Ten_Cua_hang}`
+            }else{
+                Th_Thong_bao.innerHTML=`Ghi có lỗi: ${Ten_Cua_hang}`;
+            }
+        }
+        else{
+            Th_Thong_bao.innerHTML="Nhập Tên Cửa hàng"
+            Th_Ten.focus()
+        }
+    }
+    </script>
+</body>
+
+</html>
