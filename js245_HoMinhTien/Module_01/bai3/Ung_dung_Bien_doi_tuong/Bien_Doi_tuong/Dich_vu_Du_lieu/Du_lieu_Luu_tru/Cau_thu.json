@@ -1,5 +1,8 @@
 {
-    "ten":"Quang Hai",
-    "so_ao":19,
-    "CLB":["ABC","XYZ"]
+	"Ten": "4",
+	"So_ao": "4",
+	"Vi_tri": "4",
+	"Bien_che": [
+		"4"
+	]
 }

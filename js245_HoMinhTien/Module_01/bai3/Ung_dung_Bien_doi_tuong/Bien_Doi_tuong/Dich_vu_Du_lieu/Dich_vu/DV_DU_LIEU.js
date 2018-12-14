@@ -25,11 +25,19 @@ var Dich_vu = NodeJs_Dich_vu.createServer((Yeu_cau, Dap_ung) => {
       Chuoi_Kq=JSON.stringify(Du_lieu.Cua_hang)
       Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
       Dap_ung.end(Chuoi_Kq);
-    }else if (Ma_so_Xu_ly == "DOC_CAU_THU") {
+    }
+    else if (Ma_so_Xu_ly == "DOC_CAU_THU") {
       Chuoi_Kq=JSON.stringify(Du_lieu.Cau_thu)
       Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
       Dap_ung.end(Chuoi_Kq);
-    } else {
+    } 
+    else if (Ma_so_Xu_ly == "Ghi_Thong_tin_Cau_thu_Moi") {
+      var cauthu=JSON.parse(Chuoi_Nhan)
+      Chuoi_Kq=Luu_tru.Ghi_Cau_thu(cauthu)
+      Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
+      Dap_ung.end(Chuoi_Kq);
+    } 
+    else {
       Chuoi_Kq = Luu_tru.Doc_Thong_tin_Dich_vu()
       Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
       Dap_ung.end(Chuoi_Kq);

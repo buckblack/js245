@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Nhập Ghi Cầu thủ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid" id="Th_Cua_hang">
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>Nhập Ghi Cầu thủ</legend>
+            <table>
+                <tr>
+                    <td>Tên Cầu thủ:</td>
+                    <td><input type="text" id="Th_Ten" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Vị trí:</td>
+                    <td><input type="text" id="Th_Vi_tri" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Số áo:</td>
+                    <td><input type="text" id="Th_So_ao"></td>
+                </tr>
+                <tr>
+                    <td>Biên chế:</td>
+                    <td><input type="text" id="Th_Bien_che" size="40" ></td>
+                </tr>
+                <tr class="text-center">
+                    <td colspan="2"><button class="btn btn-danger" id="Th_Dong_y">Ghi Cầu thủ </button></td>
+                </tr>
+
+            </table>
+            
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+
+    <script>
+        var Cua_hang=Doc_Du_lieu_Cua_hang()
+        console.log(Cua_hang)
+        Xuat_Thong_tin_Cua_hang(Cua_hang)
+
+        function Xuat_Thong_tin_Cua_hang(Cua_hang){
+            var Chuoi_HTML=`
+            <img src="http://localhost:1001/PET.png" class="btn" />
+            <div class="text-center btn btn-outline-primary">${Cua_hang.Ten}
+                <br>
+                <small> ${Cua_hang.Dia_chi}</small>
+            </div>
+            `
+            Th_Cua_hang.innerHTML=Chuoi_HTML
+        }
+
+        Th_Dong_y.onclick=()=>{
+            var Cau_thu={
+                "Ten":Th_Ten.value,
+                "So_ao":Th_So_ao.value,
+                "Vi_tri":Th_Vi_tri.value,
+                "Bien_che":Th_Bien_che.value.split(",")
+            }
+
+            console.log(Cau_thu)
+
+            var Kq=Ghi_Thong_tin_Cau_thu_Moi(Cau_thu)
+            console.log(Kq)
+            if(Kq)
+            {
+               Th_Thong_bao.innerHTML=`Ghi thành công` 
+            }
+            else
+            {
+                Th_Thong_bao.innerHTML=`Ghi không thành công` 
+            }
+        }
+    </script>
+
+</body>
+
+</html>

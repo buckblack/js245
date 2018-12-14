@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Đọc xuất Dữ liệu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="../Media/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small>ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>Danh sách học viên Khởi tạo từ biến</legend>
+            <div id="Th_Danh_sach_Hoc_vien"></div>
+        </fieldset>
+        <fieldset class="border m-2 p-2">
+            <legend>Các thao tác Biến Danh sách</legend>
+            Nhập Tên <input type="text" id="Th_Ten" />
+            <button class="btn btn-primary ml-1" id="Th_Them">Thêm </button>
+            <button class="btn btn-primary ml-1" id="Th_Xoa_Cuoi">Xóa Học viên Cuối </button>
+            <button class="btn btn-primary ml-1" id="Th_Xoa_Dau">Xóa Học viên Đầu </button>
+            <hr class="bg-info">
+            Tìm Tên <input type="text" id="Th_Gia_tri_tim" placeholder="Nhập giá trị tìm" />
+            <button class="btn btn-danger ml-1" id="Th_Tim">Tìm (find) </button>
+            <hr class="bg-info">
+            Lọc <input type="text" id="Th_Gia_tri_Loc" placeholder="Nhập giá trị Lọc" />
+            <button class="btn btn-danger ml-1" id="Th_Loc">Lọc (filter) </button>
+            <hr class="bg-info">
+            <button class="btn btn-danger ml-1" id="Th_Sap_Tang">Sắp Tăng </button>
+            <button class="btn btn-danger ml-1" id="Th_Sap_Giam">Sắp Giảm </button>
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    
+    <script>
+        // Khai báo và khởi tạo Biến Danh sách
+        var danh_sach=["Hùng","Hương","Kiệt","Huy","Tuấn"]
+        xuat_danh_sach(danh_sach)
+
+        Th_Them.onclick=()=>{
+            if(Th_Ten.value.trim()!="")
+            {
+                danh_sach.push(Th_Ten.value.trim())
+                Th_Thong_bao.innerHTML=`Thêm thành công`
+                xuat_danh_sach(danh_sach)
+            }
+            else
+            {
+                Th_Thong_bao.innerHTML=`Chưa nhập tên`
+                Th_Ten.focus()
+            }
+        }
+        
+        Th_Xoa_Cuoi.onclick=()=>{
+            if(danh_sach.length==0)
+            {
+                Th_Thong_bao.innerHTML=`Không còn học viên để xóa`
+            }
+            else
+            {
+                danh_sach.pop()
+                Th_Thong_bao.innerHTML=`Xóa học viên cuối thành công`
+                xuat_danh_sach(danh_sach)
+            } 
+        }
+
+        Th_Xoa_Dau.onclick=()=>{
+            if(danh_sach.length==0)
+            {
+                Th_Thong_bao.innerHTML=`Không còn học viên để xóa`
+            }
+            else
+            {
+            danh_sach.shift()
+            Th_Thong_bao.innerHTML=`Xóa học viên đầu thành công`
+            xuat_danh_sach(danh_sach)
+            }
+        }
+
+        Th_Tim.onclick=()=>{
+            var gt_tim=Th_Gia_tri_tim.value.trim()
+            if(gt_tim!="")
+            {
+                var kq=danh_sach.find(x=>x.toLowerCase()==gt_tim.toLowerCase())
+                var vt=danh_sach.findIndex(x=>x.toLowerCase()==gt_tim.toLowerCase())
+                if(kq==undefined)
+                {
+                    Th_Thong_bao.innerHTML=`Không tìm thấy từ khóa: ${gt_tim}`
+                }
+                else
+                {
+                    Th_Thong_bao.innerHTML=`${gt_tim} nằm ở vị trí: ${vt+1}`
+                }
+            }
+            else
+            {
+                Th_Thong_bao.innerHTML=`Chưa nhập tên`
+                Th_Gia_tri_tim.focus()
+            }
+        }
+
+        Th_Loc.onclick=()=>{
+            var gt_loc=Th_Gia_tri_Loc.value.trim()
+            if(gt_loc!="")
+            {
+                //var kq=danh_sach.filter(x=>x.toLowerCase()==gt_loc.toLowerCase())
+                var kq=danh_sach.filter(x=>x.toLowerCase().includes(gt_loc.toLowerCase()))
+                if(kq.length==0)
+                {
+                    Th_Thong_bao.innerHTML=`Không tìm thấy từ khóa: ${gt_loc}`
+                }
+                else
+                {
+                    Th_Thong_bao.innerHTML=`Lọc thành công`
+                    xuat_danh_sach(kq)
+                }
+            }
+            else
+            {
+                Th_Thong_bao.innerHTML=`Chưa nhập tên`
+                Th_Gia_tri_Loc.focus()
+            }
+        }
+
+        Th_Sap_Tang.onclick=()=>{
+            danh_sach.sort((a,b)=>a.localeCompare(b))
+            xuat_danh_sach(danh_sach)
+        }
+
+        Th_Sap_Giam.onclick=()=>{
+            danh_sach.sort((a,b)=>b.localeCompare(a))
+            xuat_danh_sach(danh_sach)
+        }
+
+        function xuat_danh_sach(ds)
+        {
+            Th_Danh_sach_Hoc_vien.innerHTML=""
+            ds.forEach(hs=>{
+                var the_hien=document.createElement("button")
+                the_hien.className="btn btn-sm btn-danger ml-2"
+                the_hien.innerText=hs
+                Th_Danh_sach_Hoc_vien.appendChild(the_hien)
+                the_hien.onclick=()=>{
+                    alert(hs)
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

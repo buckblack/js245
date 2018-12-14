@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Đọc xuất Dữ liệu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <img src="../Media/PET.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">MÔ HÌNH - KỸ THUẬT - CÔNG NGHỆ
+            <br>
+            <small> ĐƠN GIẢN</small>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>Biến Danh sách</legend>
+            
+        </fieldset>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    
+    <script>
+        // Khai báo và khởi tạo biến Danh sách
+        /*
+        var arr=[]
+        console.log(typeof arr)
+        var Danh_sach=["Hùng","Thúy","Diễm","Hùng","Hùng","Thành","Thánh"]
+        console.log(typeof Danh_sach)
+        var a=new Array()
+        console.log(typeof a)
+        var b=new Array(1,2,3,4)
+        console.log(typeof b)
+        */
+        var Danh_sach=["Hùng","Thúy","Diễm","Hùng","Hùng","Thành","Thánh"]
+
+        console.log(Danh_sach)
+        console.log(`------------------------------------`)
+
+        
+        // Thêm 
+        Danh_sach.push("Tấn")
+        console.log(Danh_sach)
+        
+        // Xóa phần tử cuối
+        Danh_sach.pop(); 
+        console.log(Danh_sach)
+        console.log(`------------------------------------`)
+        // Xóa phần tử đầu
+        Danh_sach.shift(); 
+        console.log(Danh_sach)
+        console.log(`------------------------------------`)
+        
+        // Số phần tử
+        console.log("Số phần tử: " +Danh_sach.length)
+        
+        // Tìm: Có phân biệt HOA - thường
+        var gtTim="Hùng"
+        var Vi_tri=Danh_sach.indexOf(gtTim)
+        var Vi_tri_Cuoi=Danh_sach.lastIndexOf(gtTim)
+        console.log(`Vị trí đầu: ${Vi_tri}\n`) 
+        console.log(`Vị trí cuối: ${Vi_tri_Cuoi}`) 
+        
+        // Lấy giá trị
+        var Chi_so=2; // Vị trí hợp lệ: từ 0 đến số phần tử -1
+        var Phan_tu=Danh_sach[Chi_so]
+        console.log("Giá trị:" + Phan_tu)
+        
+        // Xuất
+        var Ket_xuat=Danh_sach.join(", ")
+        console.log(Ket_xuat)
+        console.log(`----------------------------------`)
+        
+        // Duyệt mảng forEach ES6
+        // Trong đó: x là giá trị 
+        Danh_sach.forEach(x=>{
+            console.log(x + "\n")
+        })
+        console.log(`----------------------------------`)
+        
+        // Duyệt mảng forEach và lấy chỉ số: ES6 
+        Danh_sach.forEach((x,index)=>{
+            //console.log(`${x}:${index}`)
+            if(index%2==0){
+                console.log(`${x}:${index}`)
+            }
+        })
+        console.log(`----------------------------------`)
+        
+        // Duyệt mảng for
+        for(var i=0;i<Danh_sach.length;i++){
+            console.log(`${Danh_sach[i]}:${i}`)
+        }
+
+        console.log(`---------------Lọc ------------------`)
+        
+        var Danh_sach_Loc=Danh_sach.filter(x=>x=="Hùng");
+        console.log(Danh_sach_Loc)
+        
+        console.log(`---------------Find ------------------`)
+        
+        var Kq=Danh_sach.find(x=>x=="Thàn")
+        console.log(Kq)
+
+        
+
+        
+
+    </script>
+</body>
+
+</html>

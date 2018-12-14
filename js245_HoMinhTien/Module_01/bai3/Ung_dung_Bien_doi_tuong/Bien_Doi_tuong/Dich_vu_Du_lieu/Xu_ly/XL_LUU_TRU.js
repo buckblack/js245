@@ -20,6 +20,20 @@ function Doc_Thong_tin_Cau_thu() {
   return JSON.parse(Chuoi_JSON)
 }
 
+function Ghi_Thong_tin_Cau_thu(Cau_thu) {
+  var Kq = "OK"
+  try {
+    var Duong_dan = Thu_muc_Du_lieu + "//" + "Cau_thu.json"
+    var Chuoi_JSON = JSON.stringify(Cau_thu, null, "\t")
+    File.writeFileSync(Duong_dan, Chuoi_JSON, "UTF-8")
+  }
+  catch (Loi) {
+    Kq = Loi.toString()
+  }
+  return Kq
+}
+
+
 class XL_LUU_TRU {
 
   Doc_Du_lieu(){
@@ -33,7 +47,19 @@ class XL_LUU_TRU {
     return Doc_Thong_tin_Dich_vu()
   }
 
+  Ghi_Cau_thu(Cau_thu) {
+    var Kq = ""
+    var Hop_le = Cau_thu
+    if (Hop_le) {
+      Kq = Ghi_Thong_tin_Cau_thu(Cau_thu)
+    }
+    return Kq
+  }
+
 }
+
+
+
 //Public để các file js khác gọi 
 var Xu_ly = new XL_LUU_TRU
 module.exports = Xu_ly
