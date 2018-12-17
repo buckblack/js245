@@ -1,0 +1,44 @@
+﻿ function Sap_Tang() {
+            // Là chuỗi
+            Danh_sach_Dien_thoai.sort((a, b) => a.Ten.localeCompare(b.Ten))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+        function Sap_Giam() {
+            // Là chuỗi
+            Danh_sach_Dien_thoai.sort((a, b) => b.Ten.localeCompare(a.Ten))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+        function Sap_Tang_Gia() {
+            // Là số
+            Danh_sach_Dien_thoai.sort((a, b) => {
+                return parseInt(a.Don_gia_Ban) - parseInt(b.Don_gia_Ban)
+            })
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+
+        }
+        function Sap_Giam_Gia() {
+            // Là số
+            Danh_sach_Dien_thoai.sort((a, b) => {
+                return parseInt(b.Don_gia_Ban) - parseInt(a.Don_gia_Ban)
+            })
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+
+ Th_Sap_xep.onchange = () => {
+            var gt = Th_Sap_xep.value
+            switch (Number(gt)) {
+                case 1:
+                    Sap_Tang()
+                    break
+                case 2:
+                    Sap_Giam()
+                    break
+                case 3:
+                    Sap_Tang_Gia()
+                    break
+                case 4:
+                    Sap_Giam_Gia()
+                    break
+            }
+
+        }

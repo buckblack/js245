@@ -6,178 +6,20 @@ var Dia_chi_Dich_vu = "http://localhost:1000"
 var Dia_chi_Media = "http://localhost:1001"
 
 //************** Các Hàm Xử lý Đọc Xuất   ***********
-//================= Thêm =======================
-function Ghi_Media(Hinh) {
-    
-    var Xu_ly_HTTP = new XMLHttpRequest()
-    var Dia_chi_Xu_ly = `${Dia_chi_Media}`
-    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
-    var Chuoi_Goi = JSON.stringify(Hinh)
-    Xu_ly_HTTP.send(Chuoi_Goi)
-    var Chuoi_KQ = Xu_ly_HTTP.responseText
-    return Chuoi_KQ
-}
-function Ghi_Dien_thoai_Moi(Dien_thoai) {
+function Doc_Cua_hang(){
     var Du_lieu = {}
     var Xu_ly_HTTP = new XMLHttpRequest()
-    var Tham_so = `Ma_so_Xu_ly=Ghi_Dien_thoai_Moi`
+    var Tham_so = `Ma_so_Xu_ly=Doc_Cua_hang`
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
-    var Chuoi_Goi = JSON.stringify(Dien_thoai)
-    Xu_ly_HTTP.send(Chuoi_Goi)
-
+    Xu_ly_HTTP.send("")
     var Chuoi_JSON = Xu_ly_HTTP.responseText
     if (Chuoi_JSON != "")
         Du_lieu = JSON.parse(Chuoi_JSON)
     return Du_lieu
 }
 
-function Tao_The_hien_Them_Dien_thoai(Th_Cha) {
-    var Chuoi_HTML = `
-        <div class="form m-3 p-3">
-        
-        <div class="form-group">
-            <label for="Th_Nhom_Dien_thoai">Nhóm Điện thoại</label>
-            <select id="Th_Nhom_Dien_thoai" onchange="Lay_Ma_so_cuoi()">
-                <option value="IPHONE">IPHONE</option>
-                <option value="ANDROID">ANDROID</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="Th_Ma_so">Mã số Điện thoại</label>
-            <input type="text" class="form-control" id="Th_Ma_so" readonly>
-        </div>
-        <div class="form-group">
-            <label for="Th_Ten">Tên Điện thoại</label>
-            <input type="text" class="form-control" id="Th_Ten" placeholder="Nhập Tên Điện thoại">
-        </div>
-        <div class="form-group">
-            <label for="Th_Don_gia_Nhap">Đơn giá Nhập</label>
-            <input type="text" class="form-control" id="Th_Don_gia_Nhap" placeholder="Nhập Đơn giá Nhập">
-        </div>
-        <div class="form-group">
-            <label for="Th_Don_gia_Nhap">Đơn giá Bán</label>
-            <input type="text" class="form-control" id="Th_Don_gia_Ban" placeholder="Nhập Đơn giá Bán">
-        </div>
-        <div class="form-group">
-            <label for="Th_file">Chọn hình</label>
-            <input id="Th_file" type="file" onchange="Xem_truoc_Media()" accept="image/png" />
-            <img id="Th_Hinh_Xem_truoc" style="width:10rem" />
-        </div>
-    </div>
-    `
-    Th_Cha.innerHTML = Chuoi_HTML
-}
-
-//================= Sửa =======================
-function Tao_The_hien_Cap_nhat(Th_Cha,Danh_sach_Cap_nhat){
-    var noi_dung_HTML=`
-    <table class="table">
-                <thead>
-                    <tr>
-                        <th>Tên điện thoại</th>
-                        <th>Nhóm điện thoại</th>
-                        <th>Đơn giá Nhập</th>
-                        <th>Đơn giá Bán</th>
-                    </tr>
-                </thead>
-                <tbody>`
-    Danh_sach_Cap_nhat.forEach(Dien_thoai=>{
-        var Nhom=Dien_thoai.Nhom_Dien_thoai.Ma_so
-        noi_dung_HTML+=`
-        <tr Ma_so="${Dien_thoai.Ma_so}" class="CAP_NHAP">
-            <td scope="row"><input type="text" value="${Dien_thoai.Ten}"/></td>
-            <td>
-            <select id="Th_Nhom_Dien_thoai">
-                <option value="ANDROID" ${Nhom=='ANDROID'?'selected':''} >ANDROID</option>
-                <option value="IPHONE" ${Nhom=='IPHONE'?'selected':''}  >IPHONE</option>
-            </select>
-            </td>
-            <td><input type="text" value="${Dien_thoai.Don_gia_Nhap}" class="text-right" /></td>
-            <td><input type="text" value="${Dien_thoai.Don_gia_Ban}" class="text-right" /></td>
-        </tr>
-        `
-    
-    })            
-    
-    noi_dung_HTML+=`
-                </tbody>
-            </table>
-    `
-    Th_Cha.innerHTML=noi_dung_HTML
-}
-
-function Ghi_Cap_nhap_Dien_thoai(Danh_sach) {
-    var Kq = ""
-    var Xu_ly_HTTP = new XMLHttpRequest()
-    var Tham_so = `Ma_so_Xu_ly=Cap_nhat_Dien_thoai`
-    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
-    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
-    var Chuoi_Goi = JSON.stringify(Danh_sach)
-    Xu_ly_HTTP.send(Chuoi_Goi)
-    Kq = Xu_ly_HTTP.responseText
-    return Kq
-}
-//=========================Xóa ===============================
-function Ghi_Xoa_Dien_thoai(Danh_sach) {
-    var Kq = ""
-    var Xu_ly_HTTP = new XMLHttpRequest()
-    var Tham_so = `Ma_so_Xu_ly=Xoa_Dien_thoai`
-    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
-    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
-    var Chuoi_Goi = JSON.stringify(Danh_sach)
-    Xu_ly_HTTP.send(Chuoi_Goi)
-    Kq = Xu_ly_HTTP.responseText
-    return Kq
-}
-
-
-function Tao_The_hien_Xoa(Th_Cha,Danh_sach_Cap_nhat){
-    var noi_dung_HTML=`
-    <table class="table">
-                <thead>
-                    <tr>
-                        <th>Tên điện thoại</th>
-                        <th>Nhóm điện thoại</th>
-                        <th>Đơn giá Nhập</th>
-                        <th>Đơn giá Bán</th>
-                    </tr>
-                </thead>
-                <tbody>`
-    Danh_sach_Cap_nhat.forEach(Dien_thoai=>{
-        var Nhom=Dien_thoai.Nhom_Dien_thoai.Ma_so
-        noi_dung_HTML+=`
-        <tr Ma_so="${Dien_thoai.Ma_so}" class="CAP_NHAP">
-            <td scope="row">${Dien_thoai.Ten}</td>
-            <td>${Nhom}</td>
-            <td>${Tao_Chuoi_The_hien_So_nguyen_duong(Dien_thoai.Don_gia_Nhap)}đ</td>
-            <td>${Tao_Chuoi_The_hien_So_nguyen_duong(Dien_thoai.Don_gia_Ban)}đ</td>
-        </tr>
-        `
-    
-    })            
-    
-    noi_dung_HTML+=`
-                </tbody>
-            </table>
-    `
-    Th_Cha.innerHTML=noi_dung_HTML
-}
-// =============================Giỏ hàng===============================
-function Ghi_Phieu_Dat_hang(DsPhieu_dat){
-    var Kq=""
-    var Xu_ly_HTTP = new XMLHttpRequest()  
-    var Tham_so=`Ma_so_Xu_ly=Ghi_Phieu_Dat_hang`
-    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
-    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
-    var Chuoi_goi=JSON.stringify(DsPhieu_dat)
-    Xu_ly_HTTP.send(Chuoi_goi)
-    Kq = Xu_ly_HTTP.responseText
-    return Kq 
-  }
-
-//========================================
-function Doc_Danh_sach_Dien_thoai() {
+function Doc_dien_thoai(){
     var Du_lieu = {}
     var Xu_ly_HTTP = new XMLHttpRequest()
     var Tham_so = `Ma_so_Xu_ly=Doc_Danh_sach_Dien_thoai`
@@ -190,18 +32,24 @@ function Doc_Danh_sach_Dien_thoai() {
     return Du_lieu
 }
 
-//==============================================
+function thong_tin_cua_hang(cua_hang,TH_cua_hang)
+{
+    var kq=`
+    <img src="http://localhost:1001/${cua_hang.Ma_so}.png" class="btn" />
+    <div class="text-center btn btn-outline-primary">${cua_hang.Ten}
+        <br>
+        <small>${cua_hang.Dia_chi}</small>
+    </div>
+    `
+    TH_cua_hang.innerHTML=kq
+}
 
 function Xuat_Danh_sach_Dien_thoai(Danh_sach, Th_Cha) {
     Th_Cha.innerHTML = ""
     Danh_sach.forEach(Dien_thoai => {
         var The_hien = document.createElement("div")
-
         The_hien.className = "card"
         The_hien.style.cssText = "width:18rem;float:left"
-
-        The_hien.setAttribute("Du_lieu", JSON.stringify(Dien_thoai))
-
         var Noi_dung_HTML = `
         <img class="card-img-top" src="${Dia_chi_Media}/${Dien_thoai.Ma_so}.png" alt="">
         <div class="card-body">
@@ -213,36 +61,14 @@ function Xuat_Danh_sach_Dien_thoai(Danh_sach, Th_Cha) {
         Th_Cha.appendChild(The_hien)
 
         The_hien.onclick = () => {
-            The_hien.classList.toggle("CHON")
-            //alert(Dien_thoai.Ten)
-            //console.log(The_hien.getAttribute("Du_lieu"))
-
-            // Lưu Session HTML5
-            var ds = []
-            if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
-                ds = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
-            }
-            var vt = ds.indexOf(Dien_thoai.Ma_so)
-            if (vt == -1) {
-                ds.push(Dien_thoai.Ma_so)
-            } else {
-                ds.splice(vt, 1)
-            }
-
-            if(ds.length>0){
-                sessionStorage.setItem("Danh_sach_Chon", JSON.stringify(ds))
-            }else{
-                sessionStorage.removeItem("Danh_sach_Chon")
-            }
-
-            Th_Gio_hang.innerHTML=`<u>${ds.length}</u>`
-
+            alert(Dien_thoai.Ten)
         }
+
+        Th_Thong_bao.innerHTML=`Danh sách Điện thoại: ${Danh_sach.length} `
     })
 }
 
 //************** Các Hàm Xử lý Số, Ngày    ***********
-
 //==============================================================================
 // Xử lý biến Số nguyên
 function Nhap_So_nguyen_duong(Th_So_nguyen) {

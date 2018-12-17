@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Danh sách Điện thoại </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .CHON {
+        background-color: silver;
+    }
+</style>
+
+<body>
+    <div class="container-fluid" id="TH_cua_hang">
+        
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2 text-info">
+            <legend class="text-danger">THAO TÁC TRÊN DANH SÁCH ĐIỆN THOẠI</legend>
+
+            <button id="Th_Home" class="btn btn-outline-primary">Tất cả</button>
+            <button id="Th_Android" class="btn btn-outline-primary">Android</button>
+            <button id="Th_Iphone" class="btn btn-outline-primary">Iphone</button>
+            <!--
+            <button id="Th_Danh_sach_Chon" class="btn btn-outline-primary">Lấy Danh sách Chọn </button>
+
+            <div class="btn-group">
+                <button id="Th_Them" class="btn btn-danger">Thêm Điện thoại </button>
+                <button id="Th_Sua" class="btn btn-danger">Sửa Giá Điện thoại</button>
+                <button id="Th_Xoa" class="btn btn-danger">Xóa Điện thoại</button>
+            </div>
+
+            <div class="btn border border-danger" id="Th_Mua_hang">
+                <span id="Th_Gio_hang" class="text-danger"><u>0</u></span>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            -->
+
+            <hr> Nhập Giá trị tìm:
+            <input type="text" id="Th_gtTim" onkeyup="KeyCode(event)">
+            <button id="Th_Tim" class="btn btn-primary">
+                <i class="fa fa-search-plus"></i>
+            </button>
+
+            <hr>
+            <!--
+            <button id="Th_Sap_Tang" class="btn btn-primary" >
+                Sắp xếp theo Tên (A->Z)
+            </button>
+            <button id="Th_Sap_Giam" class="btn btn-primary" >
+                Sắp xếp theo Tên (Z->A)
+            </button>
+            <button id="Th_Sap_Tang_Gia" class="btn btn-danger">
+                Sắp xếp theo Giá (A->Z)
+            </button>
+            <button id="Th_Sap_Giam_Gia" class="btn btn-danger">
+                Sắp xếp theo Giá (Z->A)
+            </button>
+            -->
+            <div class="text-right">
+                <select class="btn border border-danger" id="Th_Sap_xep">
+                    <option value="0">-- Sắp xếp theo --</option>
+                    <option value="1">Sắp xếp theo Tên (A->Z)</option>
+                    <option value="2">Sắp xếp theo Tên (Z->A)</option>
+                    <option value="3">Sắp xếp theo Giá (A->Z)</option>
+                    <option value="4">Sắp xếp theo Giá (Z->A)</option>
+                </select>
+
+                <select class="btn border border-danger" id="Th_Loc_gia">
+                    <option value="0-50000000">-- Chọn giá bán --</option>
+                    <option value="0-5000000">Dưới 5 triệu</option>
+                    <option value="5000000-10000000">Từ 5 triệu đến 10 triệu</option>
+                    <option value="10000000-20000000">Từ 10 triệu đến 20 triệu</option>
+                    <option value="20000000-50000000">Trên 20 triệu</option>
+                </select>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>DANH SÁCH ĐIỆN THOẠI</legend>
+            <div id="Th_Danh_sach"></div>
+        </fieldset>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <style>
+    </style>
+    <script>
+        var cua_hang=JSON.parse(Doc_Cua_hang())
+        var dien_thoai=Doc_dien_thoai()
+        console.log(dien_thoai)
+        thong_tin_cua_hang(cua_hang,TH_cua_hang)
+        Th_Iphone.onclick=()=>{
+            Xuat_Danh_sach_Dien_thoai(dien_thoai.filter(x=>x.Nhom_Dien_thoai.Ma_so=="IPHONE"),Th_Danh_sach)
+        }
+
+        Th_Android.onclick=()=>{
+            Xuat_Danh_sach_Dien_thoai(dien_thoai.filter(x=>x.Nhom_Dien_thoai.Ma_so=="ANDROID"),Th_Danh_sach)
+        }
+
+        Th_Home.onclick=()=>{
+            Xuat_Danh_sach_Dien_thoai(dien_thoai,Th_Danh_sach)
+        }
+
+        Th_Home.click()
+
+        Th_Tim.onclick=()=>{
+            var Hop_le = Th_gtTim.value.trim() != ""
+            if (Hop_le) {
+                var gtTim = Th_gtTim.value.trim()
+                var Danh_sach_Tim = dien_thoai.filter(x => x.Ten.toLowerCase().includes(gtTim.toLowerCase()))
+                Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim,Th_Danh_sach)
+
+            } else {
+                Th_Thong_bao.innerHTML = `Nhập giá trị tìm`
+                Th_gtTim.focus()
+            }
+        }
+
+        function KeyCode(event) {
+            // event.keyCode == 13 -> Kết thúc bằng phím Enter
+            if (event.keyCode == 13)  {
+                var gtTim = event.target.value
+                //console.log(gtTim)
+                var Danh_sach_Tim = dien_thoai.filter(x => x.Ten.toLowerCase().includes(gtTim.toLowerCase()))
+                Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
+                
+            }
+        }
+        
+    </script>
+</body>
+
+</html>
