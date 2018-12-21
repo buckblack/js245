@@ -22,7 +22,12 @@
     <div class="container-fluid" id="TH_cua_hang">
         
     </div>
-
+    <div class="fixed-top text-right mr-2 mt-5" id="Th_Mua_hang">
+        <div class="btn btn-danger">
+            <span id="Th_Gio_hang"> 0 item </span>
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
             KHUNG THÔNG BÁO
@@ -35,9 +40,10 @@
             <button id="Th_Home" class="btn btn-outline-primary">Tất cả</button>
             <button id="Th_Android" class="btn btn-outline-primary">Android</button>
             <button id="Th_Iphone" class="btn btn-outline-primary">Iphone</button>
-            <!--
+            
             <button id="Th_Danh_sach_Chon" class="btn btn-outline-primary">Lấy Danh sách Chọn </button>
 
+            <!--
             <div class="btn-group">
                 <button id="Th_Them" class="btn btn-danger">Thêm Điện thoại </button>
                 <button id="Th_Sua" class="btn btn-danger">Sửa Giá Điện thoại</button>
@@ -151,6 +157,53 @@
                 Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
                 
             }
+        }
+
+        Th_Danh_sach_Chon.onclick=()=>{
+            var ds_chon=document.querySelectorAll(".CHON")
+            
+            if(ds_chon.length==0)
+            {
+                alert("Bạn chưa chọn sản phẩm nào")
+            }
+            else
+            {
+                ds_chon.forEach(item=>{
+                    var chuoi_data=item.getAttribute("data")
+                    console.log(chuoi_data)
+                })
+            }
+        }
+
+        window.
+        
+        Th_Sap_xep.onchange = () => {
+            var gt = Th_Sap_xep.value
+            switch (Number(gt)) {
+                case 1:
+                    Sap_Tang()
+                    break
+                case 2:
+                    Sap_Giam()
+                    break
+                case 3:
+                    Sap_Tang_Gia()
+                    break
+                case 4:
+                    Sap_Giam_Gia()
+                    break
+            }
+
+        }
+
+        Th_Loc_gia.onchange=()=>{
+            var chuoi_loc=Th_Loc_gia.value
+            //console.log(chuoi_loc)
+            var gia=chuoi_loc.split("-")
+            var bd=gia[0]
+            var kt=gia[1]
+            var Danh_sach_Tim = dien_thoai.filter(x =>Number(x.Don_gia_Ban)>=bd && Number(x.Don_gia_Ban)<=kt)
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
         }
         
     </script>

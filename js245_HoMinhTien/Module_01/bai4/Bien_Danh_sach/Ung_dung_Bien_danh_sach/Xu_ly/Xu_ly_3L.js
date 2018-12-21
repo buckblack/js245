@@ -6,7 +6,7 @@ var Dia_chi_Dich_vu = "http://localhost:1000"
 var Dia_chi_Media = "http://localhost:1001"
 
 //************** Các Hàm Xử lý Đọc Xuất   ***********
-function Doc_Cua_hang(){
+function Doc_Cua_hang() {
     var Du_lieu = {}
     var Xu_ly_HTTP = new XMLHttpRequest()
     var Tham_so = `Ma_so_Xu_ly=Doc_Cua_hang`
@@ -19,7 +19,7 @@ function Doc_Cua_hang(){
     return Du_lieu
 }
 
-function Doc_dien_thoai(){
+function Doc_dien_thoai() {
     var Du_lieu = {}
     var Xu_ly_HTTP = new XMLHttpRequest()
     var Tham_so = `Ma_so_Xu_ly=Doc_Danh_sach_Dien_thoai`
@@ -32,24 +32,68 @@ function Doc_dien_thoai(){
     return Du_lieu
 }
 
-function thong_tin_cua_hang(cua_hang,TH_cua_hang)
-{
-    var kq=`
+function thong_tin_cua_hang(cua_hang, TH_cua_hang) {
+    var kq = `
     <img src="http://localhost:1001/${cua_hang.Ma_so}.png" class="btn" />
     <div class="text-center btn btn-outline-primary">${cua_hang.Ten}
         <br>
         <small>${cua_hang.Dia_chi}</small>
     </div>
     `
-    TH_cua_hang.innerHTML=kq
+    TH_cua_hang.innerHTML = kq
+}
+
+function Sap_Tang() {
+    // Là chuỗi
+    dien_thoai.sort((a, b) => a.Ten.localeCompare(b.Ten))
+    Xuat_Danh_sach_Dien_thoai(dien_thoai, Th_Danh_sach)
+}
+function Sap_Giam() {
+    // Là chuỗi
+    dien_thoai.sort((a, b) => b.Ten.localeCompare(a.Ten))
+    Xuat_Danh_sach_Dien_thoai(dien_thoai, Th_Danh_sach)
+}
+function Sap_Tang_Gia() {
+    // Là số
+    dien_thoai.sort((a, b) => {
+        return parseInt(a.Don_gia_Ban) - parseInt(b.Don_gia_Ban)
+    })
+    Xuat_Danh_sach_Dien_thoai(dien_thoai, Th_Danh_sach)
+
+}
+function Sap_Giam_Gia() {
+    // Là số
+    dien_thoai.sort((a, b) => {
+        return parseInt(b.Don_gia_Ban) - parseInt(a.Don_gia_Ban)
+    })
+    Xuat_Danh_sach_Dien_thoai(dien_thoai, Th_Danh_sach)
 }
 
 function Xuat_Danh_sach_Dien_thoai(Danh_sach, Th_Cha) {
+    var kq_chon=JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
+    if(kq_chon!=null)
+    {
+        Th_Gio_hang.innerHTML=`${kq_chon.length} item`
+    }
     Th_Cha.innerHTML = ""
     Danh_sach.forEach(Dien_thoai => {
         var The_hien = document.createElement("div")
-        The_hien.className = "card"
+        if(kq_chon!=null && kq_chon.indexOf(Dien_thoai.Ma_so)!=-1)
+        {
+            The_hien.className = "card CHON"
+            
+        }
+        else
+        {
+            The_hien.className = "card"
+        }
+        
         The_hien.style.cssText = "width:18rem;float:left"
+        var dt={
+            "Ma_so":Dien_thoai.Ma_so,
+            "Ten":Dien_thoai.Ten
+        }
+        The_hien.setAttribute("data",JSON.stringify(dt))
         var Noi_dung_HTML = `
         <img class="card-img-top" src="${Dia_chi_Media}/${Dien_thoai.Ma_so}.png" alt="">
         <div class="card-body">
@@ -61,10 +105,30 @@ function Xuat_Danh_sach_Dien_thoai(Danh_sach, Th_Cha) {
         Th_Cha.appendChild(The_hien)
 
         The_hien.onclick = () => {
-            alert(Dien_thoai.Ten)
+            //alert(Dien_thoai.Ten)
+            var chon= The_hien.classList.toggle("CHON")
+            console.log(chon);
+            
+            var ds = []
+            if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+                ds = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
+            }
+            var vt = ds.indexOf(Dien_thoai.Ma_so)
+            if (vt == -1) {
+                ds.push(Dien_thoai.Ma_so)
+            } else {
+                ds.splice(vt, 1)
+            }
+
+            if(ds.length>0){
+                sessionStorage.setItem("Danh_sach_Chon", JSON.stringify(ds))
+            }else{
+                sessionStorage.removeItem("Danh_sach_Chon")
+            }
+            Th_Gio_hang.innerHTML=`${ds.length} item`
         }
 
-        Th_Thong_bao.innerHTML=`Danh sách Điện thoại: ${Danh_sach.length} `
+        Th_Thong_bao.innerHTML = `Danh sách Điện thoại: ${Danh_sach.length} `
     })
 }
 
