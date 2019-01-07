@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="map" style="height: 400px; width:500px" class="text-center"></div>
+    <!--AIzaSyCZw50bvBDDqWANrgCFCTBqLxlMRPflA7I   10.823099   106.629662-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw3QZ5hhReTIJLSWz7o_582Wm3p6PV-EM&language=vi"></script>
+
+    <script language="javascript" type="text/javascript">
+        function Khoi_tao_Ban_do() {
+            var latlng = new google.maps.LatLng(10.686080, 106.679550); // Vĩ độ, Kinh độ Tp Hồ Chí Minh
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP //Hiển thị đường đi
+
+            };
+            
+            var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+	
+        }
+        /*
+            ROADMAP : Default map nếu không chọn loại bản đồ nào thì sẽ mặc định hiển thị loại này. Hiển thị đường đi.<br> 
+            SATELLITE : Hiển thị hình ảnh vệ tinh. <br> 
+            HYBRID: Hiển thị đường trên ảnh vệ tinh. <br> 
+            TERRAIN : Hiển thị địa hìnhvà thảm thực vật.
+        */
+
+        window.onload = Khoi_tao_Ban_do; // Khởi tạo bản đồ
+    </script>
+  </body>
+</html>

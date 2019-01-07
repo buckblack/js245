@@ -1,0 +1,43 @@
+﻿
+1- https://developers.google.com/maps/documentation/javascript/get-api-key
+
+
+1 b: <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=KEY&language=vi"></script>
+
+
+
+2- https://console.developers.google.com
+
+
+3- https://www.latlong.net/
+
+lấy vĩ độ và kinh độ thành phố hồ chí minh
+
+10.686080, 106.679550
+
+code
+
+<script language="javascript" type="text/javascript">
+        function Khoi_tao_Ban_do() {
+            var latlng = new google.maps.LatLng(10.686080, 106.679550); // Vĩ độ, Kinh độ Tp Hồ Chí Minh
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP //Hiển thị đường đi
+
+            };
+            
+            var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+	
+        }
+        /*
+            ROADMAP : Default map nếu không chọn loại bản đồ nào thì sẽ mặc định hiển thị loại này. Hiển thị đường đi.<br> 
+            SATELLITE : Hiển thị hình ảnh vệ tinh. <br> 
+            HYBRID: Hiển thị đường trên ảnh vệ tinh. <br> 
+            TERRAIN : Hiển thị địa hìnhvà thảm thực vật.
+        */
+
+        window.onload = Khoi_tao_Ban_do; // Khởi tạo bản đồ
+    </script>
+

@@ -1,0 +1,55 @@
+﻿var map;
+var Cua_hang = {"Ten":"Cửa hàng Điện thoại Thu Trân","Dia_chi":"227 Nguyễn văn Cừ"};
+
+ function Khoi_tao_Ban_do() {
+            var latlng = new google.maps.LatLng(10.823099, 106.629664); // Vĩ độ, Kinh độ Tp Hồ Chí Minh
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP //Hiển thị đường đi
+
+            };
+            
+            var map = new google.maps.Map(document.getElementById("map"), myOptions);
+	// b1: Khởi tạo đối tượng Marker
+var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(10.762887, 106.682257), // Vĩ độ, Kinh độ Cửa hàng 
+                map: map,
+                title: 'Nhấn để xem chi tiết'
+
+            }); 
+
+	// b2 Khởi tạo hộp thoại window
+ var infowindow = new google.maps.InfoWindow({
+                content: `Location info:${Cua_hang.Ten}<br/>
+                Địa chỉ:${Cua_hang.Dia_chi}<br/>
+                LatLng:${marker.position.toString()})`
+            });
+
+	// b3 Gán sự kiện nhấn cho Marker
+ google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+            });	 	
+	
+        } // kết thúc hàm
+
+window.onload = Khoi_tao_Ban_do; // Khởi tạo bản đồ
+
+
+/////////////////////////////////////////////////////////////////////////
+
+Hiệu ứng của marker
+animation: google.maps.Animation.BOUNCE // BOUNCE || DROP
+
+myoption: thanh cuộn Tổ hợp phím Ctr + Scroll 
+gestureHandling: 'cooperative' // none || cooperative
+
+Sự kiện: 
+
+google.maps.event.addListener(marker, 'mouseover', function() {
+                infowindow.open(map, marker);
+            });
+
+            google.maps.event.addListener(marker, 'mouseout', function() {
+                infowindow.close(map, marker);
+            });
