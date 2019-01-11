@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tìm đường đi</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw3QZ5hhReTIJLSWz7o_582Wm3p6PV-EM&language=vi"></script>
+    <script language="javascript" type="text/javascript">
+        
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        function InitializeMap() {
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            var latlng = new google.maps.LatLng(10.754792, 106.6952276);
+            var myOptions = {
+                zoom: 9,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById('directionpanel'));
+
+            var control = document.getElementById('control');
+            control.style.display = 'block';
+        }
+
+        function XL_Xuat_Dia_diem() {
+            var start = document.getElementById('Th_Dia_diem_Bat_dau').value;
+            var end = document.getElementById('Th_Dia_diem_Ket_thuc').value;
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+        }
+
+        function Xuat_Ban_do() {
+            XL_Xuat_Dia_diem();
+        }
+
+        window.onload = InitializeMap;    
+
+        // Th_Dong_y.onclick=()=>{
+        //     XL_Xuat_Dia_diem();
+        // }   
+        
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2>Tìm địa điểm giao hàng </h2>
+            <div class="panel panel-default">
+                <div class="panel-heading">Tìm địa điểm giao hàng - Google Map Address Bar</div>
+                <div id="control" class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Vị trí của bạn:</label>
+                                <input id="Th_Dia_diem_Bat_dau" class="form-control" type="text" value="137 Nguyễn Chí Thanh Quận 11 Hồ Chí Minh" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Địa chỉ giao hàng:</label>
+                                <input id="Th_Dia_diem_Ket_thuc" class="form-control" type="text" value="227 Nguyễn Văn Cừ Quận 5 Hồ Chí Minh" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><input id="Th_Dong_y" class="btn btn-primary" type="button" value="Xem Hướng dẫn" onclick="return Xuat_Ban_do()" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div id="directionpanel" style="height: 330px; overflow: auto"></div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div id="map" style="height: 330px; width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Xem danh sách địa điểm giao hàng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw3QZ5hhReTIJLSWz7o_582Wm3p6PV-EM&language=vi"></script>
+    <script type="text/javascript">
+        var map;
+        var infowindow;
+        var Danh_sach = []
+        var dd1 = {"Ten":"Iphone 1","Ma_so":"IPHONE_1","Dia_chi":"227 Nguyễn Văn Luông Quận 6","LatLng":[10.7454705, 106.6380775]}
+        var dd2 = {"Ten":"Iphone 5","Ma_so":"IPHONE_5","Dia_chi":"137 Hòa Bình Quận 10","LatLng":[10.7751771, 106.6983625]}
+        var dd3 = {"Ten":"Iphone 6","Ma_so":"IPHONE_6","Dia_chi":"233 Nam Kỳ Khởi Nghĩa Quận Bình Thạnh","LatLng":[10.8121355, 106.7176694]}
+        Danh_sach.push(dd1)
+        Danh_sach.push(dd2)
+        Danh_sach.push(dd3)
+
+        function InitializeMap() {
+            var latlng = new google.maps.LatLng(10.823099, 106.629664); // Vĩ độ, Kinh độ Tp Hồ Chí Minh
+            var myOptions = {
+                zoom: 10,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+        }
+
+        function markicons() {
+            InitializeMap();
+            var ltlng = [];
+            Danh_sach.forEach(dd => {
+                ltlng.push(new google.maps.LatLng(dd.LatLng[0], dd.LatLng[1]));
+            })
+            map.setCenter(ltlng[0]);
+            // Tạo Marker
+            for (var i = 0; i < ltlng.length; i++) {
+                var hinh = {
+                    url: 'http://nth.t3h.vn/minh_hoa_tra_cuu/HINH/VU_TRU_DI_DONG.png',
+                    size: new google.maps.Size(50, 50),
+                };
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: ltlng[i],
+                    //icon: hinh,
+                    title: `Điện thoại: ${Danh_sach[i].Ten}\nĐịa chỉ: ${Danh_sach[i].Dia_chi}`,
+                    zIndex: i
+                });
+
+
+                marker.setAnimation(null);
+                (function(i, marker) {
+
+                    google.maps.event.addListener(marker, 'dblclick', function() {
+                        marker.setMap(null) // Xóa Marker ra khỏi map
+                    }) 
+
+                    google.maps.event.addListener(marker, 'click', function() {
+
+                        if (!infowindow) {
+                            infowindow = new google.maps.InfoWindow();
+                        }
+
+                        infowindow.setContent(`Thông tin:${Danh_sach[i].Ten}<br>Địa chỉ:${Danh_sach[i].Dia_chi}`);
+                        
+                        infowindow.open(map, marker)
+                        
+                        if (marker.getAnimation() !== null) {
+                            marker.setAnimation(null);
+                        } else {
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                        }
+                    });
+
+                })(i, marker);
+            }
+
+        }
+
+        window.onload = markicons;
+    </script>
+</head>
+
+<body>
+    <div class="container mx-auto" style="width:55rem;margin-top:20px">
+        <div class="row">
+            <div class="card col">
+                <div class="card-block">
+                    <h4 class="card-title text-center text-danger">Xem Danh sách Địa điểm giao hàng</h4>
+                    <div id="map" style="height: 30rem; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

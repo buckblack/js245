@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Demo Geo Coding</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4k8VW2JVjMP6PTHBPcLCDUs3SbKVmRQ0"></script>
+    <script language="javascript" type="text/javascript">
+        var map;
+        var geocoder;
+        function InitializeMap() {
+            var latlng = new google.maps.LatLng(10.754792, 106.6952276); // Tp Hồ Chí Minh
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true
+            };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+        }
+
+        function FindLocaiton() {
+            geocoder = new google.maps.Geocoder();
+            InitializeMap();
+            var address = document.getElementById("addressinput").value;
+            geocoder.geocode({
+                'address': address
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+
+                    });
+                    var Toa_do=results[0].geometry.location.toJSON()
+                    //console.log(results[0].geometry.location.toJSON())
+                    document.getElementById("Th_Vido").value = Toa_do.lat;
+                    document.getElementById("Th_Kinhdo").value = Toa_do.lng
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+
+        }
+
+        function Button1_onclick() {
+            FindLocaiton();
+        }
+        //window.onload = InitializeMap;
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <label>Lat:</label>
+                    <input id="Th_Vido" class="form-control" type="text" />
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        <label>Lng:</label>
+                        <input id="Th_Kinhdo" class="form-control" type="text" />
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Xác định (LatLng) Vĩ độ - Kinh độ </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10 pull-left">
+                            <div class="col-md-3">
+                                <label>Nhập địa chỉ:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input id="addressinput" class="form-control" type="text" value="227 Nguyễn Văn Cừ Tp Hồ Chí Minh" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            <input id="Button1" class="btn btn-primary" type="button" value="Tìm" onclick="return Button1_onclick()" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr>
+                            <div id="map" style="height: 300px; width: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

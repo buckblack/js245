@@ -25,7 +25,7 @@
                 position: new google.maps.LatLng(10.762887, 106.682257), // Vĩ độ, Kinh độ Cửa hàng 
                 map: map,
                 title: 'Nhấn để xem chi tiết',
-                animation: google.maps.Animation.BOUNCE // BOUNCE || DROP
+                animation: google.maps.Animation.DROP // BOUNCE || DROP
             });
             
             var infowindow = new google.maps.InfoWindow({
@@ -33,10 +33,12 @@
                 Địa chỉ:${Cua_hang.Dia_chi}<br/>
                 LatLng:${marker.position.toString()})`
             });
-            
-            /*google.maps.event.addListener(marker, 'click', function() {
+            /*
+            google.maps.event.addListener(marker, 'click', function() {
                 infowindow.open(map, marker);
-            });*/
+            });
+            */
+
             google.maps.event.addListener(marker, 'mouseover', function() {
                 infowindow.open(map, marker);
             });
@@ -61,6 +63,8 @@
             </div>
         </div>
     </div>
+
+    
 </body>
 
 </html>

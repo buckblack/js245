@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="Th_Bieu_do" class="card m-auto" style="width:50rem">
+
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+        var dsDien_thoai = [{
+                "Ten": "iPhone 1",
+                "Ma_so": "IPHONE_1",
+                "So_luong_Nhap": 500,
+                "So_luong_Ban": 200,
+            },
+            {
+                "Ten": "iPhone 2",
+                "Ma_so": "IPHONE_2",
+                "So_luong_Nhap": 50,
+                "So_luong_Ban": 45,
+            },
+            {
+                "Ten": "Android 1",
+                "Ma_so": "ANDROID_1",
+                "So_luong_Nhap": 45,
+                "So_luong_Ban": 45,
+            }
+
+        ]
+        var Nhan_vien = {
+            "Ten": "Trần Thị Bé Lớn",
+            "Ma_so": "NV001",
+        }
+
+        var Cua_hang = {
+            "Ten": "Cửa hàng Bán Điện thoại PET",
+            "Ma_so": "PET",
+            "Dia_chi": "137E Nguyễn Chí Thanh P9, Q5, Tp HCM"
+        }
+        var du_lieu_nhap = {
+            name: "Nhập",
+            data: [],
+            color: "red"
+        }
+        var du_lieu_ban = {
+            name: "Bán",
+            data: [],
+            color: "green"
+        }
+        var du_lieu_ton = {
+            name: "Tồn",
+            data: [],
+            color: "yellow"
+        }
+        var chu_de = []
+        dsDien_thoai.forEach(cd => {
+            chu_de.push(cd.Ten)
+            du_lieu_nhap.data.push(cd.So_luong_Nhap)
+            du_lieu_ban.data.push(cd.So_luong_Ban)
+            du_lieu_ton.data.push(Number(cd.So_luong_Nhap) - Number(cd.So_luong_Ban))
+        })
+        var series = [du_lieu_nhap, du_lieu_ban, du_lieu_ton]
+
+        Highcharts.setOptions({
+            lang: {
+                numericSymbols: [` Ngàn`, ` Triệu`],
+                numericSymbolMagnitude: 1000,
+                decimalPoint: ',', ///phân cách thập phân
+                thousandsSep: '.' ///hàng ngàn
+            },
+            chart: {
+                style: {
+                    fontFamily: `tahoma`, /// chỉnh font cho chữ thống dc đúng
+                    fontSize: 16
+                }
+            }
+        })
+        Highcharts.chart('Th_Bieu_do', {
+            chart: {
+                type: 'column', // bar , column, line, pie
+                plotBorderWidth: 1,
+            },
+            title: {
+                text: `Thống kê Nhập xuất ${Cua_hang.Ten}`,
+                align: 'center',
+                style: {
+                    color: 'red',
+                    fontWeight: 'bold',
+                    fontSize: '1.5rem'
+                },
+                y: 20
+            },
+            subtitle: {
+                text: `${Cua_hang.Ma_so} : ${Cua_hang.Dia_chi}`
+            },
+            xAxis: {
+                categories: chu_de
+            },
+            yAxis: {
+                title: {
+                    text: `${Nhan_vien.Ma_so} : ${Nhan_vien.Ten}`,
+
+                    style: {
+                        color: 'blue',
+                        fontWeight: 'bold',
+                        fontSize: '1rem'
+                    }
+
+                }
+            },
+            series: series
+
+        });
+    </script>
+</body>
+
+</html>

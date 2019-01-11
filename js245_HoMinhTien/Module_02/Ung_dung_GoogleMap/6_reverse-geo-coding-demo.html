@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Demo Reverse Geo Coding</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD57PRHJQSQ5XQOuNtAWpRBOP-UCX5pSzA&sensor=false"></script>
+    <script language="javascript" type="text/javascript">
+        var map;
+        var geocoder;
+
+        function InitializeMap() {
+
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true
+            };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+        }
+
+        function XL_Tim_Dia_chi() {
+            geocoder = new google.maps.Geocoder();
+            InitializeMap();
+            var address = document.getElementById("addressinput").value;
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                    if (results[0].formatted_address) {
+                        region = results[0].formatted_address + '<br />';
+                    }
+                    var infowindow = new google.maps.InfoWindow({
+                        content: '<div style =width:400px; height:400px;>Location info:<br/>Country Name:<br/>' +
+                        region + '<br/>LatLng:<br/>' + results[0].geometry.location + '</div>'
+                    });
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+
+                } else {
+                    alert("Không tìm thấy địa chỉ của bạn: " + status);
+                }
+            });
+
+
+        }
+
+        function Button1_onclick() {
+            XL_Tim_Dia_chi();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Xác định thông tin theo địa chỉ</h2>
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input id="addressinput" class="form-control" type="text" />
+                        </div>
+                        <div class="col-md-2">
+                            <input id="Button1" class="btn btn-primary" style="width: 100%;" type="button" value="Thông tin" onclick="return Button1_onclick()"
+                            />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr>
+                            <div id="map" style="height: 380px; width: 100%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

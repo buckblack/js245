@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="Th_Bieu_do" class="card m-auto" style="width:50rem">
+
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    
+    <script>
+        var chu_de=['Iphone 1', 'Iphone 2', 'Iphone 3']
+        var ten_nv='Trần Văn Rớt'
+        var du_lieu=[10,5,25]
+        Highcharts.chart('Th_Bieu_do', {
+            chart: {
+                type: 'column', // bar , column, line, pie
+                plotBorderWidth:1
+            },
+            title: {
+                text: 'Thống kê số lượng bán hàng',
+                align:'center',
+                style:{
+                    color:'red',
+                    fontWeight: 'bold',
+                    fontSize:'2.5rem'
+                },
+                y:50,
+                x:50
+            },
+            subtitle:{
+                text:ten_nv
+            },
+            xAxis: {
+                categories: chu_de
+            },
+            yAxis: {
+                title: {
+                    text: 'Số lượng Bán',
+                    
+                    style:{
+                    color:'blue',
+                    fontWeight: 'bold',
+                    fontSize:'1rem'
+                }
+                    
+                }
+            },
+            series: [{
+                showInLegend: false, 
+                name: ten_nv,
+                data: du_lieu,
+                color: 'green'
+            }]
+            /*
+            tooltip: {
+                backgroundColor: '#FCFFC5',
+                borderColor: 'black',
+                borderRadius: 10,
+                borderWidth: 3,
+                formatter: function () {
+                    return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series ' + this.series.name;
+                },
+                crosshairs: [true]
+
+            }
+            */
+
+        });
+    </script>
+</body>
+
+</html>
