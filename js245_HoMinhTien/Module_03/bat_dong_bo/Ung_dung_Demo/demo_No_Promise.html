@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>No Promise</title>
+</head>
+<body>
+    <div id="Th_Ket_qua"></div>
+</body>
+<script>
+    var kq="Hi"
+    var Xu_Ly_HTTP=new XMLHttpRequest()
+    Xu_Ly_HTTP.onload=()=>{
+        kq=Xu_Ly_HTTP.responseText
+    }
+    Xu_Ly_HTTP.open("POST","http://localhost:3000/NO-PROMISE")
+    Xu_Ly_HTTP.send(kq)
+    Th_Ket_qua.innerHTML=kq
+</script>
+</html>

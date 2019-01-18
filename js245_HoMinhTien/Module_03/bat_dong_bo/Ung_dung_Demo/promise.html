@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Tính tổng hai số
+        /*
+        function Tong_hai_so(a,b){
+            return new Promise((Kq,Loi)=>{
+                var tong=a+b
+                Kq(tong)
+            })
+        }
+        // Gọi hàm
+        var kqPromise=Tong_hai_so(5,4)
+        kqPromise.then(result=>{
+            console.log(result)
+        })
+
+        Tong_hai_so(2,3).then(tong=>{
+            console.log(tong)
+        })
+        */
+        // Tính Chu vi và Diện tích Hình chử nhật
+        
+        
+        /*
+        function Hinh_Chu_Nhat(a, b, Chu_vi, Dien_tich) {
+
+            var pro_cv = new Promise((Kq, Loi) => {
+                var cv = (a + b) * 2
+                Kq(cv)
+            }).then(CV => {
+                Chu_vi(CV)
+            });
+
+            var pro_cv = new Promise((Kq, Loi) => {
+                var dt = (a * b)
+                Kq(dt)
+            }).then(DT => {
+                Dien_tich(DT)
+            });
+
+        }
+
+        // Gọi Hàm 
+        Hinh_Chu_Nhat(20, 5, (cv => {
+            console.log(cv)
+        }), (dt => {
+            console.log(dt)
+        }))
+        */
+        /*
+        function HCN(a,b){
+            return new Promise((Kq,Loi)=>{
+                var cv = (a + b) * 2
+                var dt = (a * b)
+                var hcn={
+                    "CV":cv,
+                    "DT":dt
+                }
+                Kq(hcn) 
+            })
+        }
+        
+        var Kq=HCN(20,5)
+        Kq.then(result=>{
+            console.log(result.CV)
+            console.log(result.DT)
+        })
+        */
+        
+        // Viết hàm tìm số lớn nhất của 3 số
+        /*
+        function Tim_so_lon(a,b){
+            return new Promise((Kq,Loi)=>{
+                var so=a>b?a:b;
+                Kq(so)
+            })
+        }
+
+        // Gọi hàm
+        
+        Tim_so_lon(3,4).then(so=>{
+            Tim_so_lon(so,5).then(Kq=>{
+                console.log(Kq)
+            })
+        })
+        */
+
+    </script>
+</body>
+
+</html>

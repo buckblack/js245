@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Đồng bộ và Bất Đồng bộ</title>
+</head>
+<body>
+    <script>
+        var a=10;
+        var b=20;
+        var c=30;
+        
+        setTimeout(()=>{
+            b=40
+            console.log("b: " + b)
+        },1000)
+        
+        
+        
+        console.log("a: " + a)
+        console.log("b: " + b)
+        console.log("c: " + c)
+    </script>
+</body>
+</html>

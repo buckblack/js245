@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise asyn await</title>
+</head>
+
+<body>
+    <div id="Th_Ket_qua"></div>
+</body>
+<script>
+    var kq = "Hi"
+    var Pro1 = new Promise((Ket_qua, Loi) => {
+        var Xu_Ly_HTTP = new XMLHttpRequest()
+        Xu_Ly_HTTP.onload = () => {
+            kq = Xu_Ly_HTTP.responseText
+            Ket_qua(kq)
+        }
+        Xu_Ly_HTTP.open("POST", "http://localhost:3000/ASYN-AWAIT")
+        Xu_Ly_HTTP.send(kq)
+    })
+    var Pro2 = new Promise((Ket_qua, Loi) => {
+        var Xu_Ly_HTTP = new XMLHttpRequest()
+        Xu_Ly_HTTP.onload = () => {
+            kq = Xu_Ly_HTTP.responseText
+            Ket_qua(kq)
+        }
+        Xu_Ly_HTTP.open("POST", "http://localhost:3000/ASYN-AWAIT-1")
+        Xu_Ly_HTTP.send(kq)
+    })
+
+    async function getPromise() {
+        
+        var b = await Pro2
+        var a = await Pro1
+        
+        return obj={
+            "a":a,
+            "b":b
+        };
+    }
+    var kq = getPromise()
+    kq.then(Ket_qua => {
+        Th_Ket_qua.innerHTML =JSON.stringify(Ket_qua)
+    })
+
+
+
+
+</script>
+
+</html>

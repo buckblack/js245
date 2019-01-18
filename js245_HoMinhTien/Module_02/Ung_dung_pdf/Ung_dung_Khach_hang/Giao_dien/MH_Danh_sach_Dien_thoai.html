@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Danh sách Điện thoại </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .CHON {
+        background-color: silver;
+    }
+</style>
+
+<body>
+    <div class="container-fluid" id="Th_Cua_hang">
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-lg btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+
+
+    <div class="fixed-top text-right mr-2 mt-5" id="Th_Mua_hang">
+        <div class="btn btn-danger">
+            <span id="Th_Gio_hang"> 0 item </span>
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2 text-info">
+            <legend class="text-danger"></legend>
+            <button id="Th_Home" class="btn btn-outline-primary">Tất cả</button>
+            <button id="Th_Android" class="btn btn-outline-primary">Android</button>
+            <button id="Th_Iphone" class="btn btn-outline-primary">Iphone</button>
+
+            <a href="../Tap_tin_PDF/Don_Tuyen_dung.pdf" download class="btn btn-danger">Tải Đơn</a> 
+            
+            <button id="Th_Nop_don" class="btn btn-danger">Nộp đơn</button>
+
+
+            <hr> Nhập Giá trị tìm:
+            <input type="text" id="Th_gtTim" onkeyup="KeyCode(event)">
+            <button id="Th_Tim" class="btn btn-primary">
+                <i class="fa fa-search-plus"></i>
+            </button>
+            <hr>
+            <div class="text-right">
+                <select class="btn border border-danger" id="Th_Sap_xep">
+                    <option value="0">-- Sắp xếp theo --</option>
+                    <option value="1">Sắp xếp theo Tên (A->Z)</option>
+                    <option value="2">Sắp xếp theo Tên (Z->A)</option>
+                    <option value="3">Sắp xếp theo Giá (A->Z)</option>
+                    <option value="4">Sắp xếp theo Giá (Z->A)</option>
+                </select>
+
+                <select class="btn border border-danger" id="Th_Loc_gia">
+                    <option value="0-50000000">-- Chọn giá bán --</option>
+                    <option value="0-5000000">Dưới 5 triệu</option>
+                    <option value="5000000-10000000">Từ 5 triệu đến 10 triệu</option>
+                    <option value="10000000-20000000">Từ 10 triệu đến 20 triệu</option>
+                    <option value="20000000-50000000">Trên 20 triệu</option>
+                </select>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>DANH SÁCH ĐIỆN THOẠI</legend>
+            <div id="Th_Danh_sach">
+
+            </div>
+        </fieldset>
+
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg d-none" id="Th_Show" data-toggle="modal" data-target="#modelId">
+        Launch
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-danger" id="modelTitleId"></h4>
+                    <button type="button" id="Th_Close" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="Th_Chi_tiet">
+
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <style>
+    </style>
+    <script>
+        if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+            Th_Gio_hang.innerHTML = `${JSON.parse(sessionStorage.getItem("Danh_sach_Chon")).length} item `
+        }
+
+        var Cua_hang = Doc_Cua_hang()
+        var Danh_sach_Dien_thoai = Doc_Danh_sach_Dien_thoai()
+        console.log(Danh_sach_Dien_thoai)
+        Xuat_Cua_hang(Cua_hang, Th_Cua_hang)
+        Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        // Nộp đơn
+        Th_Nop_don.onclick=()=>{
+            Tao_the_hien_Upload(Th_Chi_tiet)
+            modelId.setAttribute("data-keyboard", false)
+            modelId.setAttribute("data-backdrop", "static")
+            modelTitleId.innerHTML = "Nộp Đơn Dự Tuyển"
+            Th_Show.click()
+
+        }
+        // Xử lý các nút chức năng
+        Th_Android.onclick = () => {
+            var dsAndroid = Danh_sach_Dien_thoai.filter(x => x.Nhom_Dien_thoai.Ma_so == "ANDROID")
+            Xuat_Danh_sach_Dien_thoai(dsAndroid, Th_Danh_sach)
+        }
+
+        Th_Iphone.onclick = () => {
+            var dsIphone = Danh_sach_Dien_thoai.filter(x => x.Nhom_Dien_thoai.Ma_so == "IPHONE")
+            Xuat_Danh_sach_Dien_thoai(dsIphone, Th_Danh_sach)
+        }
+        Th_Home.onclick = () => {
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+
+        Th_Tim.onclick = () => {
+            var Hop_le = Th_gtTim.value.trim() != ""
+            if (Hop_le) {
+                var gtTim = Th_gtTim.value.trim()
+                var Danh_sach_Tim = Danh_sach_Dien_thoai.filter(x => x.Ten.toLowerCase().includes(gtTim.toLowerCase()))
+                Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
+
+            } else {
+                Th_Thong_bao.innerHTML = `Nhập giá trị tìm`
+                Th_gtTim.focus()
+            }
+        }
+
+        Th_Sap_xep.onchange = () => {
+            var gt = Th_Sap_xep.value
+            switch (Number(gt)) {
+                case 1:
+                    Sap_Tang()
+                    break
+                case 2:
+                    Sap_Giam()
+                    break
+                case 3:
+                    Sap_Tang_Gia()
+                    break
+                case 4:
+                    Sap_Giam_Gia()
+                    break
+            }
+
+        }
+
+        Th_Loc_gia.onchange = () => {
+            var Chuoi_Loc = Th_Loc_gia.value;
+
+            var gia = Chuoi_Loc.split("-")
+            var Bd = Number(gia[0])
+            var Kt = Number(gia[1])
+            var Danh_sach_Gia = Danh_sach_Dien_thoai.filter(x => Number(x.Don_gia_Ban) >= Bd && Number(x.Don_gia_Ban) <= Kt)
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Gia, Th_Danh_sach)
+
+        }
+
+
+        Th_Mua_hang.onclick = () => {
+            window.location = `MH_Gio_hang.html`
+        }
+
+
+        // Xây dựng Hàm
+        function KeyCode(event) {
+            // event.keyCode == 13 -> Kết thúc bằng phím Enter
+            if (event.keyCode == 13) {
+                var gtTim = event.target.value
+                //console.log(gtTim)
+                var Danh_sach_Tim = Danh_sach_Dien_thoai.filter(x => x.Ten.toLowerCase().includes(gtTim.toLowerCase()))
+                Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
+
+            }
+        }
+
+        function Sap_Tang() {
+            // Là chuỗi
+            Danh_sach_Dien_thoai.sort((a, b) => a.Ten.localeCompare(b.Ten))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+        function Sap_Giam() {
+            // Là chuỗi
+            Danh_sach_Dien_thoai.sort((a, b) => b.Ten.localeCompare(a.Ten))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+        function Sap_Tang_Gia() {
+            // Là số
+            Danh_sach_Dien_thoai.sort((a, b) => {
+                return parseInt(a.Don_gia_Ban) - parseInt(b.Don_gia_Ban)
+            })
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+
+        }
+        function Sap_Giam_Gia() {
+            // Là số
+            Danh_sach_Dien_thoai.sort((a, b) => {
+                return parseInt(b.Don_gia_Ban) - parseInt(a.Don_gia_Ban)
+            })
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+
+
+    </script>
+</body>
+
+</html>

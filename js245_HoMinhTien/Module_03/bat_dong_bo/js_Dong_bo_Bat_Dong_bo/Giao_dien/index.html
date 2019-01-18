@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <p class="h3 text-danger">Bất đồng bộ (callBack)</p>
+        <div id="Th_Kq1"></div>
+        <p class="h3 text-primary">Đồng bộ</p>
+        <div id="Th_Kq2"></div>
+        <p class="h3 text-info">Bất Đồng bộ (Promise)</p>
+        <div id="Th_Kq3"></div>
+        <p class="h3 text-info">Bất Đồng bộ (Promise - aSync - aWait)</p>
+        <div id="Th_Kq4"></div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/xl.js"></script>
+    <script>
+        // Đồng bộ
+
+        Th_Kq2.innerHTML = Doc_Du_lieu_Dong_bo()
+        // Call back
+        Doc_Du_lieu_Bat_Dong_bo((Du_lieu) => {
+            Th_Kq1.innerHTML = Du_lieu
+        })
+        
+        //var Kq= Khoi_dong_Du_lieu()
+        /*Kq.then(Du_lieu=>{
+            console.log(Du_lieu)
+            Th_Kq4.innerHTML=`${Du_lieu.a.Ho_ten} - ${Du_lieu.b}`
+
+        })*/
+        
+        
+
+        var Du_lieu=Doc_Du_lieu_Promise()
+        /*
+        Du_lieu.then(data=>{
+            //console.log(data)
+            Th_Kq3.innerHTML = data.Ho_ten
+        })
+        */
+        
+        
+        Doc_Du_lieu_Promise().then(Ket_qua => {
+             //console.log(Ket_qua)
+             Th_Kq3.innerHTML = Ket_qua.Ho_ten
+        })
+            
+        
+    </script>
+</body>
+
+</html>

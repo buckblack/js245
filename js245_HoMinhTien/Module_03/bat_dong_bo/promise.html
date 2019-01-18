@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // Tổng hai số
+        /*
+        function Tong_hai_so(a,b,Ham){
+            var tong=a+b
+            Ham(tong)
+        }
+        */
+        // Gọi hàm
+        /*
+        Tong_hai_so(5,4,function(Kq){
+            console.log(`Tổng hai số: ${Kq}`)
+        })
+        */
+        /*
+        Tong_hai_so(5,4,(Kq)=>{
+            console.log(`Tổng hai số: ${Kq}`)
+        })
+        */
+
+        // Tính Chu vi và Diện tích Hình chử nhật
+        function Hinh_Chu_Nhat(a,b){
+            return new Promise((kq,loi)=>{
+                var cv=(a+b)*2;
+                var dt=(a*b);
+                var hcn={
+                    "chu_vi":cv,
+                    "dien_tich":dt
+                }
+                kq(hcn)
+            })
+            
+        }
+        // Gọi Hàm 
+        Hinh_Chu_Nhat(4,5).then(kq=>{
+            console.log(kq.chu_vi)
+        })
+
+        // Viết hàm tìm số lớn nhất của 3 số: CallBack
+        /*function so_lon_nhat(a,b,c,so_lon)
+        {
+            var max
+            a>b?max=a:max=b;
+            so_lon(max>c?max:c);
+        }
+
+        so_lon_nhat(4,3,2,(kq)=>{
+            console.log(kq)
+        })*/
+        // Viết hàm tìm số lớn nhất của 3 số: Promise
+
+        /*
+        function so_lon_nhat(a, b, c) {
+            return new Promise((Kq, Loi) => {
+                var max
+                a > b ? max = a : max = b;
+                Kq(max > c ? max : c);
+            })
+        }
+
+        so_lon_nhat(4, 30, 2).then(kq=>{
+            console.log(kq)
+        })
+
+        so_lon_nhat(4, 3, 2).then(kq=>{
+            console.log(kq)
+        })
+        */
+
+
+
+    </script>
+</body>
+
+</html>

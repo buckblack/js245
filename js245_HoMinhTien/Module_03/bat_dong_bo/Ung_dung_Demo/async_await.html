@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Tính Chu vi và Diện tích Hình chử nhật
+
+
+        /*
+        function Dien_tich(a,b){
+            return new Promise((Kq,Loi)=>{
+                var dt = (a * b)
+                Kq(dt)
+            })
+        }
+
+        function Chu_vi(a,b){
+            return new Promise((Kq,Loi)=>{
+                var cv = (a + b) * 2
+                Kq(cv)
+            })
+        }
+
+        async function Hinh_Chu_Nhat(a,b) {
+            var Cv= await Chu_vi(a,b)
+            var Dt=await Dien_tich(a,b)
+            return {Cv,Dt}
+        }
+        // Gọi Hàm 
+        Hinh_Chu_Nhat(20, 5).then(Kq=>{
+            console.log(`Diện tích: ${Kq.Dt} - Chu vi: ${Kq.Cv} `)
+        })
+       */
+       
+        // Viết hàm tìm số lớn nhất của 3 số
+
+        function Tim_so_lon_hai_so(a,b){
+            return new Promise((Kq,Loi)=>{
+                var so=a>b?a:b;
+                Kq(so)
+            })
+        }
+        var test= async (a,b,c) => {
+            var k1= await Tim_so_lon_hai_so(a,b)
+            var k2= Tim_so_lon_hai_so(k1,c)
+            return k2
+        }
+        
+        // Gọi hàm
+        test(13,4,5).then(max=>{
+            console.log(max)
+        })
+
+       
+        
+
+    </script>
+</body>
+
+</html>

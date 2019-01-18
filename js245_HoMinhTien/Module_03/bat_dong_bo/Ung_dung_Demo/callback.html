@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // Tổng hai số
+        /*
+        function Tong_hai_so(a,b,Ham){
+            var tong=a+b
+            Ham(tong)
+        }
+        */
+        // Gọi hàm
+        /*
+        Tong_hai_so(5,4,function(Kq){
+            console.log(`Tổng hai số: ${Kq}`)
+        })
+        */
+        /*
+        Tong_hai_so(5,4,(Kq)=>{
+            console.log(`Tổng hai số: ${Kq}`)
+        })
+        */
+        // Tính Chu vi và Diện tích Hình chử nhật
+        /*
+        function Hinh_Chu_Nhat(a,b,Chu_vi,Dien_tich){
+            var cv=(a+b)*2;
+            var dt=(a*b);
+            // Trả kết quả cho Hàm
+            Chu_vi(cv);
+            Dien_tich(dt);
+        }
+        // Gọi Hàm 
+
+        Hinh_Chu_Nhat(20,5,(cv=>{
+            console.log(cv)
+        }),(dt=>{
+            console.log(dt)
+        }))
+        */
+        
+        // Viết hàm tìm số lớn nhất của 3 số: CallBack
+        function Tim_so_lon(a,b,So_lon_nhat){
+            var kq=a>b?a:b;
+            So_lon_nhat(kq)
+        }
+        // Gọi hàm
+        Tim_so_lon(3,4,(Kq=>{
+            Tim_so_lon(Kq,5,(max=>{
+                console.log(max)
+            }))
+        }))
+        
+        
+
+    </script>
+</body>
+</html>
