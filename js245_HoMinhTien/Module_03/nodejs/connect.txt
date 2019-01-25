@@ -1,0 +1,10 @@
+﻿user: tienhm
+password: minhtien96
+
+mongodb://tienhm:minhtien96@ds163683.mlab.com:63683/js245_bandienthoai
+
+Import collection
+mongoimport -h ds163683.mlab.com:63683 -d js245_bandienthoai -c <collection> -u <user> -p <password> --file <input file>
+mongoimport -h ds163683.mlab.com:63683 -d js245_bandienthoai -c Dien_thoai -u tienhm -p minhtien96 --file <input file>
+Export collection
+mongoexport -h ds163683.mlab.com:63683 -d js245_bandienthoai -c <collection> -u <user> -p <password> -o <output file>
