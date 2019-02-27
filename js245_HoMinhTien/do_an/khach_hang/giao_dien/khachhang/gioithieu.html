@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Giới thiệu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw3QZ5hhReTIJLSWz7o_582Wm3p6PV-EM&language=vi"></script>
+</head>
+
+<body class="h-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="mb-0 mr-5"><i class="fa fa-map-marker"></i> 137E Nguyễn Chí Thanh</p>
+        <p class="mb-0 mr-auto"><i class="fa fa-phone"> 0123456789</i></p>
+        <p class="mb-0"><i class="fa fa-clock-o"></i>10:00 AM - 22:00PM</p>
+    </nav>
+    <div class="container text-center">
+        <div class="btn-group justify-content-center mt-1 ">
+            <button class="btn btn-md btn-outline-primary" onclick="window.location='.'"><strong>Trang chủ</strong></button>
+            <button class="btn btn-md btn-outline-primary" onclick="window.location='monan.html'"><strong>Món ăn</strong></button>
+            <button class="btn btn-md btn-outline-primary active" href="#"><strong>Giới thiệu</strong></button>
+            <button class="btn btn-md btn-outline-primary" onclick="window.location='lienhe.html'"><strong>Liên
+                    hệ</strong></button>
+        </div>
+    </div>
+    <div class="container my-3">
+        <div class="h-100 row justify-content-center align-items-center">
+            <div class="col-sm-12">
+                <div class="card-deck text-center">
+                    <div class="card">
+                        <img class="card-img-top" src="../../imgs/a1.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title text-danger">Clean & Continental Place</h4>
+                            <p class="card-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../../imgs/a2.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title text-danger">100% Healthy Food</h4>
+                            <p class="card-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container mx-auto my-5">
+        <div class="row">
+            <div class="card col">
+                <div class="card-block">
+                    <h4 class="card-title text-center text-danger">Xem bản đồ Nhà hàng</h4>
+                    <!-- <p class="card-text">
+                            ROADMAP : Default map nếu không chọn loại bản đồ nào thì sẽ mặc định hiển thị loại này. Hiển thị đường đi.<br> 
+                            SATELLITE : Hiển thị hình ảnh vệ tinh. <br> 
+                            HYBRID: Hiển thị đường trên ảnh vệ tinh. <br> 
+                            TERRAIN : Hiển thị địa hìnhvà thảm thực vật.
+    
+                        </p> -->
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    <div id="map" style="height:40rem; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        var map;
+        var Cua_hang = {
+            "Ten": "Nhà Hàng ABC",
+            "Dia_chi": "137E guyễn Chí Thanh"
+        }
+
+        function InitializeMap() {
+            var latlng = new google.maps.LatLng(10.759350, 106.666400); // Vĩ độ, Kinh độ Tp Hồ Chí Minh
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP //Hiển thị đường đi
+
+            };
+            var map = new google.maps.Map(document.getElementById("map"), myOptions);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(10.762887, 106.682257), // Vĩ độ, Kinh độ Cửa hàng 
+                map: map,
+                title: 'Nhấn để xem chi tiết',
+                animation: google.maps.Animation.DROP // BOUNCE || DROP
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: `Cửa hàng: ${Cua_hang.Ten}<br/>
+                Địa chỉ: ${Cua_hang.Dia_chi}
+                `
+            });
+            google.maps.event.addListener(marker, 'mouseover', function() {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                infowindow.open(map, marker);
+            });
+
+            google.maps.event.addListener(marker, 'mouseout', function() {
+                marker.setAnimation(google.maps.Animation.DROP);
+                infowindow.close(map, marker);
+            });
+
+        }
+        window.onload = InitializeMap; // Khởi tạo bản đồ
+    </script>
+</body>
+
+</html>

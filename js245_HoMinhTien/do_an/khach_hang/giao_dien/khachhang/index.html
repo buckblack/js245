@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Trang chủ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/style2.css">
+</head>
+
+<body class="bg-img h-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="mb-0 mr-5"><i class="fa fa-map-marker"></i> 137E Nguyễn Chí Thanh</p>
+        <p class="mb-0 mr-auto"><i class="fa fa-phone"> 0123456789</i></p>
+        <p class="mb-0"><i class="fa fa-clock-o"></i>10:00 AM - 22:00PM</p>
+    </nav>
+    <div class="container text-center">
+        <div class="btn-group justify-content-center mt-1 ">
+            <button class="btn btn-md btn-outline-primary active text-white"><strong>Trang chủ</strong></button>
+            <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='monan.html'"><strong>Món
+                    ăn</strong></button>
+            <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='gioithieu.html'"><strong>Giới
+                    thiệu</strong></button>
+            <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='lienhe.html'"><strong>Liên
+                    hệ</strong></button>
+        </div>
+    </div>
+    <div class="container h-75">
+        <div class="h-100 row justify-content-center align-items-center">
+            <div class="col-8">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-lg" id="Th_tim" placeholder="Nhập tên món ăn cần tìm...">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button"><strong>Tìm</strong></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            Th_tim.focus();
+        });
+    </script>
+</body>
+
+</html>

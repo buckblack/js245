@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Liên hệ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/style2.css">
+</head>
+
+<body class="bg-img h-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="mb-0 mr-5"><i class="fa fa-map-marker"></i> 137E Nguyễn Chí Thanh</p>
+        <p class="mb-0 mr-auto"><i class="fa fa-phone"> 0123456789</i></p>
+        <p class="mb-0"><i class="fa fa-clock-o"></i>10:00 AM - 22:00PM</p>
+    </nav>
+    <div class="container text-center">
+        <div class="btn-group justify-content-center mt-1 ">
+            <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='.'"><strong>Trang chủ</strong></button>
+            <button class="btn btn-md btn-outline-primary  text-white" onclick="window.location='monan.html'"><strong>Món ăn</strong></button>
+            <button class="btn btn-md btn-outline-primary  text-white" onclick="window.location='gioithieu.html'"><strong>Giới
+                    thiệu</strong></button>
+            <button class="btn btn-md btn-outline-primary active"><strong>Liên hệ</strong></button>
+        </div>
+    </div>
+    <div class="container h-75 mt-4">
+        <div class="h-100 row justify-content-center align-items-center">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label class="text-white h4" for="Th_Ho_ten">Họ tên </label>
+                    <input type="text" class="form-control" id="Th_Ho_ten" placeholder="Nhập họ tên">
+                </div>
+                <div class="form-group">
+                    <label class="text-white h4" for="Th_Email">Email</label>
+                    <input type="email" class="form-control" id="Th_Email" placeholder="Nhập Email">
+                </div>
+                <div class="form-group">
+                    <label class="text-white h4" for="Th_Dien_thoai">Điện thoại</label>
+                    <input type="tel" class="form-control" id="Th_Email" placeholder="Nhập số điện thoại">
+                </div>
+                <div class="form-group">
+                    <label class="text-white h4" for="Th_Tieu_de">Tiêu đề</label>
+                    <input type="text" class="form-control" id="Th_Tieu_de" placeholder="Nhập Tiêu đề">
+                </div>
+                <div class="form-group">
+                    <label class="text-white h4" for="Th_Tieu_de">Nội dung</label>
+                    <textarea rows="3" class="form-control ckeditor" id="Th_Noi_dung" placeholder="Nhập Nội dung"></textarea>
+
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary px-5"><h4>Gửi</h4></button>
+                    <button type="reset" class="btn btn-info px-3"><h4>Làm lại</h4></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Th_Noi_dung', {
+            customConfig: 'config_lien_he.js'
+        });
+    </script>
+</body>
+
+</html>
