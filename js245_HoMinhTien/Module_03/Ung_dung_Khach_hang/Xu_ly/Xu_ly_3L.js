@@ -6,6 +6,19 @@ var Dia_chi_Dich_vu = "http://localhost:1000"
 var Dia_chi_Media = "http://localhost:1001"
 
 //************** Các Hàm Xử lý Đọc Xuất   ***********
+
+function Khach_hang_Lien_he(noi_dung) {
+    var Kq = ""
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=Khach_hang_Lien_he`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_goi = noi_dung
+    Xu_ly_HTTP.send(Chuoi_goi)
+    Kq = Xu_ly_HTTP.responseText
+    return Kq
+}
+
 //========================================
 function Doc_Cua_hang() {
     var Du_lieu = {}

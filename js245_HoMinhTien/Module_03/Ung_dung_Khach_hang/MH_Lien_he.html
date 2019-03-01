@@ -33,7 +33,6 @@
 </style>
 
 <body>
-    <div id="Th_View"></div>
     <div class="container-fluid" id="Th_Cua_hang">
 
     </div>
@@ -99,10 +98,21 @@
         var Cua_hang = Doc_Cua_hang()
         Xuat_Cua_hang(Cua_hang, Th_Cua_hang)
         Th_Dong_y.onclick = () => {
-            alert('');
+            var ho_ten=Th_Ho_ten.value
+            var email=Th_Email.value
+            var tieu_de=Th_Tieu_de.value
             var noi_dung = CKEDITOR.instances.Th_Noi_dung.getData()
-            console.log(noi_dung)
-            Th_View.innerHTML=noi_dung;
+            var html=`<h4>Họ tên:${ho_ten}</h4>`
+            html+=`email:${email}`
+            html+=`<h5>${tieu_de}</h4>`
+            html+=noi_dung
+            //console.log(html) 
+            var Kq=Khach_hang_Lien_he(html)
+            if(Kq=="OK"){
+                Th_Thong_bao.innerHTML=`Cám ơn bạn đã gởi mail. Chúng tôi sẽ sớm trả lời thư của bạn`
+            }else{
+                Th_Thong_bao.innerHTML=`Có lỗi xãy ra khi gửi mail`
+            }   
         }
         CKEDITOR.replace('Th_Noi_dung', {
             customConfig: 'config_lien_he.js'
