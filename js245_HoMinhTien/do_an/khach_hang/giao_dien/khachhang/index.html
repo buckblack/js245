@@ -36,13 +36,14 @@
                 <div class="input-group">
                     <input type="text" class="form-control form-control-lg" id="Th_tim" placeholder="Nhập tên món ăn cần tìm...">
                     <div class="input-group-append">
-                        <button class="btn btn-success" type="button"><strong>Tìm</strong></button>
+                        <button class="btn btn-success" id="btn_tim" type="button"><strong>Tìm</strong></button>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../../js/jquery-3.3.1.min.js"></script>
@@ -52,6 +53,9 @@
         $(document).ready(function () {
             Th_tim.focus();
         });
+        btn_tim.onclick = () => {
+            window.location = 'monan.html?q=' + Th_tim.value;
+        }
     </script>
 </body>
 

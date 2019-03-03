@@ -29,97 +29,38 @@
     </div>
     <div class="container mt-5 ">
         <div class="row">
-            <div class="text-right w-100">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu_ten" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Xếp theo tên
-                </button>
-                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenu_ten">
-                    <a class="dropdown-item" href="#">Tăng dần</a>
-                    <a class="dropdown-item" href="#">Giảm dần</a>
-
+            <div class="text-left input-group ml-1 mr-auto w-auto">
+                <input type="text" class="form-control" id="TH_tim" placeholder="Nhập từ khóa cần tìm">
+                <div class="input-group-prepend">
+                    <button class="btn btn-success" id="btn_tim" type="button"><i class="fa fa-search"></i> Tìm</button>
                 </div>
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu_gia" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Xếp giá
-                </button>
-                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenu_gia">
-                    <a class="dropdown-item" href="#">Tăng dần</a>
-                    <a class="dropdown-item" href="#">Giảm dần</a>
+            </div>
+            <div class="text-right">
+                <select class="btn border border-danger " id="Th_Sap_xep">
+                    <option value="0">-- Sắp xếp theo loại --</option>
+                    <option value="1">Đồ ăn</option>
+                    <option value="2">Nước uống</option>
+                </select>
 
-                </div>
+                <select class="btn border border-danger" id="Th_Loc_gia">
+                    <option value="0">-- Sắp xếp theo giá --</option>
+                    <option value="1">Tăng dần</option>
+                    <option value="2">Giảm dần</option>
+                </select>
             </div>
         </div>
 
     </div>
     <div class="container my-3">
-        <div class="row">
-            <div class="col-md-4 col-lg-3 my-2 px-1">
-                <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#modelId"><img class="card-img-top" src="../../imgs/g1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 my-2 px-1">
-                <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#modelId"><img class="card-img-top" src="../../imgs/g1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 my-2 px-1">
-                <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#modelId"><img class="card-img-top" src="../../imgs/g1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 my-2 px-1">
-                <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#modelId"><img class="card-img-top" src="../../imgs/g1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 my-2 px-1">
-                <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#modelId"><img class="card-img-top" src="../../imgs/g1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3 my-2 px-1">
-                <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#modelId"><img class="card-img-top" src="../../imgs/g1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
-                    </div>
-                </div>
-            </div>
+        <div class="row" id="TH_monan">
+
         </div>
+        <div class="h1 text-danger text-center mt-2" id="TH_thongbao"></div>
     </div>
 
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Chi tiết sản phẩm</h5>
@@ -128,13 +69,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="text-center">
-                        <img src="../../imgs/g1.jpg" class="img-fluid" alt="">
-                    </div>
-                    <p>Tên: </p>
-                    <p>Giá: </p>
-                    <p>Loại: </p>
-                    <p>Mô tả: </p>
+                    <div id="model_detail"></div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -147,6 +83,37 @@
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../Xu_ly/Xu_ly_3L.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('q');
+        if(myParam!=null)
+        {
+            TH_tim.value=myParam;
+        }
+        var ds_monan = tim_kiem(TH_tim.value)
+        Xuat_ds_mon_an(ds_monan, TH_monan)
+        Th_Sap_xep.onchange = () => {
+            ds_monan = tim_kiem(TH_tim.value)
+            var gt_gia = Th_Loc_gia.value;
+            var gt_loai = Th_Sap_xep.value;
+            ds_monan = xep_theo_loai(ds_monan, gt_loai)
+            ds_monan = xep_theo_gia(ds_monan, gt_gia)
+            Xuat_ds_mon_an(ds_monan, TH_monan);
+        }
+        Th_Loc_gia.onchange = () => {
+            ds_monan = tim_kiem(TH_tim.value)
+            var gt_gia = Th_Loc_gia.value;
+            var gt_loai = Th_Sap_xep.value;
+            ds_monan = xep_theo_gia(ds_monan, gt_gia)
+            ds_monan = xep_theo_loai(ds_monan, gt_loai)
+            Xuat_ds_mon_an(ds_monan, TH_monan);
+        }
+        btn_tim.onclick=()=>{
+            Xuat_ds_mon_an(tim_kiem(TH_tim.value), TH_monan);
+        }
+        
+    </script>
 </body>
 
 </html>

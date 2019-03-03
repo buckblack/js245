@@ -22,7 +22,8 @@
     <div class="container text-center">
         <div class="btn-group justify-content-center mt-1 ">
             <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='.'"><strong>Trang chủ</strong></button>
-            <button class="btn btn-md btn-outline-primary  text-white" onclick="window.location='monan.html'"><strong>Món ăn</strong></button>
+            <button class="btn btn-md btn-outline-primary  text-white" onclick="window.location='monan.html'"><strong>Món
+                    ăn</strong></button>
             <button class="btn btn-md btn-outline-primary  text-white" onclick="window.location='gioithieu.html'"><strong>Giới
                     thiệu</strong></button>
             <button class="btn btn-md btn-outline-primary active"><strong>Liên hệ</strong></button>
@@ -31,31 +32,37 @@
     <div class="container h-75 mt-4">
         <div class="h-100 row justify-content-center align-items-center">
             <div class="col-sm-8">
+                <form action="">
                 <div class="form-group">
                     <label class="text-white h4" for="Th_Ho_ten">Họ tên </label>
-                    <input type="text" class="form-control" id="Th_Ho_ten" placeholder="Nhập họ tên">
+                    <input type="text" class="form-control" id="Th_Ho_ten" placeholder="Nhập họ tên" required="required">
                 </div>
                 <div class="form-group">
                     <label class="text-white h4" for="Th_Email">Email</label>
-                    <input type="email" class="form-control" id="Th_Email" placeholder="Nhập Email">
+                    <input type="email" class="form-control" id="Th_Email" placeholder="Nhập Email" required>
                 </div>
                 <div class="form-group">
                     <label class="text-white h4" for="Th_Dien_thoai">Điện thoại</label>
-                    <input type="tel" class="form-control" id="Th_Email" placeholder="Nhập số điện thoại">
+                    <input type="tel" class="form-control" id="Th_Dien_thoai" placeholder="Nhập số điện thoại" required>
                 </div>
                 <div class="form-group">
                     <label class="text-white h4" for="Th_Tieu_de">Tiêu đề</label>
-                    <input type="text" class="form-control" id="Th_Tieu_de" placeholder="Nhập Tiêu đề">
+                    <input type="text" class="form-control" id="Th_Tieu_de" placeholder="Nhập Tiêu đề" required>
                 </div>
                 <div class="form-group">
-                    <label class="text-white h4" for="Th_Tieu_de">Nội dung</label>
-                    <textarea rows="3" class="form-control ckeditor" id="Th_Noi_dung" placeholder="Nhập Nội dung"></textarea>
+                    <label class="text-white h4" for="Th_Noi_dung">Nội dung</label>
+                    <textarea rows="3" class="form-control ckeditor" id="Th_Noi_dung" placeholder="Nhập Nội dung" required></textarea>
 
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary px-5"><h4>Gửi</h4></button>
-                    <button type="reset" class="btn btn-info px-3"><h4>Làm lại</h4></button>
+                    <button type="submit" required="required" class="btn btn-primary px-5" id="Th_Dong_y">
+                        <h4>Gửi</h4>
+                    </button>
+                    <button type="reset" class="btn btn-info px-3">
+                        <h4>Làm lại</h4>
+                    </button>
                 </div>
+            </form>
             </div>
 
         </div>
@@ -66,7 +73,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../ckeditor/ckeditor.js"></script>
+    <script src="../../Xu_ly/Xu_ly_3L.js"></script>
     <script>
+        Th_Dong_y.onclick =async () => {
+            var ho_ten = Th_Ho_ten.value
+            var email = Th_Email.value
+            var tieu_de = Th_Tieu_de.value
+            var dien_thoai = Th_Dien_thoai.value
+            var noi_dung = await CKEDITOR.instances.Th_Noi_dung.getData()
+            var html = `<h4>Họ tên:${ho_ten}</h4>`
+            var html = `<h4>Điện thoại:${ho_ten}</h4>`
+            html += `email:${email}`
+            html += `<h4>${tieu_de}</h4>`
+            html += noi_dung
+            var Kq = Khach_hang_Lien_he(html)
+            
+            if (Kq == "OK") {
+                alert(`Cám ơn bạn đã gởi mail. Chúng tôi sẽ sớm trả lời thư của bạn`)
+     
+            } else {
+                alert(`Có lỗi xãy ra khi gửi mail`)
+                
+            }
+
+        }
         CKEDITOR.replace('Th_Noi_dung', {
             customConfig: 'config_lien_he.js'
         });
