@@ -19,6 +19,18 @@ function Khach_hang_Lien_he(noi_dung) {
     return Kq
 }
 
+function Goi_Tin_nhan(Tin_nhan){
+
+    var Chuoi_Goi = JSON.stringify(Tin_nhan)
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=SMS`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    var Kq = Xu_ly_HTTP.responseText
+    return Kq
+}
+
 //========================================
 function Doc_Cua_hang() {
     var Du_lieu = {}
