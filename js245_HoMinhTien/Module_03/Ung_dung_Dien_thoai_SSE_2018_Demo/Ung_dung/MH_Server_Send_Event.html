@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Server Send Event</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <div>
+        <fieldset class="khung">
+            <legend>
+                <h3 class="text-primary">Server Send Event</h3>
+            </legend>
+            <div id="Th_Ket_qua">
+
+            </div>
+        </fieldset>
+    </div>
+    <!-- Optional JavaScript -->
+    <script>
+        if (typeof (EventSource) !== "undefined") {
+            //console.log(`Có hỗ trợ SSE`) 
+            var eventSource = new EventSource("http://localhost:3000/Ma_so_Xu_ly=SSE");
+            eventSource.addEventListener("ping", function (e) {
+                console.log(`ping: ${e.data} `)
+            });
+
+            //if no events specified
+            eventSource.addEventListener("message", function (e) {
+                console.log(`message: ${e.data} `)
+            });
+            
+            //eventSource.close()
+            
+
+
+        } else {
+            console.log(`Không Có hỗ trợ SSE`)
+        }
+    </script>
+</body>
+
+</html>
