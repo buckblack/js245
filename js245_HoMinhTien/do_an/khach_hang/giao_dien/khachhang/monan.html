@@ -85,34 +85,34 @@
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../Xu_ly/Xu_ly_3L.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const myParam = urlParams.get('q');
-        if(myParam!=null)
-        {
-            TH_tim.value=myParam;
-        }
-        var ds_monan = tim_kiem(TH_tim.value)
-        Xuat_ds_mon_an(ds_monan, TH_monan)
-        Th_Sap_xep.onchange = () => {
-            ds_monan = tim_kiem(TH_tim.value)
-            var gt_gia = Th_Loc_gia.value;
-            var gt_loai = Th_Sap_xep.value;
-            ds_monan = xep_theo_loai(ds_monan, gt_loai)
-            ds_monan = xep_theo_gia(ds_monan, gt_gia)
-            Xuat_ds_mon_an(ds_monan, TH_monan);
-        }
-        Th_Loc_gia.onchange = () => {
-            ds_monan = tim_kiem(TH_tim.value)
-            var gt_gia = Th_Loc_gia.value;
-            var gt_loai = Th_Sap_xep.value;
-            ds_monan = xep_theo_gia(ds_monan, gt_gia)
-            ds_monan = xep_theo_loai(ds_monan, gt_loai)
-            Xuat_ds_mon_an(ds_monan, TH_monan);
-        }
-        btn_tim.onclick=()=>{
-            Xuat_ds_mon_an(tim_kiem(TH_tim.value), TH_monan);
-        }
-        
+        $(document).ready(function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('q');
+            if (myParam != null) {
+                TH_tim.value = myParam;
+            }
+            var ds_monan = tim_kiem(TH_tim.value)
+            Xuat_ds_mon_an(ds_monan, TH_monan)
+            Th_Sap_xep.onchange = () => {
+                ds_monan = tim_kiem(TH_tim.value)
+                var gt_gia = Th_Loc_gia.value;
+                var gt_loai = Th_Sap_xep.value;
+                ds_monan = xep_theo_loai(ds_monan, gt_loai)
+                ds_monan = xep_theo_gia(ds_monan, gt_gia)
+                Xuat_ds_mon_an(ds_monan, TH_monan);
+            }
+            Th_Loc_gia.onchange = () => {
+                ds_monan = tim_kiem(TH_tim.value)
+                var gt_gia = Th_Loc_gia.value;
+                var gt_loai = Th_Sap_xep.value;
+                ds_monan = xep_theo_gia(ds_monan, gt_gia)
+                ds_monan = xep_theo_loai(ds_monan, gt_loai)
+                Xuat_ds_mon_an(ds_monan, TH_monan);
+            }
+            btn_tim.onclick = () => {
+                Xuat_ds_mon_an(tim_kiem(TH_tim.value), TH_monan);
+            }
+        });
     </script>
 </body>
 

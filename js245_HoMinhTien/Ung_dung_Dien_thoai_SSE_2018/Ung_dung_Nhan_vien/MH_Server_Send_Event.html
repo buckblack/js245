@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Server Send Event</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <fieldset class="pl-2">
+            <legend>
+                <h3 class="text-primary">Server Send Event</h3>
+            </legend>
+            <div id="Th_Ket_qua">
+
+            </div>
+            <!-- <button id="Th_Tao" class="btn btn-sm btn-primary">Tạo EventSource </button>
+            <button id="Th_Dong" class="btn btn-sm btn-danger">Đóng EventSource </button> -->
+        </fieldset>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <script>
+        //var eventSource
+        var eventSource = new EventSource("http://localhost:3000/Ma_so_Xu_ly=SSE");
+        eventSource.addEventListener("message", (e) => {
+            //console.log(e.data)
+            //Th_Ket_qua.innerHTML = `Thông báo: ${e.data}`
+        });
+        
+        eventSource.addEventListener("Nhan_vien_Giao_hang", (e) => {
+            //console.log(e.data)
+            var Noi_dung = JSON.parse(e.data)
+            Th_Ket_qua.innerHTML += `Mã số: ${Noi_dung.Ma_so} - Số lượng đặt:${Noi_dung.So_luong} - Thời gian:${Noi_dung.Thoi_gian}<br>`
+        });
+        
+        
+              
+
+        
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+﻿Link Quản trị 
+http://cp.laptrinhjavascript.net:9001/
+
+Họ tên			username	Password		Sub-Domain
+Lê Quang		Hiển	k245jslqhien	hien12345	lqhien.laptrinhjavascript.net
+Nguyễn Tường	Liêm	k245jsntliem	liem12345	ntliem.laptrinhjavascript.net
+Lê Thị Kim	Lợi	k245jsltkloi	loi12345		ltkloi.laptrinhjavascript.net
+Hồ Minh		Tiến	k245jshmtien	tien12345	hmtien.laptrinhjavascript.net
+
+
+
+
+
+
+
+
+
+
+

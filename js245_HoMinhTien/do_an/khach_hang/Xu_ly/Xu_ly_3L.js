@@ -1,5 +1,5 @@
-var Dia_chi_Dich_vu = "http://localhost:1000"
-var Dia_chi_Media = "http://localhost:1001"
+var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
+var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
 
 
 function Khach_hang_Lien_he(noi_dung) {
@@ -35,7 +35,7 @@ function Xuat_ds_mon_an(Danh_sach, Th_Cha) {
         Th_Cha.innerHTML += `
             <div class="col-md-4 col-lg-3 my-2 px-1">
                 <div class="card text-center">
-                    <a href="#" onclick="showdetail('${mon_an.Ma_so}')" data-toggle="modal" data-target="#modelId"><img class="card-img-top img-fluid img-thumbnail" style="height:265px;" src="${Dia_chi_Media}/${mon_an.Ma_so}.PNG"
+                    <a href="#" onclick="showdetail('${mon_an.Ma_so}')" data-toggle="modal" data-target="#modelId"><img class="card-img-top img-fluid img-thumbnail" style="height:265px;" src="${Dia_chi_Media}/${mon_an.Ma_so}.png"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">${mon_an.Ten}</h5>
@@ -58,11 +58,11 @@ function showdetail(id) {
     var mon_an = Doc_ds_mon_an().find(x => x.Ma_so == id);
     model_detail.innerHTML = `
     <div class="text-center">
-        <img src="${Dia_chi_Media}/${mon_an.Ma_so}.PNG" class="img-fluid w-100" alt="">
+        <img src="${Dia_chi_Media}/${mon_an.Ma_so}.png" class="img-fluid w-100" alt="">
     </div>
     <b>Tên: <span class="h3">${mon_an.Ten}</span></b></br>
     <b>Giá: <span class="h3">${(mon_an.Don_gia_Ban).toLocaleString('en-GB')} VNĐ</span></b></br>
-    <b>Loại: <span class="h3">${mon_an.Nhom_Mat_hang.Ten=='Điện thoại'?'Món ăn':'Nước uống'}</span></b></br>
+    <b>Loại: <span class="h3">${mon_an.Nhom_Mat_hang.Ten=='Điện thoại'?'Nước uống':'Món ăn'}</span></b></br>
     `
 }
 
@@ -90,7 +90,6 @@ function xep_theo_gia(ds_monan, ma_loai) {
 
 function tim_kiem(tukhoa) {
     var kq = Doc_ds_mon_an().filter(x => x.Ten.toLowerCase().includes(tukhoa.trim().toLowerCase()));
-    console.log(kq);
     return kq;
 
 }
