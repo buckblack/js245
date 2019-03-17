@@ -142,68 +142,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <a class="nav-link btn btn-outline-primary ml-2" href="#">Lầu 2</a>
                                               </nav>
                                         <div class="phong-ban p-2 width-auto">
-                                            <div class="row m-0">
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(1)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap"  id="ban_1">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 1</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(2)">
-                                                    <img class="card-img-top px-3" src="../../images/chair2.png" alt="Card image cap"  id="ban_2">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 2</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(3)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_3">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 3</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(4)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_4">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 4</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(5)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_5">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 5</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(6)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_6">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 6</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(7)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_7">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 7</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(8)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_8">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 8</p>
-                                                    </div>
-                                                </div>
-                                                <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(9)">
-                                                    <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap" id="ban_9">
-                                                    <div class="card-body p-0">
-                                                        <p class="card-text">Bàn 9</p>
-                                                    </div>
-                                                </div>
-
+                                            <div class="row m-0" id="TH_ds_ban">
+                                                
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                        <div class="phong-ban p-2  width-auto">
+                                        <div class="phong-ban p-2  width-auto" style="height: auto;">
                                             <!--
                                             <button class="btn btn-info ml-2">Tất cả</button>
                                             <button class="btn btn-info ml-2">Khai vị</button>
@@ -214,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <a class="nav-link btn btn-outline-primary ml-2" href="#">Khai vị</a>
                                                 <a class="nav-link btn btn-outline-primary ml-2" href="#">Món chính</a>
                                               </nav>
-                                            <div class="row mx-0 my-2 text-center">
+                                            <div class="row mx-0 my-2 text-center" id="TH_thuc_don">
                                                 <div class="card text-center bg-light px-2 m-2" onclick="chon_mon(1)">
                                                     <img class="card-img-top px-3" src="../../images/chair.png" alt="Card image cap">
                                                     <div class="card-body p-0">
@@ -264,17 +210,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <section class="panel ">
                                 <ul class="nav nav-pills mb-3 bg-info p-2" id="pills-tab" role="tablist">
                                     <li class="nav-item mx-auto">
-                                        <a class="nav-link active text-info bg-light" id="pills-home-tab" data-toggle="pill"
-                                            href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Hóa đơn 123</a>
+                                        <a class="nav-link active text-info bg-light" data-toggle="pill"
+                                            href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" id="TH_mahd">Hóa hơn</a>
                                     </li>
                                 </ul>
                             </section>
                             <section class="p-2">
-                                <button class="btn btn-control disabled"><i class="fa fa-street-view"></i><a href="#">Bàn 1 / Lầu 1</a></button>
+                                <button class="btn btn-control disabled"><i class="fa fa-street-view"></i><a href="#">Bàn <span id="TH_soban"></span> / Lầu 1</a></button>
                                 <table class="table table-hover table-striped table-responsive d-lg-table">
                                     <tbody id="ds_mon">
-                                        <tr id="tr_gio_hang_1">
-                                            <th class="align-middle">1</th>                <!--hóa đơn, món, số lượng -->
+                                        <!-- <tr id="tr_gio_hang_1">
+                                            <th class="align-middle">1</th>                hóa đơn, món, số lượng 
                                             <td class="align-middle"><a href="#" onclick="xoa_gio_hang(1,1,1)"><i class="fa fa-remove text-danger"></i></a></td>
                                             <td class="align-middle">Tên món ăn ABC</td>
                                             <td class="align-middle"><input class="form-control hoa-don" id="soluong_1" type="number" onchange="doi_so_luong_gio_hang(1)" type="number" value="1"></td>
@@ -284,27 +230,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <tr id="tr_gio_hang_2">
                                             <th class="align-middle">2</th>
                                             <td class="align-middle"><a href="#" onclick="xoa_gio_hang(2,1,1)"><i class="fa fa-remove text-danger"></i></a></td>
-                                            <td class="align-middle">Tên món ăn ABC</td>                                        <!--hóa đơn -->
+                                            <td class="align-middle">Tên món ăn ABC</td>                                        
                                             <td class="align-middle"><input class="form-control hoa-don" id="soluong_2" type="number" onchange="doi_so_luong_gio_hang(2)" value="1"></td>
                                             <td class="align-middle" id='gia_2'>30000</td>
                                             <td class="align-middle"><strong id='tongtien_2'>30000</strong></td>
-                                            </tr>
+                                            </tr> -->
                                             
                                     </tbody>
                                 </table>
                             </section>
                             <section class="panel">
                                 <hr/>
-                                <div class="text-right mb-3">Tổng tiền: <strong>288,888 VNĐ</strong></div>
+                                <div class="text-right mb-3">Tổng tiền: <strong id="TH_tongtien">0 VNĐ</strong></div>
                                 <ul class="nav nav-pills nav-fill m-3">
                                     <li class="nav-item">
                                         <a class="nav-link btn btn-success btn-lg mx-2 mt-2" href="#">Thanh Toán</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link btn btn-danger btn-lg mx-2 mt-2" href="#">Thông báo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link btn btn-primary btn-lg mx-2 mt-2" href="#">Tách ghép đơn</a>
+                                        <a class="nav-link btn btn-danger btn-lg mx-2 mt-2" href="#">Ngưng phục vụ</a>
                                     </li>
                                 </ul>
                             </section>
@@ -333,7 +276,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="../../js/myscript.js"></script>
-    
+    <script src="../../Xu_ly/Xu_ly_3L_nhan_vien.js"></script>
+    <script>
+        $(document).ready(function () {
+            var ds_ban=Doc_ds_ban();
+            var ds_thuc_don=Doc_ds_thuc_don();
+            Xuat_ds_ban(ds_ban, TH_ds_ban);
+            Xuat_ds_thuc_don(ds_thuc_don,TH_thuc_don);
+            aaa();
+        });
+    </script>
 </body>
 
 </html>

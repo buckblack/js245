@@ -76,13 +76,8 @@ function cap_nhat_san_pham() {
 
 }
 
-function chon_ban(ma_ban) {
-    var ban = document.getElementById(`ban_${ma_ban}`)
-    var img = ban.getAttribute("src");
-    ban.setAttribute("src", "images/chair2.png")
-}
 
-function chon_mon(ma_mon) {
+/*function chon_mon(ma_mon) {
     ds_mon.innerHTML += `
     <tr>
         <th class="align-middle">1</th>
@@ -93,7 +88,7 @@ function chon_mon(ma_mon) {
         <td class="align-middle"><strong>30,000</strong></td>
     </tr>
     `
-}
+}*/
 
 //thành phần
 
@@ -255,11 +250,11 @@ function loadhinh(image)
     dia_chi_img.innerHTML=`<img src="${image}" class="w-100">`
 }
 
-function xoa_gio_hang(mahd,mamon,soluong)
+/*function xoa_gio_hang(mahd,mamon,soluong)
 {
     var kq=document.getElementById('tr_gio_hang_'+mahd);
     kq.innerHTML=``;    
-}
+}*/
 
 function doi_so_luong_gio_hang(mahd)
 {
