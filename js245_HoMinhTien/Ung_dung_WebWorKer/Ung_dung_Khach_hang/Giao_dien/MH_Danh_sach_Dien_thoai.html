@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Danh sách Điện thoại</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row p-5">
+
+
+            <script>
+                var Noi_dung_Html = ``
+
+                for (var i = 1; i <= 10; i++) {
+                    var giam_gia = (i % 2 == 0) ? "btn btn-danger countDown" : ""
+                    var text = (i % 2 == 0) ? "style='text-decoration: line-through;'" : ""
+                    var Noi_dung_Html = `
+                        <div class="card w-19 m-1">
+                            <img class="card-img-top" src="../Media/ANDROID_${i}.png" width="90%" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title text-primary">Android ${i}</h4>
+                                <p class="card-text text-danger">Giá bán:<span ${text} >15.0000.000đ</span></p>
+                                <div class="${giam_gia}"></div>
+                            </div>
+                        </div>
+                        `
+                    document.writeln(Noi_dung_Html)
+                }
+            </script>
+
+
+
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        if (window.Worker) {
+            var worker = new Worker("../xu_ly/worker_countDownDate.js")
+            worker.addEventListener('message', function (e) {
+                document.querySelectorAll(".countDown").forEach(p => {
+                    p.innerHTML = e.data
+                })
+            }, false)
+
+            function Goi_thong_tin() {
+                var countDownDate = new Date("3 18, 2019 19:26:25").getTime();
+                worker.postMessage({ 'Ngay': countDownDate })
+            }
+            Goi_thong_tin()
+        }
+        else {
+            alert('Trình duyệt của bạn không hỗ trợ')
+        }
+    </script>
+</body>
+
+</html>

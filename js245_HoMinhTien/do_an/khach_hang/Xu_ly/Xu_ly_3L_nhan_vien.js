@@ -1,6 +1,8 @@
-var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
-//var Dia_chi_Dich_vu = "http://localhost:1000/"
+//var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
+var Dia_chi_Dich_vu = "http://localhost:1000/"
 var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+var ma_so_hd;
+var ma_so_ban;
 
 function Doc_ds_ban() {
     var Du_lieu = {};
@@ -8,7 +10,7 @@ function Doc_ds_ban() {
     var Tham_so = `Ma_so_Xu_ly=danh_sach_ban`;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
     console.log(Dia_chi_Xu_ly);
-    
+
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
     Xu_ly_HTTP.send("");
     var Chuoi_JSON = Xu_ly_HTTP.responseText;
@@ -33,7 +35,7 @@ function Doc_ds_thuc_don() {
 function tim_ban(ma_ban) {
     var Du_lieu = {};
     var Xu_ly_HTTP = new XMLHttpRequest();
-    var Tham_so = `Ma_so_Xu_ly=tim_ban/thamso=`+ma_ban;
+    var Tham_so = `Ma_so_Xu_ly=tim_ban/thamso=` + ma_ban;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
     console.log(Dia_chi_Xu_ly);
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
@@ -47,7 +49,7 @@ function tim_ban(ma_ban) {
 function tim_hoa_don(mahd) {
     var Du_lieu = {};
     var Xu_ly_HTTP = new XMLHttpRequest();
-    var Tham_so = `Ma_so_Xu_ly=tim_hoa_don/thamso=`+mahd;
+    var Tham_so = `Ma_so_Xu_ly=tim_hoa_don/thamso=` + mahd;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
     console.log(Dia_chi_Xu_ly);
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
@@ -71,30 +73,19 @@ function ma_hoa_don_moi() {
         Du_lieu = JSON.parse(Chuoi_JSON);
     return Du_lieu;
 };
-function aaa() {
+
+function chon_mon_an_vao_chi_tiet(data) {
     var Du_lieu = {};
     var Xu_ly_HTTP = new XMLHttpRequest();
-    var Tham_so = `Ma_so_Xu_ly=aaa`;
+    var Tham_so = `Ma_so_Xu_ly=chon_mon_an_vao_chi_tiet`;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
-    var kq={
-        "ma_hd": 2,
-        "ngay_lap": new Date(),
-        "trang_thai": "Chưa thanh toán",
-        "ma_nv": "1",
-        "ten_nv": "Tiến",
-        "ma_ban": 2,
-        "tong_tien": 0,
-        "chi_tiet": []
-      }
-      var chuoi=JSON.stringify(kq);
-      console.log(chuoi);
-      
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
-    Xu_ly_HTTP.open("POST",chuoi , false);
-    Xu_ly_HTTP.send("");
+    Xu_ly_HTTP.send(JSON.stringify(data));
     var Chuoi_JSON = Xu_ly_HTTP.responseText;
     if (Chuoi_JSON != "")
         Du_lieu = JSON.parse(Chuoi_JSON);
+    console.log(Du_lieu);
+
     return Du_lieu;
 };
 
@@ -112,50 +103,65 @@ function Xuat_ds_thuc_don(Danh_sach, Th_Cha) {
             `;
     });
 };
+async function xuat_chi_tiet(mahd) {
+    var hd = await tim_hoa_don(mahd);
+    var dem = 1;
+    var tongtien = 0;
+    hd.chi_tiet.forEach(row => {
+        ds_mon.innerHTML += `
+        <tr id="tr_gio_hang_${row.ma_sp}">
+            <th class="align-middle">${dem++}</th>                <!--hóa đơn, món, số lượng -->
+            <td class="align-middle"><a href="#" onclick="xoa_gio_hang(${mahd},${row.ma_sp})"><i class="fa fa-remove text-danger"></i></a></td>
+            <td class="align-middle">${row.ten_sp}</td>
+            <td class="align-middle"><input class="form-control hoa-don" id="soluong_${row.ma_sp}" type="number" onchange="doi_so_luong_gio_hang(${row.ma_sp})" type="number" value="1"></td>
+            <td class="align-middle" id='gia_1'>${(row.gia_ban).toLocaleString('en-GB')}</td>
+            <td class="align-middle"><strong id='tongtien_1'>${((row.gia_ban)*(row.so_luong)).toLocaleString('en-GB')}</strong></td>
+        </tr>
+        `;
+        tongtien += (row.gia_ban) * (row.so_luong);
+    });
+    TH_tongtien.innerHTML = tongtien.toLocaleString('en-GB') + ' VNĐ'
+}
 
 async function chon_ban(ma_ban) {
     /*var ban = document.getElementById(`ban_${ma_ban}`)
     var img = ban.getAttribute("src");
     ban.setAttribute("src", "../../images/chair2.png")*/
-    var ban=tim_ban(ma_ban);
-    TH_soban.innerHTML=ma_ban;
+    var ban = tim_ban(ma_ban);
+    TH_soban.innerHTML = ma_ban;
     var mahd;
-    if(ban.hoa_don_phuc_vu!='')
-    {
-        mahd=ban.hoa_don_phuc_vu;
-        var hd=await tim_hoa_don(ban.hoa_don_phuc_vu);
-        var dem=1;
-        var tongtien=0;
-        hd.chi_tiet.forEach(row => {
-            ds_mon.innerHTML+=`
-            <tr id="tr_gio_hang_${row.ma_sp}">
-                <th class="align-middle">${dem++}</th>                <!--hóa đơn, món, số lượng -->
-                <td class="align-middle"><a href="#" onclick="xoa_gio_hang(${mahd},${row.ma_sp})"><i class="fa fa-remove text-danger"></i></a></td>
-                <td class="align-middle">${row.ten_sp}</td>
-                <td class="align-middle"><input class="form-control hoa-don" id="soluong_${row.ma_sp}" type="number" onchange="doi_so_luong_gio_hang(${row.ma_sp})" type="number" value="1"></td>
-                <td class="align-middle" id='gia_1'>${(row.gia_ban).toLocaleString('en-GB')}</td>
-                <td class="align-middle"><strong id='tongtien_1'>${((row.gia_ban)*(row.so_luong)).toLocaleString('en-GB')}</strong></td>
-            </tr>
-            `;
-            tongtien+=(row.gia_ban)*(row.so_luong);
-        });
-        TH_tongtien.innerHTML=tongtien.toLocaleString('en-GB')+ ' VNĐ'
+    if (ban.hoa_don_phuc_vu != '') {
+        ds_mon.innerHTML = ``;
+        mahd = ban.hoa_don_phuc_vu;
+        //var hd=await tim_hoa_don(ban.hoa_don_phuc_vu);
+        xuat_chi_tiet(ban.hoa_don_phuc_vu);
+        // var dem=1;
+        // var tongtien=0;
+        // hd.chi_tiet.forEach(row => {
+        //     ds_mon.innerHTML+=`
+        //     <tr id="tr_gio_hang_${row.ma_sp}">
+        //         <th class="align-middle">${dem++}</th>                <!--hóa đơn, món, số lượng -->
+        //         <td class="align-middle"><a href="#" onclick="xoa_gio_hang(${mahd},${row.ma_sp})"><i class="fa fa-remove text-danger"></i></a></td>
+        //         <td class="align-middle">${row.ten_sp}</td>
+        //         <td class="align-middle"><input class="form-control hoa-don" id="soluong_${row.ma_sp}" type="number" onchange="doi_so_luong_gio_hang(${row.ma_sp})" type="number" value="1"></td>
+        //         <td class="align-middle" id='gia_1'>${(row.gia_ban).toLocaleString('en-GB')}</td>
+        //         <td class="align-middle"><strong id='tongtien_1'>${((row.gia_ban)*(row.so_luong)).toLocaleString('en-GB')}</strong></td>
+        //     </tr>
+        //     `;
+        //     tongtien+=(row.gia_ban)*(row.so_luong);
+        // });
+        // TH_tongtien.innerHTML=tongtien.toLocaleString('en-GB')+ ' VNĐ'
+    } else {
+        mahd = await ma_hoa_don_moi();
+        ds_mon.innerHTML = ``;
     }
-    else
-    {
-        mahd=ma_hoa_don_moi();
-        ds_mon.innerHTML=``;
-    }
-    TH_mahd.innerHTML=`Hóa đơn ${mahd}`
+    ma_so_hd = mahd;
+    ma_so_ban = ma_ban;
+    TH_mahd.innerHTML = `Hóa đơn ${mahd}`
 }
-
-function chon_mon(mahd,mamon) {
-    
-}
-//==============================================
 
 function Xuat_ds_ban(Danh_sach, Th_Cha) {
-    Th_Cha.innerHTML = "";
+
     Danh_sach.forEach(ban => {
         Th_Cha.innerHTML += `
         <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(${ban.ma_ban})">
@@ -168,5 +174,26 @@ function Xuat_ds_ban(Danh_sach, Th_Cha) {
     });
 };
 
+async function chon_mon(mamon) {
+    if (ma_so_hd == undefined || ma_so_ban == undefined) {
+        alert('Chua chọn bàn');
+        return;
+    }
+    var data = {
+        "ma_hd": ma_so_hd,
+        "ma_mon": mamon,
+        "ma_ban": ma_so_ban,
+    }
+    var zzz = await chon_mon_an_vao_chi_tiet(data);
+    zzz.then(r => {
+        TH_ds_ban.innerHTML = "";
+        var a = Doc_ds_ban();
+        console.log(a);
+        Xuat_ds_ban(a, TH_ds_ban);
+    })
 
 
+
+
+}
+//==============================================

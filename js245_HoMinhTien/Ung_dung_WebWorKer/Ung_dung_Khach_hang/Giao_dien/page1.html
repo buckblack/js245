@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ví dụ đơn giản</title>
+</head>
+
+<body>
+    <button onclick="Goi_thong_tin()">Gởi thông tin</button>
+    <button onclick="Dung_Worker()">Dừng Worker</button>
+    <div id="Th_Ket_qua"></div>
+    <script>
+        if (window.Worker) {
+            var worker = new Worker("../xu_ly/worker_1.js")
+            
+            worker.addEventListener('message', function (e) {
+                Th_Ket_qua.innerHTML = e.data
+            }, false)
+
+            
+            worker.addEventListener('error', function (e) {
+                console.log(e)
+                // Handle the error
+            }, false)
+
+            function Goi_thong_tin() {
+                worker.postMessage({ 'Ma_so': 'IPHONE_1', 'Ten': 'Iphone 1' })
+            }
+           
+            function Dung_Worker() {
+                worker.terminate()
+                window.location.reload()
+            }
+        }
+        else {
+            alert('Trình duyệt của bạn không hỗ trợ')
+        }
+        //Goi_thong_tin()
+    </script>
+</body>
+
+</html>
