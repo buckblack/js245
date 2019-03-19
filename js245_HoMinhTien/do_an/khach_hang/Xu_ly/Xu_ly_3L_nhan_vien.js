@@ -5,18 +5,19 @@ var ma_so_hd;
 var ma_so_ban;
 
 function Doc_ds_ban() {
-    var Du_lieu = {};
-    var Xu_ly_HTTP = new XMLHttpRequest();
-    var Tham_so = `Ma_so_Xu_ly=danh_sach_ban`;
-    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
-    console.log(Dia_chi_Xu_ly);
+    return new Promise((result, err) => {
+        var Du_lieu = {};
+        var Xu_ly_HTTP = new XMLHttpRequest();
+        var Tham_so = `Ma_so_Xu_ly=danh_sach_ban`;
+        var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
+        Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
+        Xu_ly_HTTP.send("");
+        var Chuoi_JSON = Xu_ly_HTTP.responseText;
+        if (Chuoi_JSON != "")
+            Du_lieu = JSON.parse(Chuoi_JSON);
+        result(Du_lieu);
+    })
 
-    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
-    Xu_ly_HTTP.send("");
-    var Chuoi_JSON = Xu_ly_HTTP.responseText;
-    if (Chuoi_JSON != "")
-        Du_lieu = JSON.parse(Chuoi_JSON);
-    return Du_lieu;
 };
 
 function Doc_ds_thuc_don() {
@@ -32,12 +33,24 @@ function Doc_ds_thuc_don() {
     return Du_lieu;
 };
 
+function Thong_tin_mon_an(data) {
+    var Du_lieu = {};
+    var Xu_ly_HTTP = new XMLHttpRequest();
+    var Tham_so = `Ma_so_Xu_ly=thong_tin_mon_an`;
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
+    Xu_ly_HTTP.send(JSON.stringify(data));
+    var Chuoi_JSON = Xu_ly_HTTP.responseText;
+    if (Chuoi_JSON != "")
+        Du_lieu = JSON.parse(Chuoi_JSON);
+    return Du_lieu;
+};
+
 function tim_ban(ma_ban) {
     var Du_lieu = {};
     var Xu_ly_HTTP = new XMLHttpRequest();
     var Tham_so = `Ma_so_Xu_ly=tim_ban/thamso=` + ma_ban;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
-    console.log(Dia_chi_Xu_ly);
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
     Xu_ly_HTTP.send("");
     var Chuoi_JSON = Xu_ly_HTTP.responseText;
@@ -51,7 +64,6 @@ function tim_hoa_don(mahd) {
     var Xu_ly_HTTP = new XMLHttpRequest();
     var Tham_so = `Ma_so_Xu_ly=tim_hoa_don/thamso=` + mahd;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
-    console.log(Dia_chi_Xu_ly);
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
     Xu_ly_HTTP.send("");
     var Chuoi_JSON = Xu_ly_HTTP.responseText;
@@ -65,7 +77,6 @@ function ma_hoa_don_moi() {
     var Xu_ly_HTTP = new XMLHttpRequest();
     var Tham_so = `Ma_so_Xu_ly=hoa_don_moi`;
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
-    console.log(Dia_chi_Xu_ly);
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
     Xu_ly_HTTP.send("");
     var Chuoi_JSON = Xu_ly_HTTP.responseText;
@@ -75,18 +86,19 @@ function ma_hoa_don_moi() {
 };
 
 function chon_mon_an_vao_chi_tiet(data) {
-    var Du_lieu = {};
-    var Xu_ly_HTTP = new XMLHttpRequest();
-    var Tham_so = `Ma_so_Xu_ly=chon_mon_an_vao_chi_tiet`;
-    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
-    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
-    Xu_ly_HTTP.send(JSON.stringify(data));
-    var Chuoi_JSON = Xu_ly_HTTP.responseText;
-    if (Chuoi_JSON != "")
-        Du_lieu = JSON.parse(Chuoi_JSON);
-    console.log(Du_lieu);
-
-    return Du_lieu;
+    return new Promise((res, err) => {
+        var Du_lieu = {};
+        var Xu_ly_HTTP = new XMLHttpRequest();
+        var Tham_so = `Ma_so_Xu_ly=chon_mon_an_vao_chi_tiet`;
+        var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
+        Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
+        Xu_ly_HTTP.send(JSON.stringify(data));
+        var Chuoi_JSON = Xu_ly_HTTP.responseText;
+        if (Chuoi_JSON != "")
+            Du_lieu = JSON.parse(Chuoi_JSON);
+        console.log(Du_lieu);
+        res(Du_lieu);
+    })
 };
 
 function Xuat_ds_thuc_don(Danh_sach, Th_Cha) {
@@ -97,7 +109,7 @@ function Xuat_ds_thuc_don(Danh_sach, Th_Cha) {
             <img class="card-img-top px-3" style="width:120px" src="${Dia_chi_Media+'/'+ mon_an.Ma_so}.png" alt="Card image cap">
             <div class="card-body p-0">
                 <p class="card-text">${mon_an.Ten}</p>
-                <strong class="card-text">${mon_an.Don_gia_Ban}</strong>
+                <strong class="card-text">${(mon_an.Don_gia_Ban).toLocaleString('en-GB')}</strong>
             </div>
         </div>
             `;
@@ -105,6 +117,7 @@ function Xuat_ds_thuc_don(Danh_sach, Th_Cha) {
 };
 async function xuat_chi_tiet(mahd) {
     var hd = await tim_hoa_don(mahd);
+    ds_mon.innerHTML=''
     var dem = 1;
     var tongtien = 0;
     hd.chi_tiet.forEach(row => {
@@ -113,7 +126,7 @@ async function xuat_chi_tiet(mahd) {
             <th class="align-middle">${dem++}</th>                <!--hóa đơn, món, số lượng -->
             <td class="align-middle"><a href="#" onclick="xoa_gio_hang(${mahd},${row.ma_sp})"><i class="fa fa-remove text-danger"></i></a></td>
             <td class="align-middle">${row.ten_sp}</td>
-            <td class="align-middle"><input class="form-control hoa-don" id="soluong_${row.ma_sp}" type="number" onchange="doi_so_luong_gio_hang(${row.ma_sp})" type="number" value="1"></td>
+            <td class="align-middle"><input class="form-control hoa-don" id="soluong_${row.ma_sp}" type="number" onchange="doi_so_luong_gio_hang(${row.ma_sp})" type="number" value="${row.so_luong}"></td>
             <td class="align-middle" id='gia_1'>${(row.gia_ban).toLocaleString('en-GB')}</td>
             <td class="align-middle"><strong id='tongtien_1'>${((row.gia_ban)*(row.so_luong)).toLocaleString('en-GB')}</strong></td>
         </tr>
@@ -161,7 +174,7 @@ async function chon_ban(ma_ban) {
 }
 
 function Xuat_ds_ban(Danh_sach, Th_Cha) {
-
+    TH_ds_ban.innerHTML = "";
     Danh_sach.forEach(ban => {
         Th_Cha.innerHTML += `
         <div class="card text-center border-0 bg-light px-4" style="width: 100px;" onclick="chon_ban(${ban.ma_ban})">
@@ -179,17 +192,26 @@ async function chon_mon(mamon) {
         alert('Chua chọn bàn');
         return;
     }
+    var monan = Thong_tin_mon_an({
+        'ma_sp': mamon
+    });
     var data = {
         "ma_hd": ma_so_hd,
         "ma_mon": mamon,
         "ma_ban": ma_so_ban,
+        "chi_tiet": {
+            'ma_sp': mamon,
+            'ten_sp': monan.Ten,
+            'gia_ban': monan.Don_gia_Ban,
+            'so_luong': 1,
+        }
     }
-    var zzz = await chon_mon_an_vao_chi_tiet(data);
-    zzz.then(r => {
+    chon_mon_an_vao_chi_tiet(data).then(r => {
         TH_ds_ban.innerHTML = "";
-        var a = Doc_ds_ban();
-        console.log(a);
-        Xuat_ds_ban(a, TH_ds_ban);
+    })
+    Doc_ds_ban().then(r => {
+        Xuat_ds_ban(r, TH_ds_ban);
+        xuat_chi_tiet(ma_so_hd);
     })
 
 
