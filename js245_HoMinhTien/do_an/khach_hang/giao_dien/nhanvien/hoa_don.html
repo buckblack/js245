@@ -146,28 +146,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             style="width:100%">
                             <thead>
                                 <tr>
-
                                     <th>Mã Hóa đơn</th>
-                                    <th>Tên khách hàng</th>
                                     <th>Người lập</th>
                                     <th>Ngày</th>
                                     <th>Tổng tiền</th>
                                     <th class="table_ban d-none">Bàn</th>
-                                    <th class="table_ghichu d-none">Ghi chú</th>
                                     <th class="table_status d-none">Trạng thái</th>
+                                    <th class="table_ghichu d-none">Ghi chú</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr data-toggle="modal" data-target="#modal-detai">
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td class="table_ban d-none">5</td>
-                                    <td class="table_ghichu d-none">1</td>
-                                    <td class="table_status d-none">1</td>
-                                </tr>
+                            <tbody id="TH_ds_hoadon">
                             </tbody>
                         </table>
                         <nav aria-label="Page navigation">
@@ -198,51 +187,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="row w-100">
-                                            <div class="h3 text-primary mr-auto">Hóa đơn 123</div>
-                                            <div class="h3 text-danger">Tổng tiền:288,000 VNĐ</div>
-                                        </div>
-                                        <div class="row w-100">
-                                                <div class="h6 mr-auto">Người lập: NVA</div>
-                                                <div class="h6">Ngày lập: 1-1-2019</div>
-                                            </div>
-                                        <div class="row w-100">
-                                                <div class="h6 mr-auto">Khách hàng: Khách lẻ</div>
-                                                <div class="h6">Tình trạng:Đã thanh toán</div>
-                                            </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <table class="table table-striped table-hover table-bordered table-responsive d-lg-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Mã sản phẩm</th>
-                                                            <th>Tên sản phẩm</th>
-                                                            <th>Số lượng</th>
-                                                            <th>Thành tiền</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>5</td>
-                                                            <td>3</td>
-                                                            <td>2</td>
-                                                            <td>9</td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                    <div class="modal-body" id="TH_modal_detail">
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" id="btn_close_detai"
@@ -275,7 +221,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../../js/jquery.scrollTo.js"></script>
 -->
     <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.../../js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../ckeditor/ckeditor.js"></script>
@@ -290,7 +236,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="../../js/myscript.js"></script>
+    <script src="../../Xu_ly/Xu_ly_3L_nhan_vien.js"></script>
+    <script>
+        $(document).ready(function () {
+            Doc_ds_hoa_don().then(res => {
+                Xuat_ds_hoa_don(res, TH_ds_hoadon);
+            });
 
+        });
+    </script>
 </body>
 
 </html>

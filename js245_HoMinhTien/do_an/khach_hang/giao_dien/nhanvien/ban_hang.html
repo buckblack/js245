@@ -121,9 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </li>
                                     <li class="ml-auto">
                                             <form class="form-inline m-0">
-                                                    <input class="form-control mr-sm-2 w-auto" type="search" placeholder="Search"
+                                                    <input class="form-control mr-sm-2 w-auto" id="TH_tim" type="search" placeholder="Search"
                                                         aria-label="Search">
-                                                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                                                    <button class="btn btn-outline-light my-2 my-sm-0" id="btn_tim" type="button">Tìm kiếm</button>
                                                 </form>
                                     </li>
 
@@ -156,7 +156,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <button class="btn btn-info ml-2">Món chính</button>
                                             -->
                                             <nav class="nav nav-pills nav-justified">
-                                                <a class="nav-link btn ml-2 active" href="#">Tất cả</a>
+                                                <a class="nav-link btn ml-2 active" id="btn_tat_ca" href="#">Tất cả</a>
                                                 <a class="nav-link btn btn-outline-primary ml-2" href="#">Khai vị</a>
                                                 <a class="nav-link btn btn-outline-primary ml-2" href="#">Món chính</a>
                                               </nav>
@@ -244,10 +244,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="text-right mb-3">Tổng tiền: <strong id="TH_tongtien">0 VNĐ</strong></div>
                                 <ul class="nav nav-pills nav-fill m-3">
                                     <li class="nav-item">
-                                        <a class="nav-link btn btn-success btn-lg mx-2 mt-2" href="#">Thanh Toán</a>
+                                        <a class="nav-link btn btn-success btn-lg mx-2 mt-2" onclick="thanh_toan()" href="#">Thanh Toán</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link btn btn-danger btn-lg mx-2 mt-2" href="#">Ngưng phục vụ</a>
+                                        <a class="nav-link btn btn-danger btn-lg mx-2 mt-2" onclick="ngung_phuc_vu()" href="#">Ngưng phục vụ</a>
                                     </li>
                                 </ul>
                             </section>
@@ -262,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </section>
 
     <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.../../js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="../../js/bootstrap.min.js"></script>
     
     <script src="../../ckeditor/ckeditor.js"></script>
@@ -285,8 +285,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 Xuat_ds_ban(ds_ban, TH_ds_ban);
             });
             var ds_thuc_don=Doc_ds_thuc_don();
-            
             Xuat_ds_thuc_don(ds_thuc_don,TH_thuc_don);
+            btn_tim.onclick=()=>{
+                const gt_tim=TH_tim.value
+                var kq_tim=ds_thuc_don.filter(x => x.Ten.toLowerCase().includes(gt_tim.trim().toLowerCase()));
+                TH_thuc_don.innerHTML=``;
+                Xuat_ds_thuc_don(kq_tim,TH_thuc_don);
+            }
+            btn_tat_ca.onclick=()=>{
+                TH_thuc_don.innerHTML=``;
+                Xuat_ds_thuc_don(ds_thuc_don,TH_thuc_don);
+            }
             
         });
     </script>
