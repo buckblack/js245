@@ -1,0 +1,73 @@
+﻿b1 Cung cấp MH_Xoa_Dien_thoai.html -> Chép vào Giao_dien
+
+b2 Bổ sung Xu_ly/Xu_ly_3L.js
+
+function Ghi_Xoa_Dien_thoai(Danh_sach) {
+    var Kq = ""
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=Xoa_Dien_thoai`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_Goi = JSON.stringify(Danh_sach)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    Kq = Xu_ly_HTTP.responseText
+    return Kq
+}
+
+
+function Tao_The_hien_Xoa(Th_Cha,Danh_sach_Cap_nhat){
+    var noi_dung_HTML=`
+    <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tên điện thoại</th>
+                        <th>Nhóm điện thoại</th>
+                        <th>Đơn giá Nhập</th>
+                        <th>Đơn giá Bán</th>
+                    </tr>
+                </thead>
+                <tbody>`
+    Danh_sach_Cap_nhat.forEach(Dien_thoai=>{
+        var Nhom=Dien_thoai.Nhom_Dien_thoai.Ma_so
+        noi_dung_HTML+=`
+        <tr Ma_so="${Dien_thoai.Ma_so}" class="CAP_NHAP">
+            <td scope="row">${Dien_thoai.Ten}</td>
+            <td>${Nhom}</td>
+            <td>${Tao_Chuoi_The_hien_So_nguyen_duong(Dien_thoai.Don_gia_Nhap)}đ</td>
+            <td>${Tao_Chuoi_The_hien_So_nguyen_duong(Dien_thoai.Don_gia_Ban)}đ</td>
+        </tr>
+        `
+    
+    })            
+    
+    noi_dung_HTML+=`
+                </tbody>
+            </table>
+    `
+    Th_Cha.innerHTML=noi_dung_HTML
+}
+
+b3 Dịch vụ Dữ liệu
+
+ else if (Ma_so_Xu_ly == "Xoa_Dien_thoai") {
+      var Kq = ""
+      var Danh_sach_Xoa = JSON.parse(Chuoi_Nhan)
+      Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
+      Danh_sach_Xoa.forEach(Dien_thoai_Xoa => {
+        var Dien_thoai = Du_lieu.Danh_sach_Dien_thoai.find(x => x.Ma_so == Dien_thoai_Xoa.Ma_so)
+        Kq = Luu_tru.Xoa_Doi_tuong("Dien_thoai", Dien_thoai)
+        if (Kq == "") {
+          Du_lieu.Danh_sach_Dien_thoai = Du_lieu.Danh_sach_Dien_thoai.filter(x => x.Ma_so != Dien_thoai_Xoa.Ma_so)
+          Chuoi_Kq = "OK"
+        } else {
+          Chuoi_Kq = "Error"
+        }
+        Dap_ung.end(Chuoi_Kq);
+      })
+
+
+    }
+
+b4 MH_Danh_sach_Dien_thoai.html
+
+<button id="Th_Xoa" class="btn btn-danger" onclick="window.location=`MH_Xoa_Dien_thoai.html`" >Xóa Điện thoại</button>

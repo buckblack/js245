@@ -1,0 +1,55 @@
+﻿Dịch vụ Dữ liệu
+
+XL_LUU_TRU.js
+
+function Doc_Thong_tin_Cua_hang() {
+  var Duong_dan = `${Thu_muc_Du_lieu}/Cua_hang.json`
+  var Chuoi_Thong_tin = File.readFileSync(Duong_dan, "UTF-8")
+  return JSON.parse(Chuoi_Thong_tin)
+}
+
+
+Class XL_LUU_TRU
+
+Doc_Thong_tin_Cua_hang(){
+    return Doc_Thong_tin_Cua_hang()
+  }
+
+DV_DU_LIEU.js
+
+Du_lieu.Danh_sach_Dien_thoai = Luu_tru.Doc_Du_lieu("Dien_thoai")
+Du_lieu.Cua_hang=Luu_tru.Doc_Thong_tin_Cua_hang()
+
+
+Ma_so_Xu_ly == "Doc_Danh_sach_Dien_thoai"
+
+var Doi_tuong_Kq={}
+Doi_tuong_Kq.Danh_sach_Dien_thoai = Du_lieu.Danh_sach_Dien_thoai
+Doi_tuong_Kq.Cua_hang=Du_lieu.Cua_hang
+////////////////////////////////////////////////////////////////
+Ứng dụng Khách hàng
+MH_Danh_sach_Dien_thoai.html
+
+<div class="container-fluid" id="Th_PET">
+        
+    </div>
+
+
+ var Danh_sach_Dien_thoai = Doc_Danh_sach_Dien_thoai().Danh_sach_Dien_thoai
+        var Cua_hang=Doc_Danh_sach_Dien_thoai().Cua_hang
+        console.log(Cua_hang)
+        Xuat_Thong_tin_Cua_hang(Cua_hang,Th_PET)
+
+
+Xu_ly_3L.js
+
+function Xuat_Thong_tin_Cua_hang(Cua_hang,Th_Cha){
+    var Chuoi_HTML=`
+    <img src="${Dia_chi_Media}/${Cua_hang.Ma_so}.png" class="btn" />
+        <div class="text-center btn btn-outline-primary">${Cua_hang.Ten}
+            <br>
+            <small> ${Cua_hang.Dia_chi}</small>
+    </div>
+    `
+    Th_Cha.innerHTML=Chuoi_HTML
+}        

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Danh sách Điện thoại </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .CHON {
+        background-color: silver;
+    }
+</style>
+
+<body>
+    <div class="container-fluid" id="Th_PET">
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+            KHUNG THÔNG BÁO
+        </div>
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2 text-info">
+            <legend class="text-danger">DANH SÁCH ĐIỆN THOẠI</legend>
+
+            <button id="Th_Home" class="btn btn-outline-primary">Tất cả</button>
+            <button id="Th_Android" class="btn btn-outline-primary">Android</button>
+            <button id="Th_Iphone" class="btn btn-outline-primary">Iphone</button>
+            <button id="Th_Danh_sach_Chon" class="btn btn-outline-primary">Danh sách Chọn</button>
+            <div class="btn border border-danger float-right" id="Th_Mua_hang">
+                <span id="Th_Gio_hang" class="text-danger"><u>0</u></span>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <button id="Th_Them" class="btn btn-danger" onclick="window.location=`MH_Them_Dien_thoai.html`">Thêm Điện thoại </button>
+            <button id="Th_Sua" class="btn btn-danger" onclick="window.location=`MH_Sua_Dien_thoai.html`" >Sửa Giá Điện thoại</button>
+            <button id="Th_Xoa" class="btn btn-danger" onclick="window.location=`MH_Xoa_Dien_thoai.html`" >Xóa Điện thoại</button>
+            <hr>
+            <div class="container-fluid">
+                <div class="float-left">
+                    Nhập Giá trị tìm:
+                    <input type="text" id="Th_gtTim" onkeyup="KeyCode(event)">
+                    <button id="Th_Tim" class="btn btn-primary">
+                        <i class="fa fa-search-plus"></i>
+                    </button>
+                </div>
+                <!--
+            <hr>
+            
+            <button id="Th_Sap_Tang" class="btn btn-primary" onclick="Sap_Tang()">
+                Sắp xếp theo Tên (A->Z)
+            </button>
+            <button id="Th_Sap_Giam" class="btn btn-primary" onclick="Sap_Giam()" >
+                Sắp xếp theo Tên (Z->A)
+            </button>
+            <button id="Th_Sap_Tang_Gia" class="btn btn-danger" onclick="Sap_Tang_Gia()">
+                Sắp xếp theo Giá (A->Z)
+            </button>
+            <button id="Th_Sap_Giam_Gia" class="btn btn-danger" onclick="Sap_Giam_Gia()">
+                Sắp xếp theo Giá (Z->A)
+            </button>
+-->
+                <div class="text-right">
+                    <select class="btn btn-outline-danger" id="Th_Sap_xep">
+                        <option value="0">-- Sắp xếp theo --</option>
+                        <option value="1">Sắp xếp theo Tên (A->Z)</option>
+                        <option value="2">Sắp xếp theo Tên (Z->A)</option>
+                        <option value="3">Sắp xếp theo Giá (A->Z)</option>
+                        <option value="4">Sắp xếp theo Giá (Z->A)</option>
+                    </select>
+
+                    <select class="btn btn-outline-danger" id="Th_Loc_gia">
+                        <option value="0-50000000">-- Chọn giá bán --</option>
+                        <option value="0-5000000">Dưới 5 triệu</option>
+                        <option value="5000000-10000000">Từ 5 triệu đến 10 triệu</option>
+                        <option value="10000000-20000000">Từ 10 triệu đến 20 triệu</option>
+                        <option value="20000000-50000000">Trên 20 triệu</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="container-fluid">
+        <fieldset class="border m-2 p-2">
+            <legend>DANH SÁCH ĐIỆN THOẠI</legend>
+            <div id="Th_Danh_sach"></div>
+        </fieldset>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="../Xu_ly/Xu_ly_3L.js"></script>
+    <style>
+    </style>
+    <script>
+
+        var Danh_sach_Dien_thoai = Doc_Danh_sach_Dien_thoai().Danh_sach_Dien_thoai
+        var Cua_hang = Doc_Danh_sach_Dien_thoai().Cua_hang
+        console.log(Cua_hang)
+        Xuat_Thong_tin_Cua_hang(Cua_hang, Th_PET)
+
+        if (Danh_sach_Dien_thoai.length > 0) {
+
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+            Th_Thong_bao.innerHTML = `Danh sách điện thoại (${Danh_sach_Dien_thoai.length})`
+        } else {
+            Th_Thong_bao.innerHTML = "Lỗi đọc dữ liệu"
+        }
+
+
+        Th_Android.onclick = () => {
+            var dsAndroid = Danh_sach_Dien_thoai.filter(x => x.Nhom_Dien_thoai.Ma_so == "ANDROID")
+            Xuat_Danh_sach_Dien_thoai(dsAndroid, Th_Danh_sach)
+            Th_Thong_bao.innerHTML = `Danh sách điện thoại ANDROID (${dsAndroid.length})`
+        }
+
+        Th_Iphone.onclick = () => {
+            var dsIphone = Danh_sach_Dien_thoai.filter(x => x.Nhom_Dien_thoai.Ma_so == "IPHONE")
+            Xuat_Danh_sach_Dien_thoai(dsIphone, Th_Danh_sach)
+            Th_Thong_bao.innerHTML = `Danh sách điện thoại IPHONE (${dsIphone.length})`
+        }
+
+        Th_Home.onclick = () => {
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+            Th_Thong_bao.innerHTML = `Danh sách điện thoại (${Danh_sach_Dien_thoai.length})`
+        }
+
+        Th_Tim.onclick = () => {
+            var Hop_le = Th_gtTim.value.trim() != ""
+            if (Hop_le) {
+                var gtTim = Th_gtTim.value.trim()
+                var Danh_sach_Tim = Danh_sach_Dien_thoai.filter(x => x.Ten.toLowerCase().includes(gtTim.toLowerCase()))
+                Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
+                Th_Thong_bao.innerHTML = `Danh sách điện thoại có chứa: <strong>${gtTim}<strong> - (${Danh_sach_Tim.length})`
+            } else {
+                Th_Thong_bao.innerHTML = `Nhập giá trị tìm`
+                Th_gtTim.focus()
+            }
+        }
+
+        Th_Sap_xep.onchange = () => {
+            var vt = Th_Sap_xep.value
+            switch (parseInt(vt)) {
+                case 1:
+                    Sap_Tang()
+                    break;
+                case 2:
+                    Sap_Giam()
+                    break;
+                case 3:
+                    Sap_Tang_Gia()
+                    break;
+                case 4:
+                    Sap_Giam_Gia()
+                    break;
+            }
+        }
+
+        Th_Loc_gia.onchange = () => {
+            var Chuoi = Th_Loc_gia.value
+            var Thanh_phan_con = Chuoi.split("-")
+            //console.log(Thanh_phan_con)
+
+            var Danh_sach_Don_gia_Ban = Danh_sach_Dien_thoai.filter(x => parseFloat(x.Don_gia_Ban) >= parseFloat(Thanh_phan_con[0]) && parseFloat(x.Don_gia_Ban) <= parseFloat(Thanh_phan_con[1]))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Don_gia_Ban, Th_Danh_sach)
+            Th_Thong_bao.innerHTML = `Danh sách Điện thoại (${Danh_sach_Don_gia_Ban.length})`
+
+        }
+
+        Th_Danh_sach_Chon.onclick = () => {
+            // Lấy class CHON
+            /*
+            var Ds_Lop_Chon=document.querySelectorAll(".CHON")
+            Ds_Lop_Chon.forEach(Dien_thoai_Chon=>{
+                console.log(Dien_thoai_Chon.getAttribute("data"))
+            })
+            */
+            
+            // Lấy từ sessionStorage
+            if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+                var Danh_sach_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
+                Danh_sach_Chon.forEach(Dien_thoai_Chon => {
+                    console.log(Dien_thoai_Chon)
+                })
+            }
+        }
+
+        Th_Mua_hang.onclick=()=>{
+            if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+                window.location = "MH_Gio_hang.html"
+            }
+        }
+
+        function KeyCode(event) {
+
+            // event.keyCode == 13 -> phím enter
+            if (event.keyCode == 13) {
+                var gtTim = event.target.value
+                console.log(gtTim)
+
+                var Danh_sach_Tim = Danh_sach_Dien_thoai.filter(x => x.Ten.toLowerCase().includes(gtTim.toLowerCase()))
+                Xuat_Danh_sach_Dien_thoai(Danh_sach_Tim, Th_Danh_sach)
+                Th_Thong_bao.innerHTML = `Danh sách điện thoại (${Danh_sach_Tim.length})`
+
+            }
+        }
+
+        function Sap_Tang() {
+            // Là chuỗi
+            Danh_sach_Dien_thoai.sort((a, b) => a.Ten.localeCompare(b.Ten))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+        function Sap_Giam() {
+            // Là chuỗi
+            Danh_sach_Dien_thoai.sort((a, b) => b.Ten.localeCompare(a.Ten))
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+
+        function Sap_Tang_Gia() {
+            // Là số
+            Danh_sach_Dien_thoai.sort((a, b) => {
+                return parseInt(a.Don_gia_Ban) - parseInt(b.Don_gia_Ban)
+            })
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+
+        }
+        function Sap_Giam_Gia() {
+            // Là số
+            Danh_sach_Dien_thoai.sort((a, b) => {
+                return parseInt(b.Don_gia_Ban) - parseInt(a.Don_gia_Ban)
+            })
+            Xuat_Danh_sach_Dien_thoai(Danh_sach_Dien_thoai, Th_Danh_sach)
+        }
+
+    </script>
+</body>
+
+</html>

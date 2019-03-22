@@ -16,13 +16,25 @@ class XL_LUU_TRU {
     return Doc_Thong_tin_Dich_vu()
   }
 
-  Doc_Nhi_phan_Media(Ten_Tap_tin) {
+  Doc_Nhi_phan_Media(Ten_Tap_tin){ 
     var Nhi_phan = ""
     var Duong_dan = Duong_dan_Thu_muc_Media + "//" + Ten_Tap_tin
     if (File.existsSync(Duong_dan))
       Nhi_phan = File.readFileSync(Duong_dan)
     return Nhi_phan
 
+  }
+
+  Ghi_Nhi_phan_Media(Ten, Chuoi_nhi_phan) {
+    var Kq = ""
+    try {
+      var Nhi_phan = decodeBase64Image(Chuoi_nhi_phan);
+      var Duong_dan = Duong_dan_Thu_muc_Media + "//" + Ten
+      File.writeFileSync(Duong_dan, Nhi_phan.data);
+    } catch (Loi) {
+      Kq = Loi.toString()
+    }
+    return Kq
   }
 
 }

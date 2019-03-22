@@ -1,0 +1,113 @@
+﻿=================================================================================================
+DV_DU_LIEU.js
+
+else if (Ma_so_Xu_ly == "Ghi_Dien_thoai_Moi") {
+      var Kq = ""
+      var Dien_thoai = JSON.parse(Chuoi_Nhan)
+      Kq = Luu_tru.Ghi_moi_Doi_tuong("Dien_thoai", Dien_thoai)
+      if (Kq=="") {
+        Du_lieu.Danh_sach_Dien_thoai.push(Dien_thoai)
+        Chuoi_Kq = JSON.stringify(Dien_thoai)
+      }
+      Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
+      Dap_ung.end(Chuoi_Kq);
+    }
+====================================  Media  ===============================================================
+
+Media
+
+XL_LUU_TRU.js
+class XL_LUU_TRU
+
+// Bổ sung 
+  Ghi_Nhi_phan_Media(Ten, Chuoi_nhi_phan) {
+    var Kq = "OK"
+    try {
+      var Nhi_phan = decodeBase64Image(Chuoi_nhi_phan);
+      var Duong_dan = Duong_dan_Thu_muc_Media + "//" + Ten
+      File.writeFileSync(Duong_dan, Nhi_phan.data);
+    } catch (Loi) {
+      Kq = Loi.toString()
+    }
+    return Kq
+  }
+========================================================================================================
+DV_MEDIA.js
+
+else if (Yeu_cau.method == "POST") {
+                var Hinh = JSON.parse(Chuoi_Nhan)
+                var Kq = Luu_tru.Ghi_Nhi_phan_Media(Hinh.Ten, Hinh.Chuoi_nhi_phan)
+                Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
+                Dap_ung.end(Kq);
+            }
+
+
+==============================================Ứng dụng Biến Danh Sách===========================================================
+
+MH_Danh_sach_Dien_thoai.html
+
+<button id="Th_Them" class="btn btn-danger" onclick="window.location=`MH_Them_Dien_thoai.html`">Thêm Điện thoại </button>
+
+Xu_ly_3L.js
+
+//================= Thêm =======================
+function Ghi_Media(Hinh) {
+    
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Dia_chi_Xu_ly = `${Dia_chi_Media}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_Goi = JSON.stringify(Hinh)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    var Chuoi_KQ = Xu_ly_HTTP.responseText
+    return Chuoi_KQ
+}
+function Ghi_Dien_thoai_Moi(Dien_thoai) {
+    var Du_lieu = {}
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=Ghi_Dien_thoai_Moi`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_Goi = JSON.stringify(Dien_thoai)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    var Chuoi_JSON = Xu_ly_HTTP.responseText
+    if (Chuoi_JSON != "")
+        Du_lieu = JSON.parse(Chuoi_JSON)
+    return Du_lieu
+}
+
+function Tao_The_hien_Them_Dien_thoai(Th_Cha) {
+    var Chuoi_HTML = `
+        <div class="form m-3 p-3">
+        
+        <div class="form-group">
+            <label for="Th_Nhom_Dien_thoai">Nhóm Điện thoại</label>
+            <select id="Th_Nhom_Dien_thoai" onchange="Lay_Ma_so_cuoi()">
+                <option value="IPHONE">IPHONE</option>
+                <option value="ANDROID">ANDROID</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Th_Ma_so">Mã số Điện thoại</label>
+            <input type="text" class="form-control" id="Th_Ma_so" readonly>
+        </div>
+        <div class="form-group">
+            <label for="Th_Ten">Tên Điện thoại</label>
+            <input type="text" class="form-control" id="Th_Ten" placeholder="Nhập Tên Điện thoại">
+        </div>
+        <div class="form-group">
+            <label for="Th_Don_gia_Nhap">Đơn giá Nhập</label>
+            <input type="text" class="form-control" id="Th_Don_gia_Nhap" placeholder="Nhập Đơn giá Nhập">
+        </div>
+        <div class="form-group">
+            <label for="Th_Don_gia_Nhap">Đơn giá Bán</label>
+            <input type="text" class="form-control" id="Th_Don_gia_Ban" placeholder="Nhập Đơn giá Bán">
+        </div>
+        <div class="form-group">
+            <label for="Th_file">Chọn hình</label>
+            <input id="Th_file" type="file" onchange="Xem_truoc_Media()" accept="image/png" />
+            <img id="Th_Hinh_Xem_truoc" style="width:10rem" />
+        </div>
+    </div>
+    `
+    Th_Cha.innerHTML = Chuoi_HTML
+}

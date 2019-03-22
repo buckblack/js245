@@ -1,0 +1,82 @@
+﻿Ứng dụng biến danh sách
+Xu_ly_3L.js
+
+//================= Sửa =======================
+function Tao_The_hien_Cap_nhat(Th_Cha,Danh_sach_Cap_nhat){
+    var noi_dung_HTML=`
+    <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tên điện thoại</th>
+                        <th>Nhóm điện thoại</th>
+                        <th>Đơn giá Nhập</th>
+                        <th>Đơn giá Bán</th>
+                    </tr>
+                </thead>
+                <tbody>`
+    Danh_sach_Cap_nhat.forEach(Dien_thoai=>{
+        var Nhom=Dien_thoai.Nhom_Dien_thoai.Ma_so
+        noi_dung_HTML+=`
+        <tr Ma_so="${Dien_thoai.Ma_so}" class="CAP_NHAP">
+            <td scope="row"><input type="text" value="${Dien_thoai.Ten}"/></td>
+            <td>
+            <select id="Th_Nhom_Dien_thoai">
+                <option value="ANDROID" ${Nhom=='ANDROID'?'selected':''} >ANDROID</option>
+                <option value="IPHONE" ${Nhom=='IPHONE'?'selected':''}  >IPHONE</option>
+            </select>
+            </td>
+            <td><input type="text" value="${Dien_thoai.Don_gia_Nhap}" class="text-right" /></td>
+            <td><input type="text" value="${Dien_thoai.Don_gia_Ban}" class="text-right" /></td>
+        </tr>
+        `
+    
+    })            
+    
+    noi_dung_HTML+=`
+                </tbody>
+            </table>
+    `
+    Th_Cha.innerHTML=noi_dung_HTML
+}
+
+function Ghi_Cap_nhap_Dien_thoai(Danh_sach) {
+    var Kq = ""
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=Cap_nhat_Dien_thoai`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_Goi = JSON.stringify(Danh_sach)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    Kq = Xu_ly_HTTP.responseText
+    return Kq
+}
+======================================================================
+
+DV_DU_LIEU.js
+
+else if (Ma_so_Xu_ly == "Cap_nhat_Dien_thoai") {
+      var Kq = ""
+      var Danh_sach_Cap_nhat = JSON.parse(Chuoi_Nhan)
+Dap_ung.setHeader("Access-Control-Allow-Origin", '*')      
+Danh_sach_Cap_nhat.forEach(Dien_thoai_Cap_nhat => {
+        var Dien_thoai = Du_lieu.Danh_sach_Dien_thoai.find(x => x.Ma_so == Dien_thoai_Cap_nhat.Ma_so)
+        Dien_thoai.Ten = Dien_thoai_Cap_nhat.Ten
+        Dien_thoai.Don_gia_Ban = Dien_thoai_Cap_nhat.Don_gia_Ban
+        Dien_thoai.Don_gia_Nhap = Dien_thoai_Cap_nhat.Don_gia_Nhap
+        Dien_thoai.Nhom_Dien_thoai.Ten = Dien_thoai_Cap_nhat.Nhom_Dien_thoai.Ten
+        Dien_thoai.Nhom_Dien_thoai.Ma_so = Dien_thoai_Cap_nhat.Nhom_Dien_thoai.Ma_so
+        Kq = Luu_tru.Cap_nhat_Doi_tuong("Dien_thoai", Dien_thoai)
+        if (Kq == "") {
+          Chuoi_Kq = "OK"
+        } else {
+          Chuoi_Kq = "Error"
+        }
+        
+        Dap_ung.end(Chuoi_Kq);
+
+      })
+    }
+
+==================================================================
+MH_Danh_sach_Dien_thoai.html
+<button id="Th_Sua" class="btn btn-danger" onclick="window.location=`MH_Sua_Dien_thoai.html`" >Sửa Giá Điện thoại</button>
