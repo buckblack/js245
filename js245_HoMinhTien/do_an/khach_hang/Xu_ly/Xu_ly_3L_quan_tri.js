@@ -248,4 +248,28 @@ async function show_chi_tiet_hoa_don(mahd) {
         </div>
     `
 }
+
+function Ghi_Media(Hinh) {
+    
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Dia_chi_Xu_ly = `${Dia_chi_Media}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_Goi = JSON.stringify(Hinh)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    var Chuoi_KQ = Xu_ly_HTTP.responseText
+    return Chuoi_KQ
+}
+function Ghi_san_pham_moi(Dien_thoai) {
+    var Du_lieu = {}
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=Ghi_Dien_thoai_Moi`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_Goi = JSON.stringify(Dien_thoai)
+    Xu_ly_HTTP.send(Chuoi_Goi)
+    var Chuoi_JSON = Xu_ly_HTTP.responseText
+    if (Chuoi_JSON != "")
+        Du_lieu = JSON.parse(Chuoi_JSON)
+    return Du_lieu
+}
 //==============================================

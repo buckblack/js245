@@ -26,7 +26,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="../../css/style.css" rel='stylesheet' type='text/css' />
     <link href="../../css/style-responsive.css" rel="stylesheet" />
     <!-- font CSS -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
+    <link
+        href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
         rel='stylesheet' type='text/css'>
     <!-- font-awesome icons -->
     <link rel="stylesheet" href="../../css/font.css" type="text/css" />
@@ -135,14 +136,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="dropdown-menu dropdown-menu-right bg-success float-right"
                                         aria-labelledby="dropdownMenuButton">
                                         <div class="dropdown-item form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="check_img" onclick="check_img()">
+                                            <input type="checkbox" class="form-check-input" id="check_img"
+                                                onclick="check_img()">
                                             <label class="form-check-label">Hình ảnh</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </nav>
-                        <table id="example" class="table table-striped table-bordered bg-light table-hover d-md-table table-responsive-sm"
+                        <table id="example"
+                            class="table table-striped table-bordered bg-light table-hover d-md-table table-responsive-sm"
                             style="width:100%">
                             <thead>
                                 <tr>
@@ -154,7 +157,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </tr>
                             </thead>
                             <tbody id="TH_san_pham">
-                                <tr data-toggle="modal" data-target="#modal-detai" onclick="thongtinsp(132,'../../images/1.png')">
+                                <tr data-toggle="modal" data-target="#modal-detai"
+                                    onclick="thongtinsp(132,'../../images/1.png')">
                                     <td class="table_hinh d-none"></td>
                                     <td>1</td>
                                     <td>2</td>
@@ -183,9 +187,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </nav>
 
                         <!-- modal chi tiết -->
-                        <div class="modal fade" id="modal-detai" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                            aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal fade" id="modal-detai" tabindex="-1" role="dialog"
+                            aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Chi tiết sản phẩm</h5>
@@ -194,24 +198,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                            <div id='modaldetail'>
-                            
-                                                </div>
+                                        <div id='modaldetail'>
+
+                                        </div>
                                     </div>
-                                    
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" id="btn_close_detai"
                                             data-dismiss="modal">Đóng</button>
 
                                     </div>
                                 </div>
-                                </div>
-                                </div>
-                        
+                            </div>
+                        </div>
+
 
                         <!-- modal thêm mới -->
-                        <div class="modal fade" id="modal-add-new" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                            aria-hidden="true">
+                        <div class="modal fade" id="modal-add-new" tabindex="-1" role="dialog"
+                            aria-labelledby="modelTitleId" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -234,7 +238,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="form-group">
                                             <label>Đơn giá</label>
-                                            <input type="number" class="form-control" placeholder="Nhập tên sản phẩm mới">
+                                            <input type="number" class="form-control"
+                                                placeholder="Nhập tên sản phẩm mới">
                                         </div>
                                         <div class="form-group">
                                             <label>Hình ảnh</label>
@@ -244,53 +249,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="
                                             modal-footer">
                                         <button type="button" class="btn btn-primary">Thêm</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Đóng</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        
-                        <!-- Modal cập nhật-->
-                        <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Cập nhật sản phẩm</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                        </div>
-                                        <div class="modal-body">
-                                                <div id='modalupdate'>
 
-                                                    </div>
-                                                
+                        <!-- Modal cập nhật-->
+                        <div class="modal fade" id="modal-update" tabindex="-1" role="dialog"
+                            aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Cập nhật sản phẩm</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div id='modalupdate'>
+
                                         </div>
-                                        <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">Cập nhật</button>
-                            
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">Cập nhật</button>
+
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Đóng</button>
                                     </div>
                                 </div>
                             </div>
-                        
-                        
+                        </div>
+
+
 
                         <!-- madal load hình -->
-                        <div class="modal fade" id="modal-loadhinh" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                            <div class="modal-body">
-                                <div id='dia_chi_img'>
-                                    
+                        <div class="modal fade" id="modal-loadhinh" tabindex="-1" role="dialog"
+                            aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id='dia_chi_img'>
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                
                             </div>
-                
-                            </div>
-                        </div>
                         </div>
 
                     </div>
@@ -315,8 +324,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../../js/jquery.scrollTo.js"></script>
 -->
     <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../ckeditor/ckeditor.js"></script>
     <script src="../../ckeditor/styles.js"></script>
@@ -332,10 +342,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="../../Xu_ly/Xu_ly_3L_quan_tri.js"></script>
     <script>
         $(document).ready(function () {
-            var ds_san_pham=Doc_ds_san_pham();
-            Xuat_ds_san_pham(ds_san_pham,TH_san_pham);
+            var ds_san_pham = Doc_ds_san_pham();
+            Xuat_ds_san_pham(ds_san_pham, TH_san_pham);
+
+            /*function XL_Ghi_Them() {
+
+                var Kq = ""
+                var Ma_so = Th_Ma_so.value
+                var Ten = Th_Ten.value
+                var Don_gia_Nhap = Th_Don_gia_Nhap.value
+                var Don_gia_Ban = Th_Don_gia_Ban.value
+                var Nhom_Dien_thoai_Ten = Th_Nhom_Dien_thoai.value
+                var Nhom_Dien_thoai_Ma_so = Th_Nhom_Dien_thoai.value
+                var Dien_thoai = {
+                    "Ten": Ten,
+                    "Ma_so": Ma_so,
+                    "Don_gia_Ban": parseInt(Don_gia_Ban),
+                    "Don_gia_Nhap": parseInt(Don_gia_Nhap),
+                    "Nhom_Dien_thoai": {
+                        "Ten": Nhom_Dien_thoai_Ten,
+                        "Ma_so": Nhom_Dien_thoai_Ma_so
+                    }
+                }
+                // Thêm Điện thoại
+                var Dien_thoai = Ghi_Dien_thoai_Moi(Dien_thoai)
+                if (Dien_thoai) {
+                    Danh_sach_Dien_thoai.push(Dien_thoai)
+                    // Cập nhật Media
+                    var reader = new FileReader()
+                    var Chuoi_nhi_phan = ""
+                    var Ten_Hinh = `${Ma_so}.png`
+                    reader.onload = function (e) {
+                        Chuoi_nhi_phan = e.target.result;
+                        var Doi_tuong = {
+                            "Ten": Ten_Hinh,
+                            "Chuoi_nhi_phan": Chuoi_nhi_phan
+                        }
+                        Kq = Ghi_Media(Doi_tuong)
+                    }
+                    reader.readAsDataURL(Th_file.files[0])
+                    return Kq
+                }
+
+            }
+
+            Th_Dong_y.onclick = () => {
+                var Kq = XL_Ghi_Them()
+                console.log(Kq)
+                if (Kq == "") {
+                    Th_Thong_bao.innerHTML = "Thêm thành công Điện thoại mới";
+
+                }
+            }
+            /*
         });
-        
     </script>
 
 </body>
