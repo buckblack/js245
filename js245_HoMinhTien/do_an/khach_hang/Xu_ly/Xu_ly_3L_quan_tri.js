@@ -1,6 +1,7 @@
 //var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
 var Dia_chi_Dich_vu = "http://localhost:1000/"
-var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+//var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+var Dia_chi_Media = "http://localhost:1001/"
 var ma_so_hd;
 var ma_so_ban;
 
@@ -262,7 +263,7 @@ function Ghi_Media(Hinh) {
 function Ghi_san_pham_moi(Dien_thoai) {
     var Du_lieu = {}
     var Xu_ly_HTTP = new XMLHttpRequest()
-    var Tham_so = `Ma_so_Xu_ly=Ghi_Dien_thoai_Moi`
+    var Tham_so = `Ma_so_Xu_ly=ghi_san_pham_moi`
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
     var Chuoi_Goi = JSON.stringify(Dien_thoai)
