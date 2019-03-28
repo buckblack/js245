@@ -1,7 +1,8 @@
-//var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
-var Dia_chi_Dich_vu = "http://localhost:1000/"
-//var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
-var Dia_chi_Media = "http://localhost:1001/"
+var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
+//var Dia_chi_Dich_vu = "http://localhost:1000/"
+var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+//var Dia_chi_Media = "http://localhost:1001/"
+
 var ma_so_hd;
 var ma_so_ban;
 
@@ -67,6 +68,19 @@ function tim_hoa_don(mahd) {
     var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
     Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
     Xu_ly_HTTP.send("");
+    var Chuoi_JSON = Xu_ly_HTTP.responseText;
+    if (Chuoi_JSON != "")
+        Du_lieu = JSON.parse(Chuoi_JSON);
+    return Du_lieu;
+};
+
+function xoa_san_pham(data) {
+    var Du_lieu = {};
+    var Xu_ly_HTTP = new XMLHttpRequest();
+    var Tham_so = `Ma_so_Xu_ly=xoa_san_pham`;
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`;
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false);
+    Xu_ly_HTTP.send(JSON.stringify(data));
     var Chuoi_JSON = Xu_ly_HTTP.responseText;
     if (Chuoi_JSON != "")
         Du_lieu = JSON.parse(Chuoi_JSON);
@@ -162,7 +176,7 @@ function thongtinsp(masp) {
                         ><i class="fa fa-check-circle-o"></i> Cập nhật</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-primary btn-lg mx-2 mt-2" href="#"><i class=" fa fa-trash-o"></i> Xóa</a>
+                    <a class="nav-link btn btn-primary btn-lg mx-2 mt-2" onclick="xoa('${monan.Ma_so}')" href="#"><i class=" fa fa-trash-o"></i> Xóa</a>
                 </li>
             </ul>
     </div>
@@ -176,26 +190,71 @@ function capnhatsp(masp) {
     modalupdate.innerHTML = `
     <div class="form-group">
         <label>Tên hàng</label>
-        <input type="text" class="form-control" value='${monan.Ten}' placeholder="Nhập tên sản phẩm mới">
+        <input type="hidden" id="cap_nhat_ma" class="form-control" value='${monan.Ma_so}'>
+        <input type="text" id="cap_nhat_ten" class="form-control" value='${monan.Ten}' placeholder="Nhập tên sản phẩm mới">
     </div>
     <div class="form-group">
         <label>Loại hàng</label>
-        <select class="form-control">
+        <select id="cap_nhat_ma_loai" class="form-control">
             <option value='1' selected>Món ăn</option>
             <option value='2'>Nước uống</option>
         </select>
     </div>
     <div class="form-group">
         <label>Đơn giá</label>
-        <input type="number" value='${monan.Don_gia_Ban}' class="form-control" placeholder="Nhập tên sản phẩm mới">
+        <input type="number" id="cap_nhat_gia" value='${monan.Don_gia_Ban}' class="form-control" placeholder="Nhập tên sản phẩm mới">
     </div>
     <div class="form-group">
         <label>Hình ảnh</label>
-        <input type="file" class="form-control-file">
+        <input type="file" id="cap_nhat_hinh" class="form-control-file">
     </div>
     `
 }
 
+function cap_nhat_san_pham() {
+    var ma_so = cap_nhat_ma.value
+    var ten = cap_nhat_ten.value
+    var ma_loai = cap_nhat_ma_loai.value
+    var ten_loai = ma_loai == 'MON_AN' ? 'Món ăn' : 'Điện thoại'
+    var gia = cap_nhat_gia.value
+    if (ma_so == '' || ten == '' || ma_loai == '' || gia == '') {
+        alert('Chưa nhập xong dữ liệu')
+        return;
+    }
+    var sanpham = {
+        "Ten": ten,
+        "Ma_so": ma_so,
+        "Don_gia_Ban": gia,
+        "Nhom_Mat_hang": {
+            "Ten": ten_loai,
+            "Ma_so": ma_loai
+        }
+    }
+    xoa_san_pham({'Ma_so':ma_so});
+    Ghi_san_pham_moi(sanpham);
+    var reader = new FileReader()
+    var Chuoi_nhi_phan = ""
+    var Ten_Hinh = `${ma_so}.png`
+    reader.onload = function (e) {
+        Chuoi_nhi_phan = e.target.result;
+        var Doi_tuong = {
+            "Ten": Ten_Hinh,
+            "Chuoi_nhi_phan": Chuoi_nhi_phan
+        }
+        Kq = Ghi_Media(Doi_tuong)
+    }
+    reader.readAsDataURL(cap_nhat_hinh.files[0])
+    dong_cap_nhat.click();
+}
+
+function xoa(masp) {
+    if(!confirm('Xác nhận xóa'))
+    {
+        return;
+    }
+    xoa_san_pham({'Ma_so':masp})
+    btn_close_detai.click();
+}
 
 async function show_chi_tiet_hoa_don(mahd) {
     var hd = await tim_hoa_don(mahd);
@@ -249,6 +308,8 @@ async function show_chi_tiet_hoa_don(mahd) {
         </div>
     `
 }
+
+
 
 function Ghi_Media(Hinh) {
     

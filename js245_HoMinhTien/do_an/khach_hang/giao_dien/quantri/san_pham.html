@@ -226,19 +226,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
+                                            <label>Mã số</label>
+                                            <input type="text" id='them_ma_so' class="form-control"
+                                                placeholder="Nhập mã sản phẩm mới">
+                                        </div>
+                                        <div class="form-group">
                                             <label>Tên hàng</label>
-                                            <input type="text" class="form-control" placeholder="Nhập tên sản phẩm mới">
+                                            <input type="text" id='them_ten_sp' class="form-control"
+                                                placeholder="Nhập tên sản phẩm mới">
                                         </div>
                                         <div class="form-group">
                                             <label>Loại hàng</label>
-                                            <select class="form-control">
-                                                <option>Món ăn</option>
-                                                <option>Nước uống</option>
+                                            <select class="form-control" id="them_loai">
+                                                <option value="CA_PHE">Món ăn</option>
+                                                <option value="MON_AN">Nước uống</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Đơn giá</label>
-                                            <input type="number" class="form-control"
+                                            <input type="number" id="them_gia_ban" class="form-control"
                                                 placeholder="Nhập tên sản phẩm mới">
                                         </div>
                                         <div class="form-group">
@@ -249,7 +255,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="
                                             modal-footer">
                                         <button type="button" id="Th_Dong_y" class="btn btn-primary">Thêm</button>
-                                        <button type="button" class="btn btn-secondary"
+                                        <button type="button" id='dong_them_moi' class="btn btn-secondary"
                                             data-dismiss="modal">Đóng</button>
                                     </div>
                                 </div>
@@ -275,9 +281,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Cập nhật</button>
+                                        <button type="button" id='btn_cap_nhat' class="btn btn-primary">Cập nhật</button>
 
-                                        <button type="button" class="btn btn-secondary"
+                                        <button type="button" id="dong_cap_nhat" class="btn btn-secondary"
                                             data-dismiss="modal">Đóng</button>
                                     </div>
                                 </div>
@@ -347,38 +353,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             function XL_Ghi_Them() {
                 var Kq = ""
-                var Dien_thoai = {
-                    "Ten": 'Ten',
-                    "Ma_so": 'Ma_so',
-                    "Don_gia_Ban":123,
-                    "Don_gia_Nhap": 123,
+                var ma_so = them_ma_so.value
+                if((ds_san_pham.find(x=>x.Ma_so==ma_so))!=undefined)
+                {
+                    return Kq=1
                 }
-                var Dien_thoai = Ghi_san_pham_moi(Dien_thoai)
-
+                var ten = them_ten_sp.value
+                var ma_loai = them_loai.value
+                var ten_loai = ma_loai == 'MON_AN' ? 'Món ăn' : 'Điện thoại'
+                var gia = them_gia_ban.value
+                if (ma_so == '' || ten == '' || ma_loai == '' || gia == '') {
+                    alert('Chưa nhập xong dữ liệu')
+                    return;
+                }
+                var san_pham = {
+                    "Ten": ten,
+                    "Ma_so": ma_so,
+                    "Don_gia_Ban": gia,
+                    "Nhom_Mat_hang": {
+                        "Ten": ten_loai,
+                        "Ma_so": ma_loai
+                    }
+                }
+                var kq_them = Ghi_san_pham_moi(san_pham)
+                if (kq_them) {
                     var reader = new FileReader()
                     var Chuoi_nhi_phan = ""
-                    var Ten_Hinh = `Ma_so.png`
+                    var Ten_Hinh = `${ma_so}.png`
                     reader.onload = function (e) {
                         Chuoi_nhi_phan = e.target.result;
                         var Doi_tuong = {
                             "Ten": Ten_Hinh,
                             "Chuoi_nhi_phan": Chuoi_nhi_phan
                         }
-                        
                         Kq = Ghi_Media(Doi_tuong)
-                        console.log(Kq);
                     }
                     reader.readAsDataURL(Th_file.files[0])
                     return Kq
-                
+                }
 
             }
-
             Th_Dong_y.onclick = () => {
-                var Kq = XL_Ghi_Them()
-                console.log(Kq)
+                var kq = XL_Ghi_Them();
+                if (kq == '') {
+                    alert("Thêm thành công");
+                    dong_them_moi.click();
+                    Xuat_ds_san_pham(Doc_ds_san_pham(), TH_san_pham);
+                }else if(kq==1){
+                    alert('Mã sản phẩm đã tồn tại')
+                } else {
+                    alert('Có lỗi xảy ra')
+                }
+
             }
-            
+            btn_cap_nhat.onclick=()=>{
+                if(!confirm('Xác nhận cập nhật?'))
+                {
+                    return;
+                }
+                cap_nhat_san_pham();
+            }
+
         });
     </script>
 

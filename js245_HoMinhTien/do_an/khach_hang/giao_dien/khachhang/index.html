@@ -24,9 +24,11 @@
             <button class="btn btn-md btn-outline-primary active text-white"><strong>Trang chủ</strong></button>
             <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='monan.html'"><strong>Món
                     ăn</strong></button>
-            <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='gioithieu.html'"><strong>Giới
+            <button class="btn btn-md btn-outline-primary text-white"
+                onclick="window.location='gioithieu.html'"><strong>Giới
                     thiệu</strong></button>
-            <button class="btn btn-md btn-outline-primary text-white" onclick="window.location='lienhe.html'"><strong>Liên
+            <button class="btn btn-md btn-outline-primary text-white"
+                onclick="window.location='lienhe.html'"><strong>Liên
                     hệ</strong></button>
         </div>
     </div>
@@ -34,16 +36,17 @@
         <div class="h-100 row justify-content-center align-items-center">
             <div class="col-8">
                 <div class="input-group">
-                    <input type="text" class="form-control form-control-lg" id="Th_tim" placeholder="Nhập tên món ăn cần tìm...">
+                    <input type="text" class="form-control form-control-lg" onkeydown="searchKeyPress(event)" id="Th_tim"
+                        placeholder="Nhập tên món ăn cần tìm...">
                     <div class="input-group-append">
-                        <button class="btn btn-success" id="btn_tim" type="button"><strong>Tìm</strong></button>
+                        <button class="btn btn-success" id="btn_tim"  type="button"><strong>Tìm</strong></button>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../../js/jquery-3.3.1.min.js"></script>
@@ -53,6 +56,12 @@
         $(document).ready(function () {
             Th_tim.focus();
         });
+        function searchKeyPress(e) {
+            e = e || window.event;
+            if (e.keyCode == 13) {
+                btn_tim.click();
+            }
+        }
         btn_tim.onclick = () => {
             window.location = 'monan.html?q=' + Th_tim.value;
         }

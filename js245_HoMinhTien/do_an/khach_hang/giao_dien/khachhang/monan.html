@@ -20,17 +20,21 @@
     </nav>
     <div class="container text-center">
         <div class="btn-group justify-content-center mt-1 ">
-            <button class="btn btn-md btn-outline-primary" onclick="window.location='.'"><strong>Trang chủ</strong></button>
-            <button class="btn btn-md btn-outline-primary active" onclick="window.location='monan.html'"><strong>Món ăn</strong></button>
+            <button class="btn btn-md btn-outline-primary" onclick="window.location='.'"><strong>Trang
+                    chủ</strong></button>
+            <button class="btn btn-md btn-outline-primary active" onclick="window.location='monan.html'"><strong>Món
+                    ăn</strong></button>
             <button class="btn btn-md btn-outline-primary" onclick="window.location='gioithieu.html'"><strong>Giới
                     thiệu</strong></button>
-            <button class="btn btn-md btn-outline-primary" onclick="window.location='lienhe.html'"><strong>Liên hệ</strong></button>
+            <button class="btn btn-md btn-outline-primary" onclick="window.location='lienhe.html'"><strong>Liên
+                    hệ</strong></button>
         </div>
     </div>
     <div class="container mt-5 ">
         <div class="row">
             <div class="text-left input-group ml-1 mr-auto w-auto">
-                <input type="text" class="form-control" id="TH_tim" placeholder="Nhập từ khóa cần tìm">
+                <input type="text" class="form-control" onkeydown="searchKeyPress(event)" id="TH_tim"
+                    placeholder="Nhập từ khóa cần tìm">
                 <div class="input-group-prepend">
                     <button class="btn btn-success" id="btn_tim" type="button"><i class="fa fa-search"></i> Tìm</button>
                 </div>
@@ -52,10 +56,12 @@
 
     </div>
     <div class="container my-3">
+        <div class="col-12" id="Th_Phan_trang_top"></div>
         <div class="row" id="TH_monan">
 
         </div>
         <div class="h1 text-danger text-center mt-2" id="TH_thongbao"></div>
+        <div class="col-12" id="Th_Phan_trang_bottom"></div>
     </div>
 
     <!-- Modal -->
@@ -85,21 +91,39 @@
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../Xu_ly/Xu_ly_3L.js"></script>
     <script>
+        function searchKeyPress(e) {
+            e = e || window.event;
+            if (e.keyCode == 13) {
+                btn_tim.click();
+            }
+        }
         $(document).ready(function () {
+            var page = 1;
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('q');
+            const pageParam = urlParams.get('page');
             if (myParam != null) {
                 TH_tim.value = myParam;
             }
+            if (pageParam != null) {
+                page = pageParam;
+            }
             var ds_monan = tim_kiem(TH_tim.value)
-            Xuat_ds_mon_an(ds_monan, TH_monan)
+            var limit = 8;
+            var Tong_so_san_pham = ds_monan.length;
+            var vitri = (Number(page) - 1) * limit
+            Xuat_ds_mon_an(ds_monan.splice(vitri, limit), TH_monan)
+            Tao_The_Hien_Phan_trang(Tong_so_san_pham, limit, Th_Phan_trang_top);
+            Tao_The_Hien_Phan_trang(Tong_so_san_pham, limit, Th_Phan_trang_bottom);
             Th_Sap_xep.onchange = () => {
                 ds_monan = tim_kiem(TH_tim.value)
                 var gt_gia = Th_Loc_gia.value;
                 var gt_loai = Th_Sap_xep.value;
                 ds_monan = xep_theo_loai(ds_monan, gt_loai)
                 ds_monan = xep_theo_gia(ds_monan, gt_gia)
-                Xuat_ds_mon_an(ds_monan, TH_monan);
+                Tao_The_Hien_Phan_trang(ds_monan.length, limit, Th_Phan_trang_top);
+                Tao_The_Hien_Phan_trang(ds_monan.length, limit, Th_Phan_trang_bottom);
+                Xuat_ds_mon_an(ds_monan.splice(vitri, limit), TH_monan);
             }
             Th_Loc_gia.onchange = () => {
                 ds_monan = tim_kiem(TH_tim.value)
@@ -107,10 +131,44 @@
                 var gt_loai = Th_Sap_xep.value;
                 ds_monan = xep_theo_gia(ds_monan, gt_gia)
                 ds_monan = xep_theo_loai(ds_monan, gt_loai)
-                Xuat_ds_mon_an(ds_monan, TH_monan);
+                Tao_The_Hien_Phan_trang(ds_monan.length, limit, Th_Phan_trang_top);
+                Tao_The_Hien_Phan_trang(ds_monan.length, limit, Th_Phan_trang_bottom);
+                Xuat_ds_mon_an(ds_monan.splice(vitri, limit), TH_monan);
             }
             btn_tim.onclick = () => {
-                Xuat_ds_mon_an(tim_kiem(TH_tim.value), TH_monan);
+                ds_monan = tim_kiem(TH_tim.value)
+                Tao_The_Hien_Phan_trang(ds_monan.length, limit, Th_Phan_trang_top);
+                Tao_The_Hien_Phan_trang(ds_monan.length, limit, Th_Phan_trang_bottom);
+                Xuat_ds_mon_an(ds_monan.splice(vitri, limit), TH_monan);
+            }
+
+
+
+            function Tao_The_Hien_Phan_trang(Tong_so_san_pham, So_san_pham_cho_mot_trang, Th_Cha) {
+                dia_chi = window.location.pathname;
+                if (TH_tim.value.trim() != '') {
+                    dia_chi += `?q=${TH_tim.value}&`
+                }
+                var Tong_trang = (Tong_so_san_pham % So_san_pham_cho_mot_trang == 0) ? Tong_so_san_pham /
+                    So_san_pham_cho_mot_trang : parseInt(Tong_so_san_pham / So_san_pham_cho_mot_trang) + 1
+                var noi_dung_HTML = `<nav aria-label="Page navigation">`
+                noi_dung_HTML += `
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="${dia_chi+'?page=1'}" >Về đầu</a></li>    
+                `
+                for (var i = 1; i <= Tong_trang; i++) {
+                    noi_dung_HTML +=
+                        `<li class="page-item"><a class="page-link" href="${dia_chi+'?page='+i}">${i}</a></li>`
+
+                }
+                noi_dung_HTML += `
+                    <li class="page-item"><a class="page-link" href="${dia_chi+'?page='+Tong_trang}">Về cuối</a></li>
+                    </ul>
+                    </nav>
+                `
+                Th_Cha.innerHTML = noi_dung_HTML
+
+
             }
         });
     </script>
