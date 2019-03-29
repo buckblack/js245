@@ -1,7 +1,7 @@
-var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
-//var Dia_chi_Dich_vu = "http://localhost:1000/"
-var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
-//var Dia_chi_Media = "http://localhost:1001/"
+//var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
+var Dia_chi_Dich_vu = "http://localhost:1000/"
+//var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+var Dia_chi_Media = "http://localhost:1001/"
 
 var ma_so_hd;
 var ma_so_ban;
@@ -253,6 +253,7 @@ function xoa(masp) {
         return;
     }
     xoa_san_pham({'Ma_so':masp})
+    Xuat_ds_san_pham(Doc_ds_san_pham(), TH_san_pham);
     btn_close_detai.click();
 }
 

@@ -1,6 +1,7 @@
 //var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
 var Dia_chi_Dich_vu = "http://localhost:1000/"
 //var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+var Dia_chi_Media = "http://localhost:1001/"
 var ma_so_hd;
 var ma_so_ban;
 
