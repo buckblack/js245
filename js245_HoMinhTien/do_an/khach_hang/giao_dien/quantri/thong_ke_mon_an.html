@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html class="h-100">
 
 <head>
-    <title>Thống kê hóa đơn</title>
+    <title>Thống kê món ăn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -173,44 +173,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         dateFrom.value = new Date(Date.now()).toISOString().split('T')[0]
         dateTo.value = new Date(Date.now()).toISOString().split('T')[0]
 
-        function tinh_tong_tien(Danh_sach) {
-            var tong_tien = 0;
+        function tinh_so_luong(Danh_sach) {
+            var so_luong = 0;
             Danh_sach.forEach(row => {
-                tong_tien += row.so_luong * row.gia_ban
+                so_luong += row.so_luong;
             });
-            return tong_tien;
+            return so_luong;
         }
-        btn_tim.onclick = () => {
+        btn_tim.onclick = async () => {
             var ds;
-            var arrngay = [];
-            var arrtongtien = [];
+            var arrmonan = [];
+            var arrsoluong = [];
+            var ds_mon_an = await Doc_ds_san_pham();
+            var ds_hoa_don;
+            var from = new Date(dateFrom.value)
+            var to = new Date(dateTo.value)
+            to.setDate(to.getDate() + 1)
             Doc_ds_hoa_don().then(res => {
-                var from = new Date(dateFrom.value)
-                var to = new Date(dateTo.value)
-                to.setDate(to.getDate() + 1)
-                ds = res.filter(x => x.ngay_lap >= dateFrom.value).filter(x => x.ngay_lap <= to.toISOString().split('T')[0])
-                var dem = 0;
-                while (from <= to) {
-                    arrngay.push(from.toISOString().split('T')[0])
-                    var tien = 0
-                    ds.forEach(row => {
-                        if (row.ngay_lap.toString().indexOf(from.toISOString().split('T')[0]) >=
-                            0) {
-                            tien += tinh_tong_tien(row.chi_tiet)
-                        }
+                ds_hoa_don = res.filter(x => x.ngay_lap >= dateFrom.value).filter(x => x.ngay_lap <= to
+                    .toISOString().split(
+                        'T')[0])
+                ds_mon_an.forEach(row => {
+                    arrmonan.push(row.Ten);
+                    var so_luong = 0;
+                    ds_hoa_don.forEach(hd => {
+                        hd.chi_tiet.forEach(ct => {
+                            if (ct.ma_sp == row.Ma_so) {
+                                so_luong += Number(ct.so_luong);
+                            }
+                        });
                     });
-                    arrtongtien.push(tien)
-                    from.setDate(from.getDate() + 1)
-                }
-                arrngay.pop();
-                arrtongtien.pop();
+                    arrsoluong.push(so_luong);
+                });
+                arrmonan.pop();
+                arrsoluong.pop();
                 Highcharts.chart('Th_Bieu_do', {
                     chart: {
                         type: 'column', // bar , column, line, pie
                         plotBorderWidth: 1
                     },
                     title: {
-                        text: 'Thống kê hóa đơn',
+                        text: 'Thống kê món ăn',
                         align: 'center',
                         style: {
                             color: 'red',
@@ -223,11 +226,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         text: `từ ${dateFrom.value} đến ${dateTo.value}`
                     },
                     xAxis: {
-                        categories: arrngay
+                        categories: arrmonan
                     },
                     yAxis: {
                         title: {
-                            text: 'Tổng tiền hóa đơn',
+                            text: 'Tổng số lượng bán',
 
                             style: {
                                 color: 'blue',
@@ -238,13 +241,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         }
                     },
                     series: [{
-                        name: 'Tổng tiền',
-                        data: arrtongtien,
+                        name: 'Số lượng',
+                        data: arrsoluong,
                         color: 'red'
                     }]
 
                 });
-            });
+            })
         }
 
         Highcharts.setOptions({

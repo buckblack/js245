@@ -1,7 +1,7 @@
 //var Dia_chi_Dich_vu = "https://js245dvdulieu.herokuapp.com/"
 var Dia_chi_Dich_vu = "http://localhost:1000/"
-//var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
-var Dia_chi_Media = "http://localhost:1001/"
+var Dia_chi_Media = "https://js245dvmedia.herokuapp.com"
+//var Dia_chi_Media = "http://localhost:1001/"
 
 var ma_so_hd;
 var ma_so_ban;
@@ -110,6 +110,7 @@ function Xuat_ds_hoa_don(Danh_sach, Th_Cha) {
             </tr>
             `;
     });
+    $('#example').DataTable();
 }
 
 function Xuat_ds_san_pham(Danh_sach, Th_Cha) {
@@ -125,6 +126,7 @@ function Xuat_ds_san_pham(Danh_sach, Th_Cha) {
             </tr>
             `;
     });
+    $('#example').DataTable();
 };
 
 function thongtinsp(masp) {
